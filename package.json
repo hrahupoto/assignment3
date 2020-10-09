@@ -5,7 +5,8 @@
   "main": "server.js",
   "dependencies": {
     "express": "*",
-    "mongodb": "*"
+    "mongodb": "*",
+    "mongoose": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
