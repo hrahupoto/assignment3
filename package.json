@@ -1,25 +1,24 @@
 {
-  "name": "assignment3",
-  "version": "1.0.0",
-  "description": "Citadels",
-  "main": "server.js",
-  "dependencies": {
-    "ejs": "^3.1.3",
-    "express": "*",
-    "mongoose": "*",
-    "nodemon": "^2.0.5",
-    "to": "^0.2.9",
-    "update": "^0.7.4"
-  },
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hrahupoto/assignment3.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hrahupoto/assignment3/issues"
-  },
-  "homepage": "https://github.com/hrahupoto/assignment3#readme"
+    "name": "assignment3",
+    "version": "1.0.0",
+    "description": "Citadels",
+    "main": "server.js",
+    "dependencies": {
+        "express": "*",
+        "mongodb": "*",
+        "ejs": "^3.1.3"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hrahupoto/assignment3.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/hrahupoto/assignment3/issues"
+    },
+    "homepage": "https://github.com/hrahupoto/assignment3#readme"
 }
