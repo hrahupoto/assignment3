@@ -1,0 +1,24 @@
+body {
+    background-image: url(/images/Citadels_help.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.col-sm-3 {
+    top: 200px;
+    right: 100px;
+}
+
+.col-sm-9 {
+    top: 50px;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
