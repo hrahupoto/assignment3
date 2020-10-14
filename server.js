@@ -18,16 +18,16 @@ app.use('/', deleteAllUsers);
 app.set('view engine', 'ejs');  
 
 app.get('/',function(req,res){
-    res.render('index', {title:"Citadels - main"});
-})
-
-app.get('/lobby',function(req,res){
     res.render('lobby', {title:"Citadels - Lobby"});
 })
 
-app.get('/PlayerRoom',function(req,res){
-    res.render('fourPlayerRoom', {title:"Citadels - Game Room"});
+app.get('/gameRoom',function(req,res){
+    res.render('gameRoom', {title:"Citadels - Game Room"});
 })
+
+// app.get('/PlayerRoom',function(req,res){
+//     res.render('fourPlayerRoom', {title:"Citadels - Game Room"});
+// })
 
 app.listen(3000);
 console.log('Server running at Port: 3000');
