@@ -93,7 +93,7 @@ body {
 .help .centered {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 10%;
     transform: translate(-50%, -50%);
     font-size: 50px;
     color: white;
@@ -108,6 +108,14 @@ body {
     height: 100%;
 }
 
+.help .pdf_file {
+    position: relative;
+    top: 50px;
+    left: 430px;
+}
+
+
+/*
 .help .col-sm-3 {
     top: 200px;
 }
@@ -116,6 +124,7 @@ body {
     top: 50px;
     left: 125px;
 }
+*/
 
 
 /************** End of help screen styles **************/
