@@ -6,7 +6,7 @@ class DistrictCard{
         this.name = dcName;
         this.value = dcValue;
         this.colour = dcColour;
-        this.hand = isDcOnHand;
+        this.hand = isDcOnHand; // once the player draw a card from the bank deck, set this value to true. But once the district card has built set it to false. This way you can identify player dcs, on hand and built.
         this.url = dcUrl;
     }
 }
