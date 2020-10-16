@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 const usermodel = require('../../models/db/insertUser');
-=======
-const userModel = require('../../models/DB/user');
->>>>>>> 2f49e43... - add validations to join room users. - made changes in database files
 
 exports.getUsers = function (req, res) {
   userModel.find({}).exec((err, users) => {
