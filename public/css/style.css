@@ -36,22 +36,3 @@ body {
     height: 100%;
 }
 /**************** end game room styles *********/
-
-/* Extra small devices (portrait phones, less than 576px)
-   No media query since this is the default in Bootstrap */
-
-/* Small devices (landscape phones, 768px and up) */
-
-/************** game room styles **************/
-@media (min-width: 768px) { 
-    #full-screen {
-        visibility: visible;
-        display:inline-block;
-   }
-
-   #split-screen {
-        visibility: hidden;
-        display: none;
-   }
-/**************** end game room styles *********/
-}
