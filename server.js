@@ -1,18 +1,23 @@
 const mongoose = require('mongoose');
 const express = require('express');
 // create an ejs instance
-const ejs = require("ejs");
+const ejs = require('ejs');
 const app = express();
 
-app.use(express.static(__dirname + '/public'));
+//DB routes
+const insertUser = require('./routes/db/insertUser');
+const getUsers = require('./routes/db/getUsers');
+const deleteAllUsers = require('./routes/db/deleteAllUsers');
 
-const insertUser = require('./routes/insertUser');
-const getUsers = require('./routes/getUsers');
-const deleteAllUsers = require('./routes/deleteAllUsers');
+//Game logic routes
+const startGame = require('./routes/startGame');
+
+app.use(express.static(__dirname + '/public'));
 
 app.use('/', insertUser);
 app.use('/', getUsers);
 app.use('/', deleteAllUsers);
+app.use('/', startGame);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -33,11 +38,11 @@ app.get('/gameRoom', function(req, res) {
 //     res.render('fourPlayerRoom', {title:"Citadels - Game Room"});
 // })
 
+//Start the server
 app.listen(3000);
 console.log('Server running at Port: 3000');
 
 //DATABASE MONGODB
-
 const uri =
     'mongodb+srv://Hassan:SIT725@sit725.bketa.mongodb.net/Citadels(SIT725)?retryWrites=true&w=majority';
 

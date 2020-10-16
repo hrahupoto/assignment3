@@ -1,4 +1,4 @@
-const usermodel = require('../models/insertUser');
+const usermodel = require('../../models/db/insertUser');
 
 exports.getUsers = function (req, res) {
   usermodel.find({}).exec((err, users) => {

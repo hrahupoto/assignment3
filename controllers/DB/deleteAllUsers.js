@@ -1,4 +1,4 @@
-const usermodel = require('../models/insertUser');
+const usermodel = require('../../models/db/insertUser');
 
 exports.deleteAllUsers = function (req, res) {
   usermodel.remove({}).exec((err, users) => {

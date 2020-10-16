@@ -1,4 +1,4 @@
-const usermodel = require('../models/insertUser')
+const usermodel = require('../../models/db/insertUser')
 
 exports.insertUser=function (req,res){
 const user = new usermodel(req.query)
