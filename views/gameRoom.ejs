@@ -5,18 +5,17 @@
         </head>
     </head>
     <body>
-        <main>
-            <div class="container">
-                <div class="row">
-                    <div class="col s6">
-                        <%- include('partials/gameTable') %>
-                    </div>
-                    <div class="col s6">
-                        <%- include('partials/rightPanel') %>
-                    </div>
-                </div>
+       <!-- content inside the main class used only for lobby. When styling lobby page, lobby class can be used just for lobby page in css file. -->      
+       <main class="game-room"> 
+        <div class="container">
+            <div class="row">
+                <div class="col-xm-12">        
+                    <img id="full-screen"  src="/Images/gameBoard.jpg">
+                   
+                </div>                         
             </div>
-        </main>
+        </div>
+    </main>
     </body>
        
 </html>
