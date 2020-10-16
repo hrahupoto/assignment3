@@ -1,8 +1,24 @@
 <html lang="en">
-    <head>
-        <%- include('partials/head',title) %>
-    </head>
-    <body>
-        
-    </body>
+
+<head>
+    <%- include('partials/head',title) %>
+</head>
+
+<body>
+    <!-- content inside the main class used only for lobby. When styling lobby page, lobby class can be used just for lobby page in css file. -->
+    <main class="lobby">
+        <div class="container">
+            <div class="row">
+                <img class="screen" src="/images/Citadels_home.jpg">
+            </div>
+            <div class="row">
+                <a href="help">
+                    <img class="centered" src="/images/Help_button.png">
+                    <div class="centered font-weight-bold">Help</div>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+
 </html>
