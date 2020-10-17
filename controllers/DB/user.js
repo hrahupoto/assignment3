@@ -1,4 +1,4 @@
-const userModel = require('../../models/DB/user');
+const userModel = require('../../models/db/user');
 
 //declared to count number of users in database.
 var currentUsers = 0;
