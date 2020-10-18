@@ -77,7 +77,16 @@ body {
     font-size: 25px;
 }
 
-
+.game-room .startGame {
+  position: absolute;
+  top: 40%;
+  left: 85%;
+  object-fit: none;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
 /**************** end game room styles *********/
 
 
