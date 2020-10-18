@@ -3,7 +3,7 @@ const socket = io.connect('http://localhost:3000');
 
 $(document).ready(function () {
 
-  $('#joinRoom').click(function () {
+  $('.joinRoom').click(function () {
       var userName = $('#userName').val()
       var dateOfBirth = $('#dob').val()
 
@@ -12,7 +12,18 @@ $(document).ready(function () {
           url: "/insertUser",
           data: { userName, dateOfBirth },
           success: function (data) {
+            if(data=='User already exists, Please try entering different username.')
+            {
+              alert(JSON.stringify(data))
+            }
+            else if(data=='Game room is full. Please try again later.')
+            {
+              alert(JSON.stringify(data))
+            }
+            else
+            {
               window.location.href = 'gameRoom'
+            }
           },
           error: function () { },
       });
