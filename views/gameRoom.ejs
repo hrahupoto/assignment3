@@ -1,23 +1,35 @@
 <html lang="en">
+
+<head>
+
     <head>
-        <head>
-            <%- include('partials/head',title) %>
-        </head>
+        <%- include('partials/head',title) %>
     </head>
+
     <body>
-        <main>
+        <!-- content inside the main class used only for lobby. When styling lobby page, lobby class can be used just for lobby page in css file. -->
+        <main class="game-room">
             <div class="container">
+                <%- include('partials/bank_components.ejs') %>
                 <div class="row">
-                    <div class="col s6">
-                        <%- include('partials/gameTable') %>
-                    </div>
-                    <div class="col s6">
-                        <%- include('partials/rightPanel') %>
-                    </div>
+                    <div>        
+                        <img  src="/images/gameRoom.jpg">                   
+                    </div>                         
+                </div>
+                <div class="row">
+                    <a href='#startGame'>
+                        <img class="startGame" src="/images/startGame_button.png">
+                        <div class="startGame font-weight-bold">Start Game</div>
+                    </a>
                 </div>
             </div>
         </main>
     </body>
+<<<<<<< HEAD
        
 </html>
 
+=======
+
+</html>
+>>>>>>> development
