@@ -18,7 +18,6 @@ $('.joinRoom').click(function () {
         startTimer();
 }
   });
-  
 
 //Function to start Timer
 function startTimer() {
