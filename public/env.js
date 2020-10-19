@@ -81,11 +81,22 @@ $(document).ready(function () {
       
       // redirect to 4 player room
       if(m<0){
-        var http = require("http");
+        userModel.find({}, function(err, users) {
+          if (users.length == 4) {
+            var http = require("http");
         http.createServer(function(req, res) {
           res.writeHead(301,{Location: 'http://localhost:3000/PlayerRoom'});
           res.end();
-        }).listen(3000);   }
+        }).listen(3000);     
+        }
+        else{
+          var http = require("http");
+          http.createServer(function(req, res) {
+            res.writeHead(301,{Location: 'http://localhost:3000/lobby'});
+            res.end();
+          }).listen(3000); 
+        }
+      });
     }
     
     function checkSecond(sec) {
