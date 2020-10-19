@@ -35,9 +35,9 @@ app.get('/gameRoom', function (req, res) {
   res.render('gameRoom', {title: 'Citadels - Game Room'});
 });
 
-// app.get('/PlayerRoom',function(req,res){
-//     res.render('fourPlayerRoom', {title:"Citadels - Game Room"});
-// })
+ app.get('/PlayerRoom',function(req,res){
+     res.render('fourPlayerRoom', {title:"Citadels - Game Room"});
+ })
 
 //Start the server
 const server = app.listen(3000);
