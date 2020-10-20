@@ -9,7 +9,9 @@
     "mongoose": "*",
     "socket.io": "^2.3.0"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hrahupoto/assignment3.git"
@@ -19,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/hrahupoto/assignment3/issues"
   },
-  "homepage": "https://github.com/hrahupoto/assignment3#readme"
+  "homepage": "https://github.com/hrahupoto/assignment3#readme",
+  "devDependencies": {}
 }

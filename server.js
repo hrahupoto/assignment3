@@ -12,6 +12,10 @@ const deleteAllUsers = require('./routes/db/deleteAllUsers');
 
 //Game logic routes
 const startGame = require('./routes/startGame');
+const userCounter = require('./routes/userCounter');
+
+app.locals.m;
+app.locals.s;
 
 app.use(express.static(__dirname + '/public'));
 
@@ -19,6 +23,7 @@ app.use('/', insertUser);
 app.use('/', getUsers);
 app.use('/', deleteAllUsers);
 app.use('/', startGame);
+app.use('/',userCounter)
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -35,9 +40,6 @@ app.get('/gameRoom', function (req, res) {
   res.render('gameRoom', {title: 'Citadels - Game Room'});
 });
 
-// app.get('/PlayerRoom',function(req,res){
-//     res.render('fourPlayerRoom', {title:"Citadels - Game Room"});
-// })
 
 //Start the server
 const server = app.listen(3000);
@@ -68,3 +70,5 @@ const io = socket(server);
 io.on('connection',function(socket){
     console.log('Made socket connection',socket.id)
 })
+
+exports.app=app;

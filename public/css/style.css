@@ -87,6 +87,23 @@ body {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+#Counter{
+    position: absolute;
+    top: 5%;
+    left: 53%;
+    font-size: 20px;
+    font-family: Garamond;
+    color: white;
+    font-weight: bold;
+    visibility: visible;
+  }
+  #timer{
+      color: black;
+      background-color: white;
+      font-weight: bold;
+    }
+    
 /**************** end game room styles *********/
 
 
