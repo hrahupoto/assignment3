@@ -29,7 +29,7 @@ const socket = io.connect('http://localhost:3000');
       console.log(userName)
       console.log(dateOfBirth)
   });
-})
+
 
 $(document).ready(function () {
     $('a[href="#startGame"]').click(function () {
@@ -98,14 +98,14 @@ $(document).ready(function () {
         }
       });
     }
-    
+  }
     function checkSecond(sec) {
       if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
       if (sec < 0) {sec = "59"};
       return sec;
     }
     
-});
+  });
 
 
 
