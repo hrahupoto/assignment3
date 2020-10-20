@@ -148,7 +148,7 @@ body {
   left: 53%;
   font-size: 25px;
   font-weight: bold;
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 
 .player2 {
