@@ -1,8 +1,6 @@
 //Make connection
 const socket = io.connect('http://localhost:3000');
-var m; //minute variable
-var s; //seconds variable
-var playersLength; // players lentgth
+
 $(document).ready(function () {
 
   $('.joinRoom').click(function () {
