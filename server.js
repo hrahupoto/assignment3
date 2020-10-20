@@ -14,9 +14,6 @@ const deleteAllUsers = require('./routes/db/deleteAllUsers');
 const startGame = require('./routes/startGame');
 const userCounter = require('./routes/userCounter');
 
-app.locals.m;
-app.locals.s;
-
 app.use(express.static(__dirname + '/public'));
 
 app.use('/', insertUser);
@@ -71,4 +68,5 @@ io.on('connection',function(socket){
     console.log('Made socket connection',socket.id)
 })
 
+//exporting
 exports.app=app;
