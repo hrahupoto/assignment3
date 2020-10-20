@@ -103,6 +103,37 @@ body {
       background-color: white;
       font-weight: bold;
     }
+
+    #player1Crown{
+        visibility: hidden;
+        position: absolute;
+        top: 55%;
+        left: 33.5%;
+        transform: translate(-50%, -50%);
+
+    }
+    #player2Crown{
+        visibility: hidden;
+        position: absolute;
+        top: 55%;
+        left: 33.5%;
+        transform: translate(-50%, -50%);
+    }
+    #player3Crown{
+        visibility: hidden;
+        position: absolute;
+        top: 55%;
+        left: 33.5%;
+        transform: translate(-50%, -50%);
+    }
+    #player4Crown{
+        visibility: hidden;
+        position: absolute;
+        top: 55%;
+        left: 33.5%;
+        transform: translate(-50%, -50%);
+        
+    }
     
 /**************** end game room styles *********/
 
