@@ -99,7 +99,7 @@ socket.on('timer', (timer) => {
 });
 
 $('.game-room').ready(function () {
-  setInterval(() => {
+  var appendPlayers=setInterval(() => {
     $.ajax({
       type: 'GET',
       url: '/getUsers',
@@ -109,6 +109,9 @@ $('.game-room').ready(function () {
           var num = players.users[i].num;
           var userName = players.users[i].userName;
           $('.players').append(`<div class="player${num}">${userName}</div>`);
+        }
+        if(players.users.length==4){
+          clearInterval(appendPlayers)
         }
       },
       error: function () {},
