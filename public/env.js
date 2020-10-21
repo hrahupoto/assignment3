@@ -1,6 +1,6 @@
 //Make connection
 const socket = io.connect('http://localhost:3000');
-var response;
+var counter;
 
 $(document).ready(function() {
     $('.joinRoom').click(function() {
@@ -34,22 +34,28 @@ $(document).ready(function() {
             url: '/startGame',
             data: {},
             success: function(players) {
-                for (i = 0; i < players.players.length; i++) {
-                    var earned_player_coins = players.players[i].coins;
-                    $('.players_coins').append(`<a>
-            <img class="player${i}_coins" src="/images/bank/coins.png">
-            <div class="player${i}_coins">${earned_player_coins}</div></a>`);
+                if (players == 'Please wait for more players to show up.') {
+                    alert(players);
+                } else {
+                    $('.startGame').hide(); //hide start game button after game is started
+                    clearInterval(counter);
+                    $('#Counter').hide();
+                    for (i = 0; i < players.players.length; i++) {
+                        var earned_player_coins = players.players[i].coins;
+                        $('.players_coins').append(`<a>
+          <img class="player${i}_coins" src="/images/bank/coins.png">
+          <div class="player${i}_coins">${earned_player_coins}</div></a>`);
+                    }
                 }
             },
             error: function() {},
         });
-        $('.startGame').hide(); //hide start game button after game is started
     });
 });
 
 $('.game-Room').ready(function() {
     document.getElementById('timer').innerHTML = 01 + ':' + 00;
-    var counter = setInterval(() => {
+    counter = setInterval(() => {
         var presentTime = document.getElementById('timer').innerHTML;
         var timeArray = presentTime.split(/[:]+/);
         $.ajax({
@@ -67,7 +73,12 @@ $('.game-Room').ready(function() {
                         url: '/startGame', //start the game if 4 users are present in the room
                         data: {},
                         success: function(players) {
-                            console.log(players);
+                            for (i = 0; i < players.players.length; i++) {
+                                var earned_player_coins = players.players[i].coins;
+                                $('.players_coins').append(`<a>
+              <img class="player${i}_coins" src="/images/bank/coins.png">
+              <div class="player${i}_coins">${earned_player_coins}</div></a>`);
+                            }
                         },
                         error: function() {},
                     });
@@ -116,7 +127,7 @@ $('.game-room').ready(function() {
                     $('.players').append(`<div class="player${num}">${userName}</div>`);
                 }
                 if (players.users.length == 4) {
-                    clearInterval(appendPlayers)
+                    clearInterval(appendPlayers);
                 }
             },
             error: function() {},
