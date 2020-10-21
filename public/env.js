@@ -38,6 +38,7 @@ $(document).ready(function () {
       },
       error: function () {},
     });
+    $('.startGame').hide(); //hide start game button after game is started
   });
 });
 
@@ -56,9 +57,25 @@ $('.game-Room').ready(function () {
           clearInterval(counter);
           $('#Counter').hide();
           $('.startGame').hide();
+          $.ajax({
+            type: 'GET',
+            url: '/startGame', //start the game if 4 users are present in the room
+            data: {},
+            success: function (players) {
+              console.log(players);
+            },
+            error: function () {},
+          });
           //document.getElementsById('Counter').style.visibility = 'hidden';
         } else if (data == 'redirect') {
           clearInterval(counter);
+          $.ajax({
+            type: 'GET',
+            url: '/deleteAllUsers', //delete all users before redirecting to lobby
+            data: {},
+            success: function () {},
+            error: function () {},
+          });
           window.location.href = '/';
         } else {
           //scoket emiting event
