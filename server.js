@@ -12,6 +12,7 @@ const deleteAllUsers = require('./routes/db/deleteAllUsers');
 
 //Game logic routes
 const startGame = require('./routes/startGame');
+const userCounter = require('./routes/userCounter');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -19,6 +20,7 @@ app.use('/', insertUser);
 app.use('/', getUsers);
 app.use('/', deleteAllUsers);
 app.use('/', startGame);
+app.use('/', userCounter);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -32,12 +34,9 @@ app.get('/help', function (req, res) {
 });
 
 app.get('/gameRoom', function (req, res) {
+  console.log(app.locals.timer);
   res.render('gameRoom', {title: 'Citadels - Game Room'});
 });
-
-// app.get('/PlayerRoom',function(req,res){
-//     res.render('fourPlayerRoom', {title:"Citadels - Game Room"});
-// })
 
 //Start the server
 const server = app.listen(3000);
@@ -45,30 +44,29 @@ console.log('Server running at Port: 3000');
 
 //DATABASE MONGODB
 const uri =
-    'mongodb+srv://Hassan:SIT725@sit725.bketa.mongodb.net/Citadels(SIT725)?retryWrites=true&w=majority';
+  'mongodb+srv://Hassan:SIT725@sit725.bketa.mongodb.net/Citadels(SIT725)?retryWrites=true&w=majority';
 
 mongoose.connect(
-    uri,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-    },
-    function (err) {
-        if (err) throw err;
+  uri,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  },
+  function (err) {
+    if (err) throw err;
 
-        console.log('DB successfully connected');
-    }
+    console.log('DB successfully connected');
+  }
 );
 
 //Socket setup
 const io = socket(server);
 
-io.on('connection',function(socket){
-    console.log('Made socket connection',socket.id)
-
-    //chat event handling
+io.on('connection', function (socket) {
+  console.log('Made socket connection', socket.id);
+  //chat event handling
     socket.on('chat', function(data){
         // console.log(data);
         io.sockets.emit('chat', data);
@@ -77,6 +75,12 @@ io.on('connection',function(socket){
     socket.on('typing', function(data){
         socket.broadcast.emit('typing', data);
     });
-
+  socket.on('timer', (timer) => {
+    io.clients((error, clients) => {
+      console.log(clients);
+      if (timer.socketID == clients[0]) {
+        io.sockets.emit('timer', timer);
+      }
+    });
+  });
 });
-
