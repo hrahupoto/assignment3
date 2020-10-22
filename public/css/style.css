@@ -30,27 +30,7 @@ body {
     margin: 0px;
 }
 
-.game-room .collapsible {
-    position: absolute;
-    top: 0%;
-    color: white;
-    cursor: pointer;
-    padding: 0px;
-    width: 8%;
-    border: none;
-    outline: none;
-    font-size: 15px;
-    background: black;
-  }
- #content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #777;
-    position: absolute;
-    top: 10%;
-    width: 20%;
-}
+
 
 .game-room .screen {
     position: absolute;
@@ -220,10 +200,38 @@ body {
 
 /************** game room chat pannel styles **************/
 
+.game-room .collapsible {
+    position: absolute;
+    top: 3%;
+    color: white;
+    cursor: pointer;
+    padding: 0px;
+    width: 8%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: black;
+  }
+ #content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #777;
+    position: absolute;
+    top: 10%;
+    width: 20%;
+    left:0%;
+}
+
 h2{
     font-size: 18px;
     padding: 10px 20px;
     color: white;
+}
+
+#TextIcon{
+    width: 45%;
+    height:auto;
 }
 
 #chatPanel{
@@ -284,3 +292,4 @@ button{
     width: 100%;
     border-radius: 0 0 2px 2px;
 }
+/************** End of game room chat pannel styles **************/
