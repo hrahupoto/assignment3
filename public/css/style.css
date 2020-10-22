@@ -47,12 +47,45 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   white-space: nowrap;
+  font-size: 24px;
+  font-family: Garamond;
+  color: white;
+  font-weight: bold;
 }
 
 .hand-panel img {
   width: 300px;
   height: 1300px;
 }
+#hand-panel-cc-text {
+  position: absolute;
+  text-align: center;
+  top: 0%;
+  left: 8%;
+}
+
+#hand-panel-dc-text {
+  position: absolute;
+  top: 30%;
+  left: 29%;
+}
+
+#info1 {
+  position: absolute;
+  top: 14%;
+  left: 75%;
+  width: 16%;
+  height: 14%;
+}
+
+#info2 {
+  position: absolute;
+  top: 14%;
+  left: 57%;
+  width: 16%;
+  height: 14%;
+}
+
 /*End Ruwan*/
 
 .game-room .cc_card {
