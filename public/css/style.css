@@ -53,7 +53,7 @@ body {
   font-weight: bold;
 }
 
-.hand-panel img {
+#hand-panel-bg {
   width: 300px;
   height: 1300px;
 }
@@ -66,24 +66,50 @@ body {
 
 #hand-panel-dc-text {
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 29%;
 }
 
 #info1 {
   position: absolute;
-  top: 14%;
+  top: 16%;
   left: 75%;
   width: 16%;
-  height: 14%;
+  height: 16%;
 }
 
 #info2 {
   position: absolute;
-  top: 14%;
+  top: 16%;
   left: 57%;
   width: 16%;
-  height: 14%;
+  height: 16%;
+}
+
+#hand-panel-cc {
+  position: absolute;
+  top: 16%;
+  left: 10%;
+  width: 16%;
+  height: 16%;
+}
+
+#hand-panel-dcs {
+  position: absolute;
+  top: 45%;
+  left: 10%;
+  width: 86%;
+  height: 200%;
+  display: block;
+  flex-direction: column;
+}
+
+.hand-panel-dc {
+  width: 22%;
+  height: 9%;
+  float: left;
+  margin-left: 5px;
+  margin-bottom: 14px;
 }
 
 /*End Ruwan*/
