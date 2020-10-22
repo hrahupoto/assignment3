@@ -11,12 +11,14 @@
         <main class="game-room">
             <div class="container">
                 <%- include('partials/bank_components.ejs') %>
+
                     <%- include('partials/players.ejs') %>
                         <%- include('partials/player_coins.ejs') %>
                             <div class="row">
                                 <div>
                                     <img src="/images/gameRoom.jpg">
                                 </div>
+                                 <%- include('partials/chatPanel.ejs') %> 
                             </div>
                             <div class="row">
                                 <%- include('partials/counter') %>
@@ -31,9 +33,7 @@
                                     <div class="exitGame font-weight-bold">Exit</div>
                                 </a>
                             </div>
-                            
             </div>
         </main>
     </body>
-
 </html>

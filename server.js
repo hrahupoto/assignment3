@@ -66,6 +66,15 @@ const io = socket(server);
 
 io.on('connection', function (socket) {
   console.log('Made socket connection', socket.id);
+  //chat event handling
+    socket.on('chat', function(data){
+        // console.log(data);
+        io.sockets.emit('chat', data);
+    });
+    // Handle typing event
+    socket.on('typing', function(data){
+        socket.broadcast.emit('typing', data);
+    });
   socket.on('timer', (timer) => {
     io.clients((error, clients) => {
       console.log(clients);

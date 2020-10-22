@@ -65,6 +65,42 @@ $(document).ready(function() {
     });
     window.location.href = '/';
     });
+  
+  $('.collapsible').click(function () {
+    var content = document.getElementById("content")
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+  
+  //Emit events
+  $('#send').click(function () {
+    var message = $('#message').val()
+    var playerName = $('#handle').val()
+    socket.emit('chat', {
+      message: message,
+      playerName: playerName
+  });
+  $('#message').val('');
+  });
+
+  $('#message').keypress(function (){
+    var playerName = $('#handle').val()
+    socket.emit('typing',playerName);
+  })
+
+  // Listen for chat events
+  socket.on('chat', function(data){
+    feedback.innerHTML = '';
+    output.innerHTML += '<p><strong>' + data.playerName + ': </strong>' + data.message + '</p>';
+  });
+
+  // listen for typing events
+  socket.on('typing', function(data){
+    feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+});
 });
 
 $('.game-Room').ready(function() {
