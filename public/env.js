@@ -29,7 +29,7 @@ $(document).ready(function() {
         console.log(userName);
         console.log(dateOfBirth);
     });
-    
+
     // start game functionality
     $('a[href="#startGame"]').click(function() {
         $.ajax({
@@ -43,6 +43,11 @@ $(document).ready(function() {
                     $('.startGame').hide(); //hide start game button after game is started
                     clearInterval(counter);
                     $('#Counter').hide();
+                    var bank_coins = players.bank.coins;
+                    $('.bank_coins').append(`<a>
+                    <img class="coins" src="/images/bank/coins.png">
+                    <div class="coins">${bank_coins}</div></a>`);
+                    console.log(players);
                     for (i = 0; i < players.players.length; i++) {
                         var earned_player_coins = players.players[i].coins;
                         $('.players_coins').append(`<a>
@@ -56,51 +61,51 @@ $(document).ready(function() {
     });
     //exit function functionality
     $('.exitGame').click(function() {
-      $.ajax({
-        type: 'GET',
-        url: '/deleteAllUsers', //delete all users before redirecting to lobby
-        data: {},
-        success: function() {},
-        error: function() {},
+        $.ajax({
+            type: 'GET',
+            url: '/deleteAllUsers', //delete all users before redirecting to lobby
+            data: {},
+            success: function() {},
+            error: function() {},
+        });
+        window.location.href = '/';
     });
-    window.location.href = '/';
+
+    $('.collapsible').click(function() {
+        var content = document.getElementById("content")
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
     });
-  
-  $('.collapsible').click(function () {
-    var content = document.getElementById("content")
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-  
-  //Emit events
-  $('#send').click(function () {
-    var message = $('#message').val()
-    var playerName = $('#handle').val()
-    socket.emit('chat', {
-      message: message,
-      playerName: playerName
-  });
-  $('#message').val('');
-  });
 
-  $('#message').keypress(function (){
-    var playerName = $('#handle').val()
-    socket.emit('typing',playerName);
-  })
+    //Emit events
+    $('#send').click(function() {
+        var message = $('#message').val()
+        var playerName = $('#handle').val()
+        socket.emit('chat', {
+            message: message,
+            playerName: playerName
+        });
+        $('#message').val('');
+    });
 
-  // Listen for chat events
-  socket.on('chat', function(data){
-    feedback.innerHTML = '';
-    output.innerHTML += '<p><strong>' + data.playerName + ': </strong>' + data.message + '</p>';
-  });
+    $('#message').keypress(function() {
+        var playerName = $('#handle').val()
+        socket.emit('typing', playerName);
+    })
 
-  // listen for typing events
-  socket.on('typing', function(data){
-    feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
-});
+    // Listen for chat events
+    socket.on('chat', function(data) {
+        feedback.innerHTML = '';
+        output.innerHTML += '<p><strong>' + data.playerName + ': </strong>' + data.message + '</p>';
+    });
+
+    // listen for typing events
+    socket.on('typing', function(data) {
+        feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+    });
 });
 
 $('.game-Room').ready(function() {
@@ -113,7 +118,7 @@ $('.game-Room').ready(function() {
             url: '/userCounter',
             data: { timeArray },
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 if (data == 'hide') {
                     clearInterval(counter);
                     $('#Counter').hide();
@@ -123,6 +128,10 @@ $('.game-Room').ready(function() {
                         url: '/startGame', //start the game if 4 users are present in the room
                         data: {},
                         success: function(players) {
+                            var bank_coins = players.bank.coins;
+                            $('.bank_coins').append(`<a>
+                    <img class="coins" src="/images/bank/coins.png">
+                    <div class="coins">${bank_coins}</div></a>`);
                             for (i = 0; i < players.players.length; i++) {
                                 var earned_player_coins = players.players[i].coins;
                                 $('.players_coins').append(`<a>
@@ -159,7 +168,7 @@ $('.game-Room').ready(function() {
 
 //socket listening event
 socket.on('timer', (timer) => {
-    console.log(timer);
+    //console.log(timer);
     document.getElementById('timer').innerHTML =
         timer.minutes + ':' + timer.seconds;
 });
