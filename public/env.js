@@ -3,6 +3,8 @@ const socket = io.connect('http://localhost:3000');
 var counter;
 
 $(document).ready(function() {
+
+    //login functionality
     $('.joinRoom').click(function() {
         var userName = $('#userName').val();
         var dateOfBirth = $('#dob').val();
@@ -27,7 +29,8 @@ $(document).ready(function() {
         console.log(userName);
         console.log(dateOfBirth);
     });
-
+    
+    // start game functionality
     $('a[href="#startGame"]').click(function() {
         $.ajax({
             type: 'GET',
@@ -51,6 +54,7 @@ $(document).ready(function() {
             error: function() {},
         });
     });
+    //exit function functionality
     $('.exitGame').click(function() {
       $.ajax({
         type: 'GET',
