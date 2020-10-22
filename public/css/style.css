@@ -97,7 +97,7 @@ body {
 .game-room .startGame {
   position: absolute;
   top: 40%;
-  left: 85%;
+  left: 90%;
   object-fit: none;
   transform: translate(-50%, -50%);
   font-size: 25px;
@@ -107,7 +107,7 @@ body {
 .game-room .exitGame {
   position: absolute;
   top: 56%;
-  left: 85%;
+  left: 90%;
   object-fit: none;
   transform: translate(-50%, -50%);
   font-size: 25px;
