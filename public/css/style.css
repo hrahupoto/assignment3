@@ -104,26 +104,26 @@ body {
 }
 
 .game-room .startGame {
-    position: absolute;
-    top: 40%;
-    left: 85%;
-    object-fit: none;
-    transform: translate(-50%, -50%);
-    font-size: 25px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 40%;
+  left: 90%;
+  object-fit: none;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .game-room .exitGame {
-    position: absolute;
-    top: 56%;
-    left: 85%;
-    object-fit: none;
-    transform: translate(-50%, -50%);
-    font-size: 25px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
+  position: absolute;
+  top: 56%;
+  left: 90%;
+  object-fit: none;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
 }
 
 #Counter {
