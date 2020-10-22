@@ -109,29 +109,29 @@ $(document).ready(function() {
 });
 
 $('.game-Room').ready(function() {
-    document.getElementById('timer').innerHTML = 02 + ':' + 00;
-    counter = setInterval(() => {
-        var presentTime = document.getElementById('timer').innerHTML;
-        var timeArray = presentTime.split(/[:]+/);
-        $.ajax({
-            type: 'GET',
-            url: '/userCounter',
-            data: { timeArray },
-            success: function(data) {
-                //console.log(data);
-                if (data == 'hide') {
-                    clearInterval(counter);
-                    $('#Counter').hide();
-                    $('.startGame').hide();
-                    $.ajax({
-                        type: 'GET',
-                        url: '/startGame', //start the game if 4 users are present in the room
-                        data: {},
-                        success: function(players) {
-                            var bank_coins = players.bank.coins;
-                            $('.bank_coins').append(`<a>
-                    <img class="coins" src="/images/bank/coins.png">
-                    <div class="coins">${bank_coins}</div></a>`);
+  document.getElementById('timer').innerHTML = 02 + ':' + 00;
+  counter = setInterval(() => {
+      var presentTime = document.getElementById('timer').innerHTML;
+      var timeArray = presentTime.split(/[:]+/);
+      $.ajax({
+          type: 'GET',
+          url: '/userCounter',
+          data: { timeArray },
+          success: function(data) {
+              //console.log(data);
+              if (data == 'hide') {
+                  clearInterval(counter);
+                  $('#Counter').hide();
+                  $('.startGame').hide();
+                  $.ajax({
+                      type: 'GET',
+                      url: '/startGame', //start the game if 4 users are present in the room
+                      data: {},
+                      success: function(players) {
+                          var bank_coins = players.bank.coins;
+                          $('.bank_coins').append(`<a>
+                  <img class="coins" src="/images/bank/coins.png">
+                  <div class="coins">${bank_coins}</div></a>`);
                             for (i = 0; i < players.players.length; i++) {
                                 var earned_player_coins = players.players[i].coins;
                                 $('.players_coins').append(`<a>
@@ -153,17 +153,17 @@ $('.game-Room').ready(function() {
                     });
                     window.location.href = '/';
                 } else {
-                    //scoket emiting event
-                    socket.emit('timer', {
-                        socketID: socket.id,
-                        minutes: data.minutes,
-                        seconds: data.seconds,
-                    });
-                }
-            },
-            error: function() {},
-        });
-    }, 1000);
+                  //scoket emiting event
+                  socket.emit('timer', {
+                      socketID: socket.id,
+                      minutes: data.minutes,
+                      seconds: data.seconds,
+                  });
+              }
+          },
+          error: function() {},
+      });
+  }, 1000);
 });
 
 //socket listening event
