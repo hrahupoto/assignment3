@@ -105,6 +105,17 @@ body {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
+.game-room .exitGame{
+    position: absolute;
+    top: 56%;
+    left: 85%;
+    object-fit: none;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
 
 #Counter {
     position: absolute;
@@ -277,8 +288,10 @@ body {
     left: 70%;
     transform: translate(-50%, -50%);
     font-size: 50px;
+    width: 275px;
+    height: 38%;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif
 }
 
 #userName {
@@ -287,7 +300,7 @@ body {
     padding: 26px;
     left: 70%;
     transform: translate(-50%, -50%);
-    width: 14%;
+    width: 13rem;
 }
 
 #dob {
@@ -296,7 +309,7 @@ body {
     padding: 26px;
     left: 70%;
     transform: translate(-50%, -50%);
-    width: 14%;
+    width: 13rem;
 }
 
 /************** End of lobby screen styles **************/
