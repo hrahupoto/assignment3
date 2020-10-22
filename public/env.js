@@ -51,6 +51,16 @@ $(document).ready(function() {
             error: function() {},
         });
     });
+    $('.exitGame').click(function() {
+      $.ajax({
+        type: 'GET',
+        url: '/deleteAllUsers', //delete all users before redirecting to lobby
+        data: {},
+        success: function() {},
+        error: function() {},
+    });
+    window.location.href = '/';
+    });
 });
 
 $('.game-Room').ready(function() {
