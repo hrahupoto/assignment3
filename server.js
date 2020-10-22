@@ -25,17 +25,17 @@ app.use('/', userCounter);
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-app.get('/', function (req, res) {
-  res.render('lobby', {title: 'Citadels - Lobby'});
+app.get('/', function(req, res) {
+    res.render('lobby', { title: 'Citadels - Lobby' });
 });
 
-app.get('/help', function (req, res) {
-  res.render('help', {title: 'Citadels - Help'});
+app.get('/help', function(req, res) {
+    res.render('help', { title: 'Citadels - Help' });
 });
 
-app.get('/gameRoom', function (req, res) {
-  console.log(app.locals.timer);
-  res.render('gameRoom', {title: 'Citadels - Game Room'});
+app.get('/gameRoom', function(req, res) {
+    console.log(app.locals.timer);
+    res.render('gameRoom', { title: 'Citadels - Game Room' });
 });
 
 //Start the server
@@ -44,43 +44,42 @@ console.log('Server running at Port: 3000');
 
 //DATABASE MONGODB
 const uri =
-  'mongodb+srv://Hassan:SIT725@sit725.bketa.mongodb.net/Citadels(SIT725)?retryWrites=true&w=majority';
+    'mongodb+srv://Hassan:SIT725@sit725.bketa.mongodb.net/Citadels(SIT725)?retryWrites=true&w=majority';
 
 mongoose.connect(
-  uri,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  },
-  function (err) {
-    if (err) throw err;
+    uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+    },
+    function(err) {
+        if (err) throw err;
 
-    console.log('DB successfully connected');
-  }
+        console.log('DB successfully connected');
+    }
 );
 
 //Socket setup
 const io = socket(server);
 
-io.on('connection', function (socket) {
-  console.log('Made socket connection', socket.id);
-  //chat event handling
-    socket.on('chat', function(data){
+io.on('connection', function(socket) {
+    console.log('Made socket connection', socket.id);
+    //chat event handling
+    socket.on('chat', function(data) {
         // console.log(data);
         io.sockets.emit('chat', data);
     });
     // Handle typing event
-    socket.on('typing', function(data){
+    socket.on('typing', function(data) {
         socket.broadcast.emit('typing', data);
     });
-  socket.on('timer', (timer) => {
-    io.clients((error, clients) => {
-      console.log(clients);
-      if (timer.socketID == clients[0]) {
-        io.sockets.emit('timer', timer);
-      }
+    socket.on('timer', (timer) => {
+        io.clients((error, clients) => {
+            //console.log(clients);
+            if (timer.socketID == clients[0]) {
+                io.sockets.emit('timer', timer);
+            }
+        });
     });
-  });
 });
