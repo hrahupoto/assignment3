@@ -1,29 +1,28 @@
 <html lang="en">
-
-<head>
+  <head>
     <%- include('partials/head',title) %>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- content inside the main class used only for help. When styling help page, help class can be used just for help page in css file. -->
     <main class="help">
-        <div class="container">
-
-            <div class="row">
-                <img class="screen" src="/images/Citadels_help.jpg">
-            </div>
-
-            <div class="row">
-                <a href="/">
-                    <img class="centered" src="/images/Exit_button.png" />
-                    <div class="centered font-weight-bold">Exit!</div>
-                </a>
-            </div>
-
-            <embed class="pdf_file" src="images/Rules.pdf" type="application/pdf" height="570px" width="850px" />
-
+      <div class="container">
+        <div class="row">
+          <img class="screen" src="/images/Citadels_help.jpg" />
+          <a href="/">
+            <img class="centered" src="/images/Exit_button.png" />
+            <div class="centered font-weight-bold">Exit!</div>
+          </a>
         </div>
-    </main>
-</body>
 
+        <embed
+          class="pdf_file"
+          src="images/Rules.pdf"
+          type="application/pdf"
+          height="570px"
+          width="850px"
+        />
+      </div>
+    </main>
+  </body>
 </html>
