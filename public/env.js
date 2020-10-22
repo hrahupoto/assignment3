@@ -104,7 +104,7 @@ $(document).ready(function() {
 });
 
 $('.game-Room').ready(function() {
-    document.getElementById('timer').innerHTML = 10 + ':' + 00;
+    document.getElementById('timer').innerHTML = 02 + ':' + 00;
     counter = setInterval(() => {
         var presentTime = document.getElementById('timer').innerHTML;
         var timeArray = presentTime.split(/[:]+/);
