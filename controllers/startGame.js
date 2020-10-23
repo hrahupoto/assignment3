@@ -43,7 +43,7 @@ exports.startGame = function(req, res) {
     userModel.find({}, function(err, users) {
         //Selection of Crown Player
     // Variable for age of players for crown
-    var Age = [Player1, Player2, Player3, Player4];
+    var Age = [];
     for (var i = 0; i < users.length; i++) {
       var DOB = users[i].dateOfBirth;
 	var date = new Date(DOB);
