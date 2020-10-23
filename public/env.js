@@ -39,28 +39,11 @@ $(document).ready(function () {
         if (players == 'Please wait for more players to show up.') {
           alert(players);
         } else {
-          $('.startGame').hide(); //hide start game button after game is started
-          clearInterval(counter);
-          $('#Counter').hide();
-          var bank_coins = players.bank.coins;
-          $('.bank_coins').append(`<a>
-                    <img class="coins" src="/images/bank/coins.png">
-                    <div class="coins">${bank_coins}</div></a>`);
-          console.log(players);
-          for (i = 0; i < players.players.length; i++) {
-            var earned_player_coins = players.players[i].coins;
-            $('.players_coins').append(`<a>
-          <img class="player${i}_coins" src="/images/bank/coins.png">
-          <div class="player${i}_coins">${earned_player_coins}</div></a>`);
-            //CrownPlayer Displaying
-            if (players.players[i].crowned == true) {
-              $('.playerCrown')
-                .append(`<div class="player${i}Crown" id="player${i}Crown">
-              <img src="/images/bank/crown.png" />
-            </div>`);
-            }
-            $('#crown_disapear').hide();
-          }
+          //using socket for start game if any one of the player
+          //presses start game it should start the game for all the players.
+          socket.emit('startGame', {
+            players: players,
+          });
         }
       },
       error: function () {},
@@ -110,6 +93,7 @@ $(document).ready(function () {
       '<p><strong>' + data.playerName + ': </strong>' + data.message + '</p>';
   });
 
+
   // listen for typing events
   socket.on('typing', function (data) {
     feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
@@ -128,32 +112,14 @@ $('.game-Room').ready(function () {
       success: function (data) {
         //console.log(data);
         if (data == 'hide') {
-          clearInterval(counter);
-          $('#Counter').hide();
-          $('.startGame').hide();
           $.ajax({
             type: 'GET',
             url: '/startGame', //start the game if 4 users are present in the room
             data: {},
             success: function (players) {
-              var bank_coins = players.bank.coins;
-              $('.bank_coins').append(`<a>
-                    <img class="coins" src="/images/bank/coins.png">
-                    <div class="coins">${bank_coins}</div></a>`);
-              for (i = 0; i < players.players.length; i++) {
-                var earned_player_coins = players.players[i].coins;
-                $('.players_coins').append(`<a>
-              <img class="player${i}_coins" src="/images/bank/coins.png">
-              <div class="player${i}_coins">${earned_player_coins}</div></a>`);
-                //CrownPlayer Displaying
-                if (players.players[i].crowned == true) {
-                  $('.playerCrown')
-                    .append(`<div class="player${i}Crown" id="player${i}Crown">
-                <img src="/images/bank/crown.png" />
-              </div>`);
-                }
-                $('#crown_disapear').hide();
-              }
+              socket.emit('startGame', {
+                players: players,
+              });
             },
             error: function () {},
           });
@@ -187,6 +153,31 @@ socket.on('timer', (timer) => {
   //console.log(timer);
   document.getElementById('timer').innerHTML =
     timer.minutes + ':' + timer.seconds;
+});
+
+socket.on('startGame', (players) => {
+  //using socket for start game if any one of the player
+  //presses start game it should start the game for all the players.
+  console.log(players);
+  $('.startGame').hide(); //hide start game button after game is started
+  clearInterval(counter);
+  $('#Counter').hide();
+  var bank_coins = players.bank.coins;
+  $('.bank_coins').append(`<a>
+    <img class="coins" src="/images/bank/coins.png">
+    <div class="coins">${bank_coins}</div></a>`);
+
+  for (i = 0; i < players.players.length; i++) {
+    var earned_player_coins = players.players[i].coins;
+    $('.players_coins').append(`<a>
+<img class="player${i}_coins" src="/images/bank/coins.png">
+<div class="player${i}_coins">${earned_player_coins}</div></a>`);
+  }
+  //CrownPlayer Displaying
+  if (players.players[i].crowned == true) {
+  $('.playerCrown').append(`<div class="player${i}Crown" id="player${i}Crown"><img src="/images/bank/crown.png" /></div>`);
+  }
+  $('#crown_disapear').hide();
 });
 
 $('.game-room').ready(function () {
