@@ -143,32 +143,28 @@ body {
     font-weight: bold;
 }
 
-#player1Crown {
-    visibility: hidden;
+#player0Crown {
     position: absolute;
     top: 12%;
     left: 29%;
     transform: translate(-50%, -50%);
 }
 
-#player2Crown {
-    visibility: hidden;
+#player1Crown {
     position: absolute;
     top: 49%;
     left: 50.5%;
     transform: translate(-50%, -50%);
 }
 
-#player3Crown {
-    visibility: hidden;
+#player2Crown {
     position: absolute;
     top: 88%;
     left: 29.5%;
     transform: translate(-50%, -50%);
 }
 
-#player4Crown {
-    visibility: hidden;
+#player3Crown {
     position: absolute;
     top: 51%;
     left: 8%;
