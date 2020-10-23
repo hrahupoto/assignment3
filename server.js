@@ -34,7 +34,6 @@ app.get('/help', function(req, res) {
 });
 
 app.get('/gameRoom', function(req, res) {
-    console.log(app.locals.timer);
     res.render('gameRoom', { title: 'Citadels - Game Room' });
 });
 
