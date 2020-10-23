@@ -146,32 +146,32 @@ body {
 #player1Crown {
     visibility: hidden;
     position: absolute;
-    top: 55%;
-    left: 33.5%;
+    top: 12%;
+    left: 29%;
     transform: translate(-50%, -50%);
 }
 
 #player2Crown {
     visibility: hidden;
     position: absolute;
-    top: 55%;
-    left: 33.5%;
+    top: 49%;
+    left: 50.5%;
     transform: translate(-50%, -50%);
 }
 
 #player3Crown {
     visibility: hidden;
     position: absolute;
-    top: 55%;
-    left: 33.5%;
+    top: 88%;
+    left: 29.5%;
     transform: translate(-50%, -50%);
 }
 
 #player4Crown {
     visibility: hidden;
     position: absolute;
-    top: 55%;
-    left: 33.5%;
+    top: 51%;
+    left: 8%;
     transform: translate(-50%, -50%);
 }
 

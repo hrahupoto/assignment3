@@ -54,6 +54,12 @@ $(document).ready(function() {
           <img class="player${i}_coins" src="/images/bank/coins.png">
           <div class="player${i}_coins">${earned_player_coins}</div></a>`);
                     }
+                    //CrownPlayer Displaying
+                    if(players.players[i].isPlayerCrowned == "True"){
+                        document.getElementsById(`player${i}Crown`).style.visibility = 'visible';
+                        document.getElementsByClassName('crown').style.visibility = 'hidden';
+                      }
+  
                 }
             },
             error: function() {},

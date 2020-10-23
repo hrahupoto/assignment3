@@ -41,6 +41,29 @@ exports.startGame = function(req, res) {
     //var remaining_bankcoins = 0;
     //var total_Initial_Coins = 0;
     userModel.find({}, function(err, users) {
+        //Selection of Crown Player
+    // Variable for age of players for crown
+    var Age = [Player1, Player2, Player3, Player4];
+    for (var i = 0; i < users.length; i++) {
+      var DOB = users[i].dateOfBirth;
+	var date = new Date(DOB);
+      const now = new date();
+      const diff = Math.abs(now - date);
+      Age[i] = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+    }
+    var maxAge = Math.max(Age);
+    if (Age[0] == maxAge) {
+      Age[0] = "True";
+    } else if (Age[1] == maxAge) {
+      Age[1] = "True";
+    } else if (Age[2] == maxAge) {
+      Age[2] = "True";
+    } else if (Age[3] == maxAge) {
+      Age[3] = "True";
+    } else {
+      console.log("age is incorrect");
+    }
+
         if (users.length == maxPlayer) {
             //console.log(districtCards.length)
             /*for (var i = 0; i < 47; i++) {
