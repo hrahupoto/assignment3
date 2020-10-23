@@ -42,7 +42,46 @@ exports.startGame = function (req, res) {
   var bankcoins = 100;
   userModel.find({}, function (err, users) {
     if (users.length == maxPlayer) {
+      //Selection of Crown Player
+      // Variable for age of players for crown
+      var Age = [],
+        dob,
+        date,
+        now,
+        diff,
+        maxAge = [];
+      //Selection of Crown Player
+
+      // Variable for age of players for crow
+
+      for (var i = 0; i < users.length; i++) {
+        dob = users[i].dateOfBirth;
+        dob = dob.split('-');
+        date = new Date(dob[0], dob[1], dob[2]);
+        now = new Date();
+        diff = Math.abs(now - date);
+        Age[i] = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+      }
+      maxAge = Math.max(Age[0], Age[1], Age[2], Age[3]);
+
+      for (var i = 0; i < users.length; i++) {
+        if (Age[i] == maxAge) {
+          Age[i] = true;
+        } else {
+          Age[i] = false;
+        }
+      }
+      //console.log(districtCards.length)
+      //console.log(playercards)
+
       bank = new Bank(bankcoins);
+
+      //console.log(bank[0].dcsArray);
+      //console.log(bank);
+      //console.log(bank[0].coins);
+      //console.log("Result:", result)
+      //console.log(bank.withdrawFromBank(Initial_Coins));
+      //console.log(withdraw);
 
       for (var i = 0; i < users.length; i++) {
         players.push(
@@ -51,12 +90,18 @@ exports.startGame = function (req, res) {
             users[i].userName,
             users[i].dateOfBirth,
             Initial_Coins,
-            initial_dsc_cards[i]
+            initial_dsc_cards[i],
+            playerCcsArray={},
+            playerTurn=false,
+            Age[i]
           )
         );
         bal_coins = bank.withdrawFromBank(Initial_Coins);
-      }
+       }
+      //console.log(bal_coins);
       bank = new Bank(bal_coins, remaining_dc, characterCards);
+      //console.log(bank.dcsArray[0]);
+      //console.log(bank_coins);
       return res.json({players, bank});
     } else {
       return res.json('Please wait for more players to show up.');

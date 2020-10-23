@@ -93,6 +93,7 @@ $(document).ready(function () {
       '<p><strong>' + data.playerName + ': </strong>' + data.message + '</p>';
   });
 
+
   // listen for typing events
   socket.on('typing', function (data) {
     feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
@@ -134,7 +135,7 @@ $('.game-Room').ready(function () {
           });
           window.location.href = '/';
         } else {
-          //socket emiting event for start game
+          //scoket emiting event
           socket.emit('timer', {
             socketID: socket.id,
             minutes: data.minutes,
@@ -172,6 +173,11 @@ socket.on('startGame', (players) => {
 <img class="player${i}_coins" src="/images/bank/coins.png">
 <div class="player${i}_coins">${earned_player_coins}</div></a>`);
   }
+  //CrownPlayer Displaying
+  if (players.players[i].crowned == true) {
+  $('.playerCrown').append(`<div class="player${i}Crown" id="player${i}Crown"><img src="/images/bank/crown.png" /></div>`);
+  }
+  $('#crown_disapear').hide();
 });
 
 $('.game-room').ready(function () {
