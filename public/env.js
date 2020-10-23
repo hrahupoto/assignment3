@@ -93,7 +93,6 @@ $(document).ready(function () {
       '<p><strong>' + data.playerName + ': </strong>' + data.message + '</p>';
   });
 
-
   // listen for typing events
   socket.on('typing', function (data) {
     feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
@@ -172,10 +171,13 @@ socket.on('startGame', (players) => {
     $('.players_coins').append(`<a>
 <img class="player${i}_coins" src="/images/bank/coins.png">
 <div class="player${i}_coins">${earned_player_coins}</div></a>`);
-  }
-  //CrownPlayer Displaying
-  if (players.players[i].crowned == true) {
-  $('.playerCrown').append(`<div class="player${i}Crown" id="player${i}Crown"><img src="/images/bank/crown.png" /></div>`);
+    //CrownPlayer Displaying
+    if (players.players[i].crowned == true) {
+      $('.playerCrown')
+        .append(`<div class="player${i}Crown" id="player${i}Crown">
+  <img src="/images/bank/crown.png" />
+</div>`);
+    }
   }
   $('#crown_disapear').hide();
 });
