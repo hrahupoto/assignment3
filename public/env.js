@@ -58,6 +58,12 @@ $(document).ready(function () {
       success: function () {},
       error: function () {},
     });
+    //emiting event
+    socket.emit('exit', {});
+  });
+
+  //listening event
+  socket.on('exit', () => {
     window.location.href = '/';
   });
 
