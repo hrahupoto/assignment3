@@ -84,8 +84,12 @@ io.on('connection', function (socket) {
     });
   });
   socket.on('startGame', (players) => {
-    //using scoket for start game if any one of the player 
+    //using scoket for start game if any one of the player
     //presses start game it should start the game for all the players.
     io.sockets.emit('startGame', players.players);
+  });
+  socket.on('exit', () => {
+    //exit all players at once.
+    io.sockets.emit('exit');
   });
 });

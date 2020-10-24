@@ -58,6 +58,12 @@ $(document).ready(function () {
       success: function () {},
       error: function () {},
     });
+    //emiting exit event for all users 
+    socket.emit('exit', {});
+  });
+
+  //listening event for exit users
+  socket.on('exit', () => {
     window.location.href = '/';
   });
 
@@ -132,7 +138,8 @@ $('.game-Room').ready(function () {
             success: function () {},
             error: function () {},
           });
-          window.location.href = '/';
+          //socket exit event for all users
+          socket.emit('exit', {});
         } else {
           //scoket emiting event
           socket.emit('timer', {
