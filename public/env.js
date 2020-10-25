@@ -1,26 +1,26 @@
 //Make connection
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect("http://localhost:3000");
 var counter;
 
 $(document).ready(function () {
   //login functionality
-  $('.joinRoom').click(function () {
-    var userName = $('#userName').val();
-    var dateOfBirth = $('#dob').val();
+  $(".joinRoom").click(function () {
+    var userName = $("#userName").val();
+    var dateOfBirth = $("#dob").val();
 
     $.ajax({
-      type: 'GET',
-      url: '/insertUser',
-      data: {userName, dateOfBirth},
+      type: "GET",
+      url: "/insertUser",
+      data: { userName, dateOfBirth },
       success: function (data) {
         if (
-          data == 'User already exists, Please try entering different username.'
+          data == "User already exists, Please try entering different username."
         ) {
           alert(JSON.stringify(data));
-        } else if (data == 'Game room is full. Please try again later.') {
+        } else if (data == "Game room is full. Please try again later.") {
           alert(JSON.stringify(data));
         } else {
-          window.location.href = 'gameRoom';
+          window.location.href = "gameRoom";
         }
       },
       error: function () {},
@@ -32,34 +32,102 @@ $(document).ready(function () {
   // start game functionality
   $('a[href="#startGame"]').click(function () {
     $.ajax({
-      type: 'GET',
-      url: '/startGame',
+      type: "GET",
+      url: "/startGame",
       data: {},
       success: function (players) {
-        if (players == 'Please wait for more players to show up.') {
+        if (players == "Please wait for more players to show up.") {
           alert(players);
         } else {
-          $('.startGame').hide(); //hide start game button after game is started
+          $(".startGame").hide(); //hide start game button after game is started
           clearInterval(counter);
-          $('#Counter').hide();
+          $("#Counter").hide();
           var bank_coins = players.bank.coins;
-          $('.bank_coins').append(`<a>
+          $(".bank_coins").append(`<a>
                     <img class="coins" src="/images/bank/coins.png">
                     <div class="coins">${bank_coins}</div></a>`);
           console.log(players);
           for (i = 0; i < players.players.length; i++) {
             var earned_player_coins = players.players[i].coins;
-            $('.players_coins').append(`<a>
+            $(".players_coins").append(`<a>
           <img class="player${i}_coins" src="/images/bank/coins.png">
           <div class="player${i}_coins">${earned_player_coins}</div></a>`);
             //CrownPlayer Displaying
             if (players.players[i].crowned == true) {
-              $('.playerCrown')
+              $(".playerCrown")
                 .append(`<div class="player${i}Crown" id="player${i}Crown">
               <img src="/images/bank/crown.png" />
             </div>`);
+            //User Game Turn Pointer
+            var $pointer = $(`.player${i}Pointer`);
+            $pointer.css("visibility", "visible");
             }
-            $('#crown_disapear').hide();
+            $("#crown_disapear").hide();
+            //Game Starts: Selection Panel for character Cards
+            // 3 seconds delay before game starts
+            setTimeout(function () {
+              //Displaying the first selection panel
+              $("#selectionPanel").show();
+            }, 1500);
+            $("#cc1").click(function () {
+              $("#cc1").hide();
+              if (clickCount == 0) {
+                $("#ccFaceUp1").attr("src", "location");
+                clickCount = clickCount + 1;
+              }
+              if (clickCount == 1) {
+                $("#ccFaceUp2").attr("src", "location");
+                clickCount = clickCount + 1;
+              }
+              if (clickCount == 2) {
+                $("#ccFaceUp3").attr("src", "location");
+                clickCount = clickCount + 1;
+              }
+              if (clickCount == 3) {
+                $("#ccFaceDown").attr("src", "location");
+                clickCount = clickCount + 1;
+              }
+            });
+            $("#cc2").click(function () {
+              $("#cc2").hide();
+              $("#ccFaceUp1").attr("src", "location");
+              clickCount = clickCount + 1;
+            });
+            $("#cc3").click(function () {
+              $("#cc3").hide();
+              $("#ccFaceUp1").attr("src", "location");
+              clickCount = clickCount + 1;
+            });
+            $("#cc4").click(function () {
+              $("#cc4").hide();
+              $("#ccFaceUp1").attr("src", "location");
+              clickCount = clickCount + 1;
+            });
+            $("#cc5").click(function () {
+              $("#cc5").hide();
+              $("#ccFaceUp1").attr("src", "location");
+              clickCount = clickCount + 1;
+            });
+            $("#cc6").click(function () {
+              $("#cc6").hide();
+              $("#ccFaceUp1").attr("src", "location");
+              clickCount = clickCount + 1;
+            });
+            $("#cc7").click(function () {
+              $("#cc7").hide();
+              $("#ccFaceUp1").attr("src", "location");
+              clickCount = clickCount + 1;
+            });
+            $("#cc8").click(function () {
+              $("#cc8").hide();
+              $("#ccFaceUp1").attr("src", "location");
+              clickCount = clickCount + 1;
+            });
+            $("#cc9").click(function () {
+              $("#cc9").hide();
+              $("#ccFaceUp1").attr("src", "location");
+              clickCount = clickCount + 1;
+            });
           }
         }
       },
@@ -67,110 +135,112 @@ $(document).ready(function () {
     });
   });
   //exit function functionality
-  $('.exitGame').click(function () {
+  $(".exitGame").click(function () {
     $.ajax({
-      type: 'GET',
-      url: '/deleteAllUsers', //delete all users before redirecting to lobby
+      type: "GET",
+      url: "/deleteAllUsers", //delete all users before redirecting to lobby
       data: {},
       success: function () {},
       error: function () {},
     });
-    window.location.href = '/';
+    window.location.href = "/";
   });
 
-  $('.collapsible').click(function () {
-    var content = document.getElementById('content');
-    if (content.style.display === 'block') {
-      content.style.display = 'none';
+  $(".collapsible").click(function () {
+    var content = document.getElementById("content");
+    if (content.style.display === "block") {
+      content.style.display = "none";
     } else {
-      content.style.display = 'block';
+      content.style.display = "block";
     }
   });
 
   //Emit events
-  $('#send').click(function () {
-    var message = $('#message').val();
-    var playerName = $('#handle').val();
-    socket.emit('chat', {
+  $("#send").click(function () {
+    var message = $("#message").val();
+    var playerName = $("#handle").val();
+    socket.emit("chat", {
       message: message,
       playerName: playerName,
     });
-    $('#message').val('');
+    $("#message").val("");
   });
 
-  $('#message').keypress(function () {
-    var playerName = $('#handle').val();
-    socket.emit('typing', playerName);
+  $("#message").keypress(function () {
+    var playerName = $("#handle").val();
+    socket.emit("typing", playerName);
   });
 
   // Listen for chat events
-  socket.on('chat', function (data) {
-    feedback.innerHTML = '';
+  socket.on("chat", function (data) {
+    feedback.innerHTML = "";
     output.innerHTML +=
-      '<p><strong>' + data.playerName + ': </strong>' + data.message + '</p>';
+      "<p><strong>" + data.playerName + ": </strong>" + data.message + "</p>";
   });
 
   // listen for typing events
-  socket.on('typing', function (data) {
-    feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+  socket.on("typing", function (data) {
+    feedback.innerHTML = "<p><em>" + data + " is typing a message...</em></p>";
   });
 });
 
-$('.game-Room').ready(function () {
-  document.getElementById('timer').innerHTML = 02 + ':' + 00;
+$(".game-Room").ready(function () {
+  //hiding Selection panel Initially
+  $("#selectionPanel").hide();
+  document.getElementById("timer").innerHTML = 02 + ":" + 00;
   counter = setInterval(() => {
-    var presentTime = document.getElementById('timer').innerHTML;
+    var presentTime = document.getElementById("timer").innerHTML;
     var timeArray = presentTime.split(/[:]+/);
     $.ajax({
-      type: 'GET',
-      url: '/userCounter',
-      data: {timeArray},
+      type: "GET",
+      url: "/userCounter",
+      data: { timeArray },
       success: function (data) {
         //console.log(data);
-        if (data == 'hide') {
+        if (data == "hide") {
           clearInterval(counter);
-          $('#Counter').hide();
-          $('.startGame').hide();
+          $("#Counter").hide();
+          $(".startGame").hide();
           $.ajax({
-            type: 'GET',
-            url: '/startGame', //start the game if 4 users are present in the room
+            type: "GET",
+            url: "/startGame", //start the game if 4 users are present in the room
             data: {},
             success: function (players) {
               var bank_coins = players.bank.coins;
-              $('.bank_coins').append(`<a>
+              $(".bank_coins").append(`<a>
                     <img class="coins" src="/images/bank/coins.png">
                     <div class="coins">${bank_coins}</div></a>`);
               for (i = 0; i < players.players.length; i++) {
                 var earned_player_coins = players.players[i].coins;
-                $('.players_coins').append(`<a>
+                $(".players_coins").append(`<a>
               <img class="player${i}_coins" src="/images/bank/coins.png">
               <div class="player${i}_coins">${earned_player_coins}</div></a>`);
                 //CrownPlayer Displaying
                 if (players.players[i].crowned == true) {
-                  $('.playerCrown')
+                  $(".playerCrown")
                     .append(`<div class="player${i}Crown" id="player${i}Crown">
                 <img src="/images/bank/crown.png" />
               </div>`);
                 }
-                $('#crown_disapear').hide();
+                $("#crown_disapear").hide();
               }
             },
             error: function () {},
           });
           //document.getElementsById('Counter').style.visibility = 'hidden';
-        } else if (data == 'redirect') {
+        } else if (data == "redirect") {
           clearInterval(counter);
           $.ajax({
-            type: 'GET',
-            url: '/deleteAllUsers', //delete all users before redirecting to lobby
+            type: "GET",
+            url: "/deleteAllUsers", //delete all users before redirecting to lobby
             data: {},
             success: function () {},
             error: function () {},
           });
-          window.location.href = '/';
+          window.location.href = "/";
         } else {
           //scoket emiting event
-          socket.emit('timer', {
+          socket.emit("timer", {
             socketID: socket.id,
             minutes: data.minutes,
             seconds: data.seconds,
@@ -183,23 +253,23 @@ $('.game-Room').ready(function () {
 });
 
 //socket listening event
-socket.on('timer', (timer) => {
+socket.on("timer", (timer) => {
   //console.log(timer);
-  document.getElementById('timer').innerHTML =
-    timer.minutes + ':' + timer.seconds;
+  document.getElementById("timer").innerHTML =
+    timer.minutes + ":" + timer.seconds;
 });
 
-$('.game-room').ready(function () {
+$(".game-room").ready(function () {
   var appendPlayers = setInterval(() => {
     $.ajax({
-      type: 'GET',
-      url: '/getUsers',
+      type: "GET",
+      url: "/getUsers",
       data: {},
       success: function (players) {
         for (var i = 0; i < players.users.length; i++) {
           var num = players.users[i].num;
           var userName = players.users[i].userName;
-          $('.players').append(`<div class="player${num}">${userName}</div>`);
+          $(".players").append(`<div class="player${num}">${userName}</div>`);
         }
         if (players.users.length == 4) {
           clearInterval(appendPlayers);

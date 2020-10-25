@@ -182,6 +182,156 @@ body {
     font-weight: bold;
 }
 
+#selectionPanel{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+
+}
+
+#ccPanelBtn{
+    position: absolute;
+    top: 85%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+}
+#cc1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+#cc2{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 22.5%;
+    transform: translate(-50%, -50%);
+}
+#cc3{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 36%;
+    transform: translate(-50%, -50%);
+}
+#cc4{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#cc5{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+#cc6{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+#cc7{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+#cc8{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+#cc9{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 61.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp2{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 71.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp3{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 81.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFacedown{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 91.5%;
+    transform: translate(-50%, -50%);
+}
+
+.player0Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 8%;
+    left: 32%;
+  }
+  
+  .player1Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 55%;
+    left: 48.2%;
+    transform: rotate(90deg);
+  }
+  
+  .player2Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 84%;
+    left: 21%;
+    transform: rotate(-180deg);
+  }
+  
+  .player3Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 36%;
+    left: 5%;
+    transform: rotate(-90deg);
+  }
+
 .player1_coins {
     position: absolute;
     color: white;

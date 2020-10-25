@@ -13,6 +13,8 @@ const deleteAllUsers = require('./routes/db/deleteAllUsers');
 //Game logic routes
 const startGame = require('./routes/startGame');
 const userCounter = require('./routes/userCounter');
+const selectionPanel =require('./routes/selectionPanel')
+
 
 app.use(express.static(__dirname + '/public'));
 
@@ -21,6 +23,8 @@ app.use('/', getUsers);
 app.use('/', deleteAllUsers);
 app.use('/', startGame);
 app.use('/', userCounter);
+app.use('/', selectionPanel)
+
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
