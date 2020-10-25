@@ -89,24 +89,8 @@ io.on('connection', function (socket) {
     //presses start game it should start the game for all the players.
     io.sockets.emit('startGame', players.players);
   });
-<<<<<<< HEAD
-  socket.on('handPanel', (players) => {
-    io.clients((error, clients) => {
-      if (players.socketID == clients[0]) {
-        io.sockets.emit('handPanel', players.players[0]);
-      } else if (players.socketID == clients[1]) {
-        io.sockets.emit('handPanel', players.players[1]);
-      } else if (players.socketID == clients[2]) {
-        io.sockets.emit('handPanel', players.players[2]);
-      } else if (players.socketID == clients[3]) {
-        io.sockets.emit('handPanel', players.players[3]);
-      }
-    });
-    io.sockets.emit('startGame', players.players);
-=======
   socket.on('exit', () => {
     //exit all players at once.
     io.sockets.emit('exit');
->>>>>>> development
   });
 });
