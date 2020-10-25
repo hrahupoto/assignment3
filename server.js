@@ -13,7 +13,6 @@ const deleteAllUsers = require('./routes/db/deleteAllUsers');
 //Game logic routes
 const startGame = require('./routes/startGame');
 const userCounter = require('./routes/userCounter');
-const {players} = require('./controllers/db/user');
 
 app.use(express.static(__dirname + '/public'));
 
