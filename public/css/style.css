@@ -145,29 +145,29 @@ body {
 
 #player0Crown {
     position: absolute;
-    top: 12%;
-    left: 29%;
+    top: 3.5%;
+    left: 24%;
     transform: translate(-50%, -50%);
 }
 
 #player1Crown {
     position: absolute;
-    top: 49%;
-    left: 50.5%;
+    top: 61%;
+    left: 56.5%;
     transform: translate(-50%, -50%);
 }
 
 #player2Crown {
     position: absolute;
-    top: 88%;
-    left: 29.5%;
+    top: 97%;
+    left: 24%;
     transform: translate(-50%, -50%);
 }
 
 #player3Crown {
     position: absolute;
-    top: 51%;
-    left: 8%;
+    top: 60%;
+    left: 3%;
     transform: translate(-50%, -50%);
 }
 
@@ -187,7 +187,6 @@ body {
     top: 50%;
     left: 30%;
     transform: translate(-50%, -50%);
-
 }
 
 #ccPanelBtn{
@@ -403,7 +402,13 @@ body {
     transform: rotate(-90deg);
 }
 
+#selectionPanel2{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
 
+}
 /**************** end game room styles *********/
 
 
