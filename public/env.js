@@ -45,37 +45,33 @@ $(document).ready(function () {
           socket.emit('startGame', {
             players: players,
           });
-          //   $.ajax({
-          //     type: 'GET',
-          //     url: '/userPointer',
-          //     data: {data},
-          //     success: function (players) {},
-          //     error: function () {},
-          //   });
-
-          //   async function asyncCall(){
+          for(var i=0;i<players.players.length;i++){
+            if(players.players[i].crowned==true){
+              var $pointer = $(`.player${i}Pointer`);
+              $pointer.css('visibility', 'visible');
+              //var $hidePointer;
+              // $('.pointer').click(function () {
+              //   if ($pointer.is(':last-child')) {
+              //     $hidePointer = $pointer.prev();
+              //     $hidePointer.css('visibility', 'hidden');
+              //     $pointer = $(`.player0Pointer`);
+              //     $pointer.css('visibility', 'visible');
+              //   } else {
+              //     $pointer = $pointer.next();
+              //     $pointer.css('visibility', 'visible');
+              //     $hidePointer = $pointer.prev();
+              //     $hidePointer.css('visibility', 'hidden');
+              //   }
+            }
+            
+          }
+          
         }
-        //   asyncCall();
-        // }
+        
       },
       error: function () {},
     });
-    var $pointer = $(`.player0Pointer`);
-    $pointer.css('visibility', 'visible');
-    var $hidePointer;
-    $('.pointer').click(function () {
-      if ($pointer.is(':last-child')) {
-        $hidePointer = $pointer.prev();
-        $hidePointer.css('visibility', 'hidden');
-        $pointer = $(`.player0Pointer`);
-        $pointer.css('visibility', 'visible');
-      } else {
-        $pointer = $pointer.next();
-        $pointer.css('visibility', 'visible');
-        $hidePointer = $pointer.prev();
-        $hidePointer.css('visibility', 'hidden');
-      }
-    });
+ 
   });
 
   $.when(makeVisible).then(function () {
