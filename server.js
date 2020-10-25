@@ -13,7 +13,7 @@ const deleteAllUsers = require('./routes/db/deleteAllUsers');
 //Game logic routes
 const startGame = require('./routes/startGame');
 const userCounter = require('./routes/userCounter');
-const {players} = require('./controllers/db/user');
+const userPointer = require('./routes/userPointer');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -22,6 +22,7 @@ app.use('/', getUsers);
 app.use('/', deleteAllUsers);
 app.use('/', startGame);
 app.use('/', userCounter);
+app.use('/', userPointer);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -84,8 +85,22 @@ io.on('connection', function (socket) {
     });
   });
   socket.on('startGame', (players) => {
-    //using scoket for start game if any one of the player 
+    //using scoket for start game if any one of the player
     //presses start game it should start the game for all the players.
+    io.sockets.emit('startGame', players.players);
+  });
+  socket.on('handPanel', (players) => {
+    io.clients((error, clients) => {
+      if (players.socketID == clients[0]) {
+        io.sockets.emit('handPanel', players.players[0]);
+      } else if (players.socketID == clients[1]) {
+        io.sockets.emit('handPanel', players.players[1]);
+      } else if (players.socketID == clients[2]) {
+        io.sockets.emit('handPanel', players.players[2]);
+      } else if (players.socketID == clients[3]) {
+        io.sockets.emit('handPanel', players.players[3]);
+      }
+    });
     io.sockets.emit('startGame', players.players);
   });
 });

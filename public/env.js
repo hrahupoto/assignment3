@@ -1,6 +1,7 @@
 //Make connection
 const socket = io.connect('http://localhost:3000');
 var counter;
+var makeVisible;
 
 $(document).ready(function () {
   //login functionality
@@ -25,8 +26,8 @@ $(document).ready(function () {
       },
       error: function () {},
     });
-    console.log(userName);
-    console.log(dateOfBirth);
+    //console.log(userName);
+    //console.log(dateOfBirth);
   });
 
   // start game functionality
@@ -44,11 +45,45 @@ $(document).ready(function () {
           socket.emit('startGame', {
             players: players,
           });
+          //   $.ajax({
+          //     type: 'GET',
+          //     url: '/userPointer',
+          //     data: {data},
+          //     success: function (players) {},
+          //     error: function () {},
+          //   });
+
+          //   async function asyncCall(){
         }
+        //   asyncCall();
+        // }
       },
       error: function () {},
     });
+    var $pointer = $(`.player0Pointer`);
+    $pointer.css('visibility', 'visible');
+    var $hidePointer;
+    $('.pointer').click(function () {
+      if ($pointer.is(':last-child')) {
+        $hidePointer = $pointer.prev();
+        $hidePointer.css('visibility', 'hidden');
+        $pointer = $(`.player0Pointer`);
+        $pointer.css('visibility', 'visible');
+      } else {
+        $pointer = $pointer.next();
+        $pointer.css('visibility', 'visible');
+        $hidePointer = $pointer.prev();
+        $hidePointer.css('visibility', 'hidden');
+      }
+    });
   });
+
+  $.when(makeVisible).then(function () {
+    alert('I fired immediately');
+  });
+
+  //$('.player0Pointer').is(':visible', () => {});
+
   //exit function functionality
   $('.exitGame').click(function () {
     $.ajax({
@@ -100,7 +135,7 @@ $(document).ready(function () {
 });
 
 $('.game-Room').ready(function () {
-  document.getElementById('timer').innerHTML = 02 + ':' + 00;
+  document.getElementById('timer').innerHTML = 10 + ':' + 00;
   counter = setInterval(() => {
     var presentTime = document.getElementById('timer').innerHTML;
     var timeArray = presentTime.split(/[:]+/);
@@ -134,7 +169,7 @@ $('.game-Room').ready(function () {
           });
           window.location.href = '/';
         } else {
-          //scoket emiting event
+          //socket emiting event
           socket.emit('timer', {
             socketID: socket.id,
             minutes: data.minutes,

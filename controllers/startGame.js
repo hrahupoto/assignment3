@@ -49,7 +49,8 @@ exports.startGame = function (req, res) {
         date,
         now,
         diff,
-        maxAge = [];
+        maxAge = [],
+        turn = [];
       //Selection of Crown Player
 
       // Variable for age of players for crow
@@ -67,8 +68,10 @@ exports.startGame = function (req, res) {
       for (var i = 0; i < users.length; i++) {
         if (Age[i] == maxAge) {
           Age[i] = true;
+          turn[i] = true;
         } else {
           Age[i] = false;
+          turn[i] = false
         }
       }
       //console.log(districtCards.length)
@@ -91,13 +94,13 @@ exports.startGame = function (req, res) {
             users[i].dateOfBirth,
             Initial_Coins,
             initial_dsc_cards[i],
-            playerCcsArray={},
-            playerTurn=false,
+            (playerCcsArray = {}),
+            (playerTurn = turn[i]),
             Age[i]
           )
         );
         bal_coins = bank.withdrawFromBank(Initial_Coins);
-       }
+      }
       //console.log(bal_coins);
       bank = new Bank(bal_coins, remaining_dc, characterCards);
       //console.log(bank.dcsArray[0]);
