@@ -10,3 +10,4 @@ class DistrictCard{
         this.url = dcUrl;
     }
 }
+exports.DistrictCard = DistrictCard;

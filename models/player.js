@@ -2,6 +2,7 @@
 class Player {
   //constructor - player number, player name, player dob, player stash coins value, player Dcs array, player Ccs array, player turn(boolean), player is the crowned player (boolean)
   constructor(
+    playerSocketId,
     playerNumber,
     playerName,
     playerDob,
@@ -11,6 +12,7 @@ class Player {
     playerTurn = false,
     isPlayerCrowned = false
   ) {
+    this.socketId = playerSocketId,
     this.num = playerNumber;
     this.name = playerName;
     this.dob = playerDob;

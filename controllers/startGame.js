@@ -2,6 +2,8 @@ const userModel = require('../models/db/user');
 const {Player} = require('../models/player');
 const {districtCards} = require('../modules/districtCards');
 const {characterCards} = require('../modules/characterCards');
+const {DistrictCard} = require('../models/districtCard'); // ruwan changed this
+const {CharacterCard} = require('../models/characterCard');// ruwan changed this
 const Bank = require('../models/bank');
 var Initial_Coins = 2;
 
@@ -83,21 +85,52 @@ exports.startGame = function (req, res) {
       //console.log(bank.withdrawFromBank(Initial_Coins));
       //console.log(withdraw);
 
+
+      // start ruwan changed this code
+      allPlayersInitialDcsArray = [];
+      
+      for(var k = 0; k < users.length; k++){
+        for(var l = 0; l < initial_dsc_cards.length; l++){
+          allPlayersInitialDcsArray.push(
+            new DistrictCard(
+              initial_dsc_cards[k][l].districtName,
+              initial_dsc_cards[k][l].coinsRequired,
+              initial_dsc_cards[k][l].color,
+              true,
+              initial_dsc_cards[k][l].location              
+            )            
+          );  
+        }
+      }
+
+      var playerInitialDcsArray = [];
+      temp_cards_array = [];
+      chunk = 4;
+      var i, j;
+      for (i = 0, j = allPlayersInitialDcsArray.length; i < j; i += chunk) {
+        temp_cards_array = allPlayersInitialDcsArray.slice(i, i + chunk);
+        playerInitialDcsArray.push(temp_cards_array);
+      }
+      
+    
       for (var i = 0; i < users.length; i++) {
         players.push(
           new Player(
+            req.query.socketId,
             i,
             users[i].userName,
             users[i].dateOfBirth,
             Initial_Coins,
-            initial_dsc_cards[i],
+            playerInitialDcsArray[i],
             playerCcsArray={},
             playerTurn=false,
             Age[i]
           )
         );
+        // end ruwan changed code
+        
         bal_coins = bank.withdrawFromBank(Initial_Coins);
-       }
+      }
       //console.log(bal_coins);
       bank = new Bank(bal_coins, remaining_dc, characterCards);
       //console.log(bank.dcsArray[0]);

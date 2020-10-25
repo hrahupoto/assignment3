@@ -42,23 +42,6 @@ body {
 }
 
 .hand-panel {
-<<<<<<< HEAD
-    position: absolute;
-    top: 25%;
-    left: 60%;
-    width: 300px;
-    height: 70%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    white-space: nowrap;
-}
-
-.hand-panel img {
-    width: 300px;
-    height: 1300px;
-}
-
-=======
   position: absolute;
   top: 25%;
   left: 56.5%;
@@ -133,7 +116,6 @@ body {
   margin-left: 5px;
   margin-bottom: 14px;
 }
->>>>>>> f4572c1f61fc3d7c7bf2cc0111a8dfaef4b85bee
 
 /*End Ruwan*/
 
@@ -183,11 +165,7 @@ body {
 .game-room .startGame {
   position: absolute;
   top: 40%;
-<<<<<<< HEAD
-  left: 88%;
-=======
   left: 89%;
->>>>>>> f4572c1f61fc3d7c7bf2cc0111a8dfaef4b85bee
   object-fit: none;
   transform: translate(-50%, -50%);
   font-size: 25px;
@@ -198,11 +176,7 @@ body {
 .game-room .exitGame {
   position: absolute;
   top: 56%;
-<<<<<<< HEAD
-  left: 88%;
-=======
   left: 89%;
->>>>>>> f4572c1f61fc3d7c7bf2cc0111a8dfaef4b85bee
   object-fit: none;
   transform: translate(-50%, -50%);
   font-size: 25px;

@@ -12,3 +12,5 @@ class CharacterCard {
 
 
 }
+
+exports.CharacterCard = CharacterCard;

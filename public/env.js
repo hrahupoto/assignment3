@@ -1,6 +1,7 @@
 //Make connection
 const socket = io.connect('http://localhost:3000');
 var counter;
+var players;
 
 $(document).ready(function () {
   //login functionality
@@ -34,7 +35,7 @@ $(document).ready(function () {
     $.ajax({
       type: 'GET',
       url: '/startGame',
-      data: {},
+      data: {socketId:socket.id},// here we need to pass socket id of this particular player - ruwan
       success: function (players) {
         if (players == 'Please wait for more players to show up.') {
           alert(players);
@@ -42,7 +43,7 @@ $(document).ready(function () {
           //using socket for start game if any one of the player
           //presses start game it should start the game for all the players.
           socket.emit('startGame', {
-            players: players,
+            players: players,  
           });
         }
       },
@@ -114,9 +115,9 @@ $('.game-Room').ready(function () {
           $.ajax({
             type: 'GET',
             url: '/startGame', //start the game if 4 users are present in the room
-            data: {},
+            data: {socketId:socket.id},// here we need to pass socket id of this particular player - ruwan
             success: function (players) {
-              socket.emit('startGame', {
+              socket.emit('startGame', {    
                 players: players,
               });
             },
@@ -154,13 +155,39 @@ socket.on('timer', (timer) => {
     timer.minutes + ':' + timer.seconds;
 });
 
-socket.on('startGame', (players) => {
+
+socket.on('startGame', (players) => {  
+  //ruwan - overwriting sockets using the array from the server
+  $.get('/sendPlayerSockets',function(playerSocketIdsArray){     
+     for(var i=0; i< playerSocketIdsArray.length; i++){
+      players.players[i].socketId = playerSocketIdsArray[i];
+    }                   
+  })
+
   //using socket for start game if any one of the player
   //presses start game it should start the game for all the players.
-  console.log(players);
   $('.startGame').hide(); //hide start game button after game is started
   clearInterval(counter);
   $('#Counter').hide();
+
+  //ruwan - maing hand panel vissible and populate with initial dcs
+  $('.hand-panel').css("visibility", "visible");
+  var sId = socket.id;
+  var playersData =   JSON.stringify(players.players);
+  
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    traditional: true,
+    url: '/handPanel.initialiseHandPanel', //display hand panel
+    data: {playersData,sId},
+    contentType: 'application/json', // for request
+    success: function(data) {
+      $('#hand-panel-dcs').append(data);
+    },
+    error: function () {},      
+  });
+
   var bank_coins = players.bank.coins;
   $('.bank_coins').append(`<a>
     <img class="coins" src="/images/bank/coins.png">
@@ -181,6 +208,13 @@ socket.on('startGame', (players) => {
   }
   $('#crown_disapear').hide();
 });
+
+
+
+
+
+
+
 
 $('.game-room').ready(function () {
   var appendPlayers = setInterval(() => {
