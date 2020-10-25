@@ -70,11 +70,11 @@ userExist = (user, users) => {
   return false;
 };
 
-//function to return count of users
-players = () => {
-  users = currentUsers;
-  return users;
-};
+// //function to return count of users
+// players = () => {
+//   users = currentUsers;
+//   return users;
+// };
 
-//exported function for startGame.js
-exports.players = players;
+// //exported function for startGame.js
+// exports.players = players;

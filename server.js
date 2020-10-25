@@ -89,6 +89,7 @@ io.on('connection', function (socket) {
     //presses start game it should start the game for all the players.
     io.sockets.emit('startGame', players.players);
   });
+<<<<<<< HEAD
   socket.on('handPanel', (players) => {
     io.clients((error, clients) => {
       if (players.socketID == clients[0]) {
@@ -102,5 +103,10 @@ io.on('connection', function (socket) {
       }
     });
     io.sockets.emit('startGame', players.players);
+=======
+  socket.on('exit', () => {
+    //exit all players at once.
+    io.sockets.emit('exit');
+>>>>>>> development
   });
 });

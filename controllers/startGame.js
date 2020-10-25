@@ -56,24 +56,77 @@ exports.startGame = function (req, res) {
       // Variable for age of players for crow
 
       for (var i = 0; i < users.length; i++) {
-        dob = users[i].dateOfBirth;
-        dob = dob.split('-');
-        date = new Date(dob[0], dob[1], dob[2]);
-        now = new Date();
-        diff = Math.abs(now - date);
-        Age[i] = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+        dob = users[i].dateOfBirth;                   //retrieving players dob
+        var diff_ms = Date.now() - dob.getTime();
+        var age_dt = new Date(diff_ms); 
+        Age[i] = Math.abs(age_dt.getFullYear() - 1970);
       }
+      
+      //Max Age of Player
       maxAge = Math.max(Age[0], Age[1], Age[2], Age[3]);
 
-      for (var i = 0; i < users.length; i++) {
-        if (Age[i] == maxAge) {
-          Age[i] = true;
-          turn[i] = true;
-        } else {
-          Age[i] = false;
-          turn[i] = false
+      //Matching Players Age with MaxAge and if it matches assigning True else False 
+      if (Age[0] == maxAge){
+        if(Age[0]==Age[1] || Age[0]==Age[2] || Age[0]==Age[3]){
+          Age[0] = true;
+          Age[1], Age[2], Age[3] = false;
         }
+        else
+        Age[0] = true;
+        Age[1], Age[2], Age[3] = false;
       }
+      else if(Age[1] == maxAge){
+        if(Age[1]==Age[0]){
+          Age[0] = true;
+          Age[1], Age[2], Age[3] = false;
+        }
+        else if(Age[1]==Age[2] || Age[1]==Age[3]){
+          Age[1] = true;
+          Age[0], Age[2], Age[3] = false;
+        }
+        else
+        Age[1] = true;
+        Age[0], Age[2], Age[3] = false;
+      }
+      else if(Age[2] == maxAge){
+        if(Age[2]==Age[0]){
+          Age[0] = true;
+          Age[1], Age[2], Age[3] = false;
+        }
+        else if(Age[2]==Age[1]){
+          Age[1] = true;
+          Age[0], Age[2], Age[3] = false;
+        }
+        else if(Age[2]==Age[3]){
+          Age[2] = true;
+          Age[0], Age[1], Age[3] = false;
+        }
+        else 
+        Age[2] = true;
+        Age[0], Age[1], Age[3] = false;
+      }
+      else if(Age[3] == maxAge){
+        if(Age[3]==Age[0]){
+          Age[0] = true;
+          Age[1], Age[2], Age[3] = false;
+        }
+        else if(Age[3]==Age[1]){
+          Age[1] = true;
+          Age[0], Age[2], Age[3] = false;
+        }
+        else if(Age[3]==Age[2]){
+          Age[2] = true;
+          Age[0], Age[1], Age[3] = false;
+        }
+        else
+        Age[3] = true;
+        Age[0], Age[1], Age[2] = false;
+      }
+      else
+      console.log("Incorrect Age")
+     
+      
+
       //console.log(districtCards.length)
       //console.log(playercards)
 

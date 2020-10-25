@@ -13,7 +13,7 @@ var user = new Schema({
     trim: true,
   },
   dateOfBirth: {
-    type: String,
+    type: Date,
     required: true,
     trim: true,
   },
