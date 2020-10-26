@@ -2,7 +2,6 @@ const { characterCards } = require("../modules/characterCards");
 const { Player } = require("../models/player");
 var { players } = require("./startGame");
 var cCards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-var newcCards = [];
 var ccSelected = [];
 var selectCharacter = [];
 exports.selectionPanel = function (req, res) {
@@ -239,11 +238,13 @@ exports.selectionPanel = function (req, res) {
      
 }
 if (clickCount == 6) {
+    console.log(cCards.length)
+    var newCharacters=[];
     for (var i = 0; i < cCards.length; i++) {
-      selectCharacter[i] = characterCards[cCards[i]];
+        newCharacters[i] = characterCards[cCards[i]];
     }
-    console.log(selectCharacter);
-    return res.send(selectCharacter);
+    console.log(newCharacters);
+    return res.send(newCharacters);
   }
 };
 
