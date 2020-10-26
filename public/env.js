@@ -44,6 +44,9 @@ $(document).ready(function () {
         if (players == "Please wait for more players to show up.") {
           alert(players);
         } else {
+          $('#ccPanelBtn2').click(function () {
+            socket.emit('pointer', {});
+          });
           //using socket for start game if any one of the player
           //presses start game it should start the game for all the players.
           socket.emit("startGame", {
@@ -206,7 +209,7 @@ socket.on("startGame", (players) => {
   for (var i = 0; i < players.players.length; i++) {
     if (players.players[i].turn == true) {
       if (players.players[i].name == userName) {
-        if (c == 0) {
+        //if (c == 0) {
           //Game Starts: Selection Panel for character Cards
           // 3 seconds delay before game starts
           setTimeout(function () {
@@ -691,19 +694,19 @@ socket.on("startGame", (players) => {
               });
             } else alert("Error: Please select your character card.");
            
-            if ($pointer.is(":nth-last-child(1)")) {
-              $hidePointer = $pointer;
-              $hidePointer.css("visibility", "hidden");
-              $pointer = $(`.player0Pointer`);
-              $pointer.css("visibility", "visible");
-            } else {
-              $pointer = $pointer.next();
-              $pointer.css("visibility", "visible");
-              $hidePointer = $pointer.prev();
-              $hidePointer.css("visibility", "hidden");
-            }
+            // if ($pointer.is(":nth-last-child(1)")) {
+            //   $hidePointer = $pointer;
+            //   $hidePointer.css("visibility", "hidden");
+            //   $pointer = $(`.player0Pointer`);
+            //   $pointer.css("visibility", "visible");
+            // } else {
+            //   $pointer = $pointer.next();
+            //   $pointer.css("visibility", "visible");
+            //   $hidePointer = $pointer.prev();
+            //   $hidePointer.css("visibility", "hidden");
+            // }
           }); 
-        }
+        //}
       }
     }
   }
@@ -737,4 +740,19 @@ $(".game-room").ready(function () {
       error: function () {},
     });
   }, 1000);
+});
+
+
+socket.on('pointer', () => {
+  if ($pointer.is(':nth-last-child(2)')) {
+    $hidePointer = $pointer;
+    $hidePointer.css('visibility', 'hidden');
+    $pointer = $(`.player0Pointer`);
+    $pointer.css('visibility', 'visible');
+  } else {
+    $pointer = $pointer.next();
+    $pointer.css('visibility', 'visible');
+    $hidePointer = $pointer.prev();
+    $hidePointer.css('visibility', 'hidden');
+  }
 });

@@ -97,4 +97,7 @@ io.on("connection", function (socket) {
     //exit all players at once.
     io.sockets.emit("exit");
   });
+  socket.on('pointer',()=>{
+    io.sockets.emit('pointer')
+  })
 });
