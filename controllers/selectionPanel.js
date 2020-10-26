@@ -56,7 +56,7 @@ exports.selectionPanel = function (req, res) {
     for (var i = 0; i < cCards.length; i++) {
       selectCharacter[i] = characterCards[cCards[i]];
     }
-    console.log(selectCharacter);
+  //  console.log(selectCharacter);
     return res.send(selectCharacter);
   }
 
@@ -69,7 +69,7 @@ exports.selectionPanel = function (req, res) {
       if (players[i].name == uName) {
         if (cName == "Assassin") {
           selectedCCard = characterCards[1];
-          console.log(selectCharacter);
+         // console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -87,7 +87,7 @@ exports.selectionPanel = function (req, res) {
         }
         if (cName == "Theif") {
           selectedCCard = characterCards[2];
-          console.log(selectCharacter);
+         // console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -105,7 +105,7 @@ exports.selectionPanel = function (req, res) {
         }
         if (cName == "Magician") {
           selectedCCard = characterCards[3];
-          console.log(selectCharacter);
+          //console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -123,7 +123,7 @@ exports.selectionPanel = function (req, res) {
         }
         if (cName == "King") {
           selectedCCard = characterCards[4];
-          console.log(selectCharacter);
+        //  console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -141,7 +141,7 @@ exports.selectionPanel = function (req, res) {
         }
         if (cName == "Bishop") {
           selectedCCard = characterCards[5];
-          console.log(selectCharacter);
+        //  console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -159,7 +159,7 @@ exports.selectionPanel = function (req, res) {
         }
         if (cName == "Merchant") {
           selectedCCard = characterCards[6];
-          console.log(selectCharacter);
+       //   console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -177,7 +177,7 @@ exports.selectionPanel = function (req, res) {
         }
         if (cName == "Architect") {
           selectedCCard = characterCards[7];
-          console.log(selectCharacter);
+        //  console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -195,7 +195,7 @@ exports.selectionPanel = function (req, res) {
         }
         if (cName == "Warload") {
           selectedCCard = characterCards[8];
-          console.log(selectCharacter);
+        //  console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -213,7 +213,7 @@ exports.selectionPanel = function (req, res) {
         }
         if (cName == "Artist") {
           selectedCCard = characterCards[9];
-          console.log(selectCharacter);
+         // console.log(selectCharacter);
           updatePlayers = new Player(
             players[i].num,
             players[i].name,
@@ -232,18 +232,18 @@ exports.selectionPanel = function (req, res) {
       }
      
     }
-    console.log(updatePlayers);
-    console.log(cCards);
+   // console.log(updatePlayers);
+  //  console.log(cCards);
     return res.send(cCards)
      
 }
 if (clickCount == 6) {
-    console.log(cCards.length)
+    //console.log(cCards.length)
     var newCharacters=[];
     for (var i = 0; i < cCards.length; i++) {
         newCharacters[i] = characterCards[cCards[i]];
     }
-    console.log(newCharacters);
+   // console.log(newCharacters);
     return res.send(newCharacters);
   }
 };

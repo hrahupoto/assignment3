@@ -8,6 +8,7 @@ var $pointer;
 var $hidePointer;
 
 $(document).ready(function () {
+  
   //login functionality
   $(".joinRoom").click(function () {
     var userName = $("#userName").val();
@@ -173,9 +174,16 @@ socket.on("startGame", (players) => {
   //using socket for start game if any one of the player
   //presses start game it should start the game for all the players.
   console.log(players);
+
+  var userName = window.location.href.split("=");
+  userName = userName[1].split("#");
+  userName = userName[0];
+
   $(".startGame").hide(); //hide start game button after game is started
   clearInterval(counter);
   $("#Counter").hide();
+  handpanelGameInitiationPhase(userName, players); // handpanel initiation with four cards
+
   var bank_coins = players.bank.coins;
   $(".bank_coins").append(`<a>
     <img class="coins" src="/images/bank/coins.png">
@@ -198,9 +206,7 @@ socket.on("startGame", (players) => {
     }
   }
   $("#crown_disapear").hide();
-  var userName = window.location.href.split("=");
-  userName = userName[1].split("#");
-  userName = userName[0];
+
   var c = 0;
 
   for (var i = 0; i < players.players.length; i++) {
@@ -738,3 +744,77 @@ $(".game-room").ready(function () {
     });
   }, 1000);
 });
+
+/*******************functions for hand panel - starts **********************/
+
+function handpanelGameInitiationPhase(userName, players){
+  $('.hand-panel').css("visibility", "visible");
+  var playersData =   JSON.stringify(players.players);
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    traditional: true,
+    url: '/handPanel.initialiseHandPanel', //display hand panel
+    data: {playersData,userName},
+    contentType: 'application/json', // 
+    success: function(data) {
+      $('#hand-panel-dcs').append(data);
+      setHandPanelActiveAndInactive();
+    },
+    error: function () {},      
+  }); 
+}
+
+function updateHandPanelDcsAfterPlayerTurn(userName, players){
+  var playersData =   JSON.stringify(players.players);
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    traditional: true,
+    url: '/handPanel.updateHandPanelDcs', //display hand panel
+    data: {playersData,userName},
+    contentType: 'application/json', // 
+    success: function(data) {
+      $('#hand-panel-dcs').append(data);
+    },
+    error: function () {},      
+  }); 
+}
+
+function updateHandPanelCcsAfterPlayerGetsCC(userName, players){
+  $('.hand-panel').css("visibility", "visible");
+  var playersData =   JSON.stringify(players.players);
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    traditional: true,
+    url: '/handPanel.updateHandPanelCcs', //display hand panel
+    data: {playersData,userName},
+    contentType: 'application/json', // 
+    success: function(data) {
+      $('#hand-panel-ccs').append(data);
+    },
+    error: function () {},      
+  }); 
+}
+/*
+$('.hand-panel').on('click', 'a', function(e) {
+  var userName = window.location.href.split("=");
+  userName = userName[1].split("#");
+  userName = userName[0];
+  
+  if($(this).attr('href'))
+      e.preventDefault();
+    //console.log($(this).attr('href'));
+});
+
+
+function setHandPanelCardsNonClickable() {
+
+  $('.hand-panel').on('click', 'a', function(e,players, username) {
+    if($(this).attr('href'))
+    e.preventDefault();
+    console.log($(this).attr('href'));
+  });
+};  */
+/*********************** functions for hand panel - ends ***************/

@@ -15,6 +15,7 @@ const deleteAllUsers = require("./routes/db/deleteAllUsers");
 const startGame = require("./routes/startGame");
 const userCounter = require("./routes/userCounter");
 const selectionPanel = require("./routes/selectionPanel");
+const handPanel = require('./routes/handPanel');
 
 app.use(express.static(__dirname + "/public"));
 
@@ -24,6 +25,7 @@ app.use("/", deleteAllUsers);
 app.use("/", startGame);
 app.use("/", userCounter);
 app.use("/", selectionPanel);
+app.use('/', handPanel);
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
@@ -38,8 +40,8 @@ app.get("/help", function (req, res) {
 
 app.get("/gameRoom", function (req, res) {
  var userName= req.query.userName;
- console.log(userName);
- console.log(players)
+ //console.log(userName);
+ //console.log(players)
   res.render("gameRoom", { title: "Citadels - Game Room" });
 });
 
@@ -49,7 +51,8 @@ console.log("Server running at Port: 3000");
 
 //DATABASE MONGODB
 const uri =
-  "mongodb+srv://Hassan:SIT725@sit725.bketa.mongodb.net/Citadels(SIT725)?retryWrites=true&w=majority";
+ // 'mongodb+srv://Hassan:SIT725@sit725.bketa.mongodb.net/Citadels(SIT725)?retryWrites=true&w=majority';
+  'mongodb+srv://sit725:sit725@sit725.gwuvj.mongodb.net/Citadels(SIT725)?retryWrites=true&w=majority';
 
 mongoose.connect(
   uri,
@@ -62,7 +65,7 @@ mongoose.connect(
   function (err) {
     if (err) throw err;
 
-    console.log("DB successfully connected");
+    console.log('DB successfully connected');
   }
 );
 
@@ -70,7 +73,7 @@ mongoose.connect(
 const io = socket(server);
 
 io.on("connection", function (socket) {
-  console.log("Made socket connection", socket.id);
+ // console.log("Made socket connection", socket.id);
   //chat event handling
   socket.on("chat", function (data) {
     // console.log(data);
