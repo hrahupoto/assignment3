@@ -21,7 +21,7 @@ $(document).ready(function () {
         } else if (data == 'Game room is full. Please try again later.') {
           alert(JSON.stringify(data));
         } else {
-          window.location.href = 'gameRoom';
+          window.location.href = `gameRoom?userName=${userName}`;
         }
       },
       error: function () {},
@@ -45,38 +45,15 @@ $(document).ready(function () {
           socket.emit('startGame', {
             players: players,
           });
-          for(var i=0;i<players.players.length;i++){
-            if(players.players[i].crowned==true){
-              var $pointer = $(`.player${i}Pointer`);
-              $pointer.css('visibility', 'visible');
-              //var $hidePointer;
-              // $('.pointer').click(function () {
-              //   if ($pointer.is(':last-child')) {
-              //     $hidePointer = $pointer.prev();
-              //     $hidePointer.css('visibility', 'hidden');
-              //     $pointer = $(`.player0Pointer`);
-              //     $pointer.css('visibility', 'visible');
-              //   } else {
-              //     $pointer = $pointer.next();
-              //     $pointer.css('visibility', 'visible');
-              //     $hidePointer = $pointer.prev();
-              //     $hidePointer.css('visibility', 'hidden');
-              //   }
-            }
-            
-          }
-          
         }
-        
       },
       error: function () {},
     });
- 
   });
 
-  $.when(makeVisible).then(function () {
-    alert('I fired immediately');
-  });
+  // $.when(makeVisible).then(function () {
+  //   alert('I fired immediately');
+  // });
 
   //$('.player0Pointer').is(':visible', () => {});
 
@@ -89,7 +66,7 @@ $(document).ready(function () {
       success: function () {},
       error: function () {},
     });
-    //emiting exit event for all users 
+    //emiting exit event for all users
     socket.emit('exit', {});
   });
 
@@ -215,6 +192,28 @@ socket.on('startGame', (players) => {
         .append(`<div class="player${i}Crown" id="player${i}Crown">
   <img src="/images/bank/crown.png" />
 </div>`);
+      var $pointer = $(`.player${2}Pointer`);
+      $pointer.css('visibility', 'visible');
+      var $hidePointer;
+      // $('#changeTurn').click(function () {
+      //   console.log('I am here!!!!!');
+        
+      //   if ($pointer.is(':nth-last-child(1)')) {
+      //     console.log($pointer);
+      //     console.log($hidePointer);
+      //     $hidePointer = $pointer
+      //     $hidePointer.css('visibility', 'hidden');
+      //     $pointer = $(`.player0Pointer`);
+      //     $pointer.css('visibility', 'visible');
+      //   } else {
+      //     $pointer = $pointer.next();
+      //     $pointer.css('visibility', 'visible');
+      //     $hidePointer = $pointer.prev();
+      //     $hidePointer.css('visibility', 'hidden');
+      //   }
+      //   console.log($pointer);
+      //   console.log($hidePointer);
+      // });
     }
   }
   $('#crown_disapear').hide();

@@ -36,7 +36,10 @@ app.get('/help', function (req, res) {
 });
 
 app.get('/gameRoom', function (req, res) {
-  res.render('gameRoom', {title: 'Citadels - Game Room'});
+  res.render('gameRoom', {
+    title: 'Citadels - Game Room',
+    userName: req.query.userName,
+  });
 });
 
 //Start the server
