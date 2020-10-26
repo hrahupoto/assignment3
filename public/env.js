@@ -6,6 +6,7 @@ var cCards;
 var className;
 var $pointer;
 var $hidePointer;
+var updatedCCards=[];
 
 $(document).ready(function () {
   //login functionality
@@ -44,8 +45,8 @@ $(document).ready(function () {
         if (players == "Please wait for more players to show up.") {
           alert(players);
         } else {
-          $('#ccPanelBtn2').click(function () {
-            socket.emit('pointer', {});
+          $("#ccPanelBtn2").click(function () {
+            socket.emit("pointer", {});
           });
           //using socket for start game if any one of the player
           //presses start game it should start the game for all the players.
@@ -204,12 +205,13 @@ socket.on("startGame", (players) => {
   var userName = window.location.href.split("=");
   userName = userName[1].split("#");
   userName = userName[0];
+  console.log(userName);
   var c = 0;
 
   for (var i = 0; i < players.players.length; i++) {
     if (players.players[i].turn == true) {
       if (players.players[i].name == userName) {
-        //if (c == 0) {
+        if (c == 0) {
           //Game Starts: Selection Panel for character Cards
           // 3 seconds delay before game starts
           setTimeout(function () {
@@ -593,13 +595,14 @@ socket.on("startGame", (players) => {
           $("#cc0Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc0Selection1").hide();
-              
+
               className = $("#cc0Selection1 > img").attr("class");
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
                 success: function (data) {
+                  updatedCCards = data;
                   clickCount = clickCount + 1;
                 },
                 error: function () {},
@@ -617,6 +620,8 @@ socket.on("startGame", (players) => {
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
                 success: function (data) {
+                  updatedCCards = data;
+
                   clickCount = clickCount + 1;
                 },
                 error: function () {},
@@ -626,13 +631,14 @@ socket.on("startGame", (players) => {
           $("#cc2Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc2Selection1").hide();
-             
+
               className = $("#cc2Selection1 > img").attr("class");
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
                 success: function (data) {
+                  updatedCCards = data;
                   clickCount = clickCount + 1;
                 },
                 error: function () {},
@@ -642,13 +648,16 @@ socket.on("startGame", (players) => {
           $("#cc3Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc3Selection1").hide();
-              
+
               className = $("#cc3Selection1 > img").attr("class");
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
-                success: function (data) {clickCount = clickCount + 1;},
+                success: function (data) {
+                  updatedCCards = data;
+                  clickCount = clickCount + 1;
+                },
                 error: function () {},
               });
             } else alert("Cards already Selected");
@@ -656,7 +665,7 @@ socket.on("startGame", (players) => {
           $("#cc4Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc4Selection1").hide();
-           
+
               className = $("#cc4Selection1 > img").attr("class");
 
               $.ajax({
@@ -664,6 +673,7 @@ socket.on("startGame", (players) => {
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
                 success: function (data) {
+                  updatedCCards = data;
                   clickCount = clickCount + 1;
                 },
                 error: function () {},
@@ -672,28 +682,31 @@ socket.on("startGame", (players) => {
           });
 
           $("#ccPanelBtn2").click(function () {
+            $("#selectionPanel2").hide();
             if (clickCount == 6) {
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
-                data: { clickCount},
+                data: { clickCount , updatedCCards},
                 success: function (data) {
                   console.log(data);
-                  
-                  /*for (var i = 0; i < data.length; i++) {
+                  for (var i = 0; i < 5; i++) {
+                    $(`#cc${i}Selection1`).empty();
+                  }
+                  /*
+                  for (var i = 0; i < data.length; i++) {
                     console.log("location: " + data[i].location);
                     $(`#cc${i}Selection1`).append(
                       `<img id="cc${i}Selection1" class="${data[i].name}" src='${data[i].location}'>`
                     );
-                  }
+                  }*/
                   clickCount = clickCount + 1;
                   c = c + 1;
-                */
                 },
                 error: function () {},
               });
             } else alert("Error: Please select your character card.");
-           
+
             // if ($pointer.is(":nth-last-child(1)")) {
             //   $hidePointer = $pointer;
             //   $hidePointer.css("visibility", "hidden");
@@ -705,8 +718,10 @@ socket.on("startGame", (players) => {
             //   $hidePointer = $pointer.prev();
             //   $hidePointer.css("visibility", "hidden");
             // }
-          }); 
-        //}
+          });
+        }
+        if (c == 1) {
+        }
       }
     }
   }
@@ -742,17 +757,16 @@ $(".game-room").ready(function () {
   }, 1000);
 });
 
-
-socket.on('pointer', () => {
-  if ($pointer.is(':nth-last-child(2)')) {
+socket.on("pointer", () => {
+  if ($pointer.is(":nth-last-child(1)")) {
     $hidePointer = $pointer;
-    $hidePointer.css('visibility', 'hidden');
+    $hidePointer.css("visibility", "hidden");
     $pointer = $(`.player0Pointer`);
-    $pointer.css('visibility', 'visible');
+    $pointer.css("visibility", "visible");
   } else {
     $pointer = $pointer.next();
-    $pointer.css('visibility', 'visible');
+    $pointer.css("visibility", "visible");
     $hidePointer = $pointer.prev();
-    $hidePointer.css('visibility', 'hidden');
+    $hidePointer.css("visibility", "hidden");
   }
 });
