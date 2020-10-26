@@ -127,7 +127,6 @@ exports.startGame = function (req, res) {
             Age[i]
           )
         );
-        // end ruwan changed code
         
         bal_coins = bank.withdrawFromBank(Initial_Coins);
       }

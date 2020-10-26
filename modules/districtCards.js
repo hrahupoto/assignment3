@@ -270,7 +270,7 @@ districtCards = {
         districtType: 'Unique',
         color: 'purple',
         districtName: 'Haunted Quarter',
-        location: '/images/districtCards/HauntedQuater_DistrictCard.jpg',
+        location: '/images/districtCards/HauntedQuarter_DistrictCard.jpg',
         coinsRequired: '2',
         /*At the end of the game,
         the Haunted Quarter counts as

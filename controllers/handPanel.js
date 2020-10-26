@@ -1,18 +1,20 @@
 // This function calls at after every turn in the game flow when player updates their hand - this will update the hand panel Dcs
 exports.initialiseHandPanel = function(req, res) {
-   //data = req.query.sId;
-   /* data = req.query.playersData;
-    console.log('-------');
-    console.log(data); */
+    players = [];
+    data='';
+    players.push(req.query.playersData);
+ 
+    for(var i=0;i< players.length;i++){
+       if(players[i].socketId === req.query.socketId){
+            dcs = [];
+            dcs.push(players[i].dcsArray);   
 
-   /* for(var i=0;i< req.players.players.length;i++){
-        if(req.players.players[i].socketId === req.socketId)
-            for( var j=0;j<req.players.players[i].dcsArray.length;j++){
-                displayDcHtml = '<img id ="dcName" class="hand-panel-dc" src="/images/districtCards/'+req.players.players[i].dcsArray[j]+'_DistrictCard.jpg"></img>';
-            }            
-    }  */
-    
-   // return res.json(JSON.parse(data));
+            for( var j=0;j<dcs.length;j++){
+                data = data+'<a><img id ="dcName" class="hand-panel-dc" src='+dcs[j].url+'></img></a>';
+            }  
+        }           
+    }     
+   return res.send(data);
 };
 
 // This function calls at after every turn in the game flow when player updates their hand - this will update the hand panel Dcs

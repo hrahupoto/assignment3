@@ -8,10 +8,10 @@ const socket = require('socket.io');
 //Start the server
 const server = app.listen(3000);
 
-//Ruwan - initialising sID for socket id
-var sID = '';
 //Ruwan - store player socket ids to identify players
 var playerSocketIdsArray = [];
+var numPlayers = 4;
+var sId;
 
 //DB routes
 const insertUser = require('./routes/db/insertUser');
@@ -22,7 +22,6 @@ const deleteAllUsers = require('./routes/db/deleteAllUsers');
 const startGame = require('./routes/startGame');
 const userCounter = require('./routes/userCounter');
 const handPanel = require('./routes/handPanel');
-const {players} = require('./controllers/db/user');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -38,9 +37,10 @@ app.use('/', handPanel);
 const io = socket(server);
 
 io.on('connection', function (socket) {
+
   console.log('Made socket connection', socket.id);
-  //Ruwan - assigning page sID for socket id
-  sID = socket.id;
+  sId = socket.id;
+  
   //chat event handling
   socket.on('chat', function (data) {
     // console.log(data);
@@ -51,23 +51,24 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('typing', data);
   });
   socket.on('timer', (timer) => {
-    /*io.clients((error, clients) => {
-      //console.log(clients);
+    io.clients((error, clients) => {
       if (timer.socketID == clients[0]) {
         io.sockets.emit('timer', timer);
       }
-    });*/
-    if (timer.socketID == playerSocketIdsArray[0]) {
-      io.sockets.emit('timer', timer);
-    }
+    });
   });
-  socket.on('startGame', (players) => {
+
+  socket.on('startGame', (gameData) => {
     //using scoket for start game if any one of the player 
-    //presses start game it should start the game for all the players.
-    io.sockets.emit('startGame', players.players);
+    //presses start game it should start the game for all the players.   
+    io.sockets.emit('startGame', gameData.players);
+  });
+
+  socket.on('startMainGameFlow', (MainGameFlowData) => {
+    //ask all players to execute maingame flow function   
+    io.sockets.emit('startMainGameFlow', MainGameFlowData.gameData);
   });
 });
-
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -81,15 +82,21 @@ app.get('/help', function (req, res) {
 });
 
 app.get('/gameRoom', function (req, res) { 
-  //Ruwan - everytime user enters the gameroom, players socket id will be saved in the playerSocketIdsArray,
-  //        also we can identify which player it is by player number according to array index
-  playerSocketIdsArray.push(sID);
-  
+
+   //Ruwan - everytime user enters the gameroom, players socket id will be saved in the playerSocketIdsArray,
+   //        also we can identify which player it is by player number according to array index
+
+  if (playerSocketIdsArray.length < numPlayers ){
+    playerSocketIdsArray.push(sId);      
+  }else{
+    playerSocketIdsArray =[];
+  }
+  //console.log(playerSocketIdsArray);
   res.render('gameRoom', {title: 'Citadels - Game Room'});
 });
 
 app.get('/sendPlayerSockets', function(req, res){
-  res.send(playerSocketIdsArray);  
+    res.send(playerSocketIdsArray);  
 });
 
 console.log('Server running at Port: 3000');
