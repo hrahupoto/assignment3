@@ -1,7 +1,8 @@
 //Make connection
 const socket = io.connect('http://localhost:3000');
 var counter;
-var makeVisible;
+var $pointer;
+var $hidePointer;
 
 $(document).ready(function () {
   //login functionality
@@ -40,6 +41,11 @@ $(document).ready(function () {
         if (players == 'Please wait for more players to show up.') {
           alert(players);
         } else {
+          $('#changeTurn').click(function () {
+            socket.emit('pointer', {
+              players: players,
+            });
+          });
           //using socket for start game if any one of the player
           //presses start game it should start the game for all the players.
           socket.emit('startGame', {
@@ -130,9 +136,7 @@ $('.game-Room').ready(function () {
             url: '/startGame', //start the game if 4 users are present in the room
             data: {},
             success: function (players) {
-              socket.emit('startGame', {
-                players: players,
-              });
+              socket.emit('startGame', {});
             },
             error: function () {},
           });
@@ -192,24 +196,34 @@ socket.on('startGame', (players) => {
         .append(`<div class="player${i}Crown" id="player${i}Crown">
   <img src="/images/bank/crown.png" />
 </div>`);
-      var $pointer = $(`.player${i}Pointer`);
+      $pointer = $(`.player${i}Pointer`);
       $pointer.css('visibility', 'visible');
-      var $hidePointer;
-      $('#changeTurn').click(function () {
-        
-        if ($pointer.is(':nth-last-child(1)')) {
-          $hidePointer = $pointer
-          $hidePointer.css('visibility', 'hidden');
-          $pointer = $(`.player0Pointer`);
-          $pointer.css('visibility', 'visible');
-        } else {
-          $pointer = $pointer.next();
-          $pointer.css('visibility', 'visible');
-          $hidePointer = $pointer.prev();
-          $hidePointer.css('visibility', 'hidden');
-        }
-      
-      });
+      // for (i = 0; i < players.players.length; i++) {
+      //   if (players.players[i].crowned == true) {
+
+      //   }
+      // }
+      //   $('.pointer').append(`<div id='pointer' class="player${i}Pointer">
+      //   <img src="/images/pointer.png" />
+      // </div>`);
+      // var $pointer = $(`.player${i}Pointer`);
+      // $pointer.css('visibility', 'visible');
+      // var $hidePointer;
+      // $('#changeTurn').click(function () {
+
+      //   if ($pointer.is(':nth-last-child(1)')) {
+      //     $hidePointer = $pointer
+      //     $hidePointer.css('visibility', 'hidden');
+      //     $pointer = $(`.player${i}Pointer`);
+      //     $pointer.css('visibility', 'visible');
+      //   } else {
+      //     $pointer = $pointer.next();
+      //     $pointer.css('visibility', 'visible');
+      //     $hidePointer = $pointer.prev();
+      //     $hidePointer.css('visibility', 'hidden');
+      //   }
+
+      //});
     }
   }
   $('#crown_disapear').hide();
@@ -234,4 +248,18 @@ $('.game-room').ready(function () {
       error: function () {},
     });
   }, 1000);
+});
+
+socket.on('pointer', (players) => {
+  if ($pointer.is(':nth-last-child(1)')) {
+    $hidePointer = $pointer;
+    $hidePointer.css('visibility', 'hidden');
+    $pointer = $(`.player0Pointer`);
+    $pointer.css('visibility', 'visible');
+  } else {
+    $pointer = $pointer.next();
+    $pointer.css('visibility', 'visible');
+    $hidePointer = $pointer.prev();
+    $hidePointer.css('visibility', 'hidden');
+  }
 });
