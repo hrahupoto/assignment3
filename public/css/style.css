@@ -195,7 +195,7 @@ body {
     left: 85%;
     transform: translate(-50%, -50%);
 }
-#cc1{
+#cc1, #cc0Selection1{
     position: absolute;
     height: 30px;
     width: 20px;
@@ -203,7 +203,7 @@ body {
     left: 10%;
     transform: translate(-50%, -50%);
 }
-#cc2{
+#cc2, #cc1Selection1{
     position: absolute;
     height: 30px;
     width: 20px;
@@ -211,7 +211,7 @@ body {
     left: 22.5%;
     transform: translate(-50%, -50%);
 }
-#cc3{
+#cc3, #cc2Selection1{
     position: absolute;
     height: 30px;
     width: 20px;
@@ -219,7 +219,7 @@ body {
     left: 36%;
     transform: translate(-50%, -50%);
 }
-#cc4{
+#cc4, #cc3Selection1{
     position: absolute;
     height: 30px;
     width: 20px;
@@ -227,6 +227,16 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#cc4Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 64%;
+    transform: translate(-50%, -50%);
+}
+
 #cc5{
     position: absolute;
     height: 30px;
@@ -407,7 +417,12 @@ body {
     top: 50%;
     left: 30%;
     transform: translate(-50%, -50%);
-
+}
+#ccPanelBtn2{
+    position: absolute;
+    top: 85%;
+    left: 75%;
+    transform: translate(-50%, -50%);
 }
 /**************** end game room styles *********/
 
