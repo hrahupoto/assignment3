@@ -192,28 +192,24 @@ socket.on('startGame', (players) => {
         .append(`<div class="player${i}Crown" id="player${i}Crown">
   <img src="/images/bank/crown.png" />
 </div>`);
-      var $pointer = $(`.player${2}Pointer`);
+      var $pointer = $(`.player${i}Pointer`);
       $pointer.css('visibility', 'visible');
       var $hidePointer;
-      // $('#changeTurn').click(function () {
-      //   console.log('I am here!!!!!');
+      $('#changeTurn').click(function () {
         
-      //   if ($pointer.is(':nth-last-child(1)')) {
-      //     console.log($pointer);
-      //     console.log($hidePointer);
-      //     $hidePointer = $pointer
-      //     $hidePointer.css('visibility', 'hidden');
-      //     $pointer = $(`.player0Pointer`);
-      //     $pointer.css('visibility', 'visible');
-      //   } else {
-      //     $pointer = $pointer.next();
-      //     $pointer.css('visibility', 'visible');
-      //     $hidePointer = $pointer.prev();
-      //     $hidePointer.css('visibility', 'hidden');
-      //   }
-      //   console.log($pointer);
-      //   console.log($hidePointer);
-      // });
+        if ($pointer.is(':nth-last-child(1)')) {
+          $hidePointer = $pointer
+          $hidePointer.css('visibility', 'hidden');
+          $pointer = $(`.player0Pointer`);
+          $pointer.css('visibility', 'visible');
+        } else {
+          $pointer = $pointer.next();
+          $pointer.css('visibility', 'visible');
+          $hidePointer = $pointer.prev();
+          $hidePointer.css('visibility', 'hidden');
+        }
+      
+      });
     }
   }
   $('#crown_disapear').hide();
