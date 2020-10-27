@@ -4,7 +4,6 @@ const express = require("express");
 const ejs = require("ejs");
 const app = express();
 const socket = require("socket.io");
-var {players} = require('./controllers/startGame');
 
 //DB routes
 const insertUser = require("./routes/db/insertUser");
