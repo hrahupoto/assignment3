@@ -15,14 +15,6 @@ $(document).ready(function () {
     var userName = $("#userName").val();
     var dateOfBirth = $("#dob").val();
 
-
-$(document).ready(function() {
-    //login functionality
-    $('.joinRoom').click(function() 
-        var userName = $('#userName').val();
-        var dateOfBirth = $('#dob').val();
-        sessionStorage.setItem("userName",userName)
-  
     $.ajax({
       type: "GET",
       url: "/insertUser",
@@ -60,10 +52,11 @@ $(document).ready(function() {
           socket.emit("startGame", {
             players: players,
           });
-          socket.emit("updatepointer", 
+          socket.emit("updatepointer", {
             players: players,
           });
         }
+      
       },
       error: function () {},
     });
@@ -97,22 +90,20 @@ $(document).ready(function() {
   });
 
   //Emit events
-
-  $('#send').click(function () {
-    var message = $('#message').val()
-    var playerName = sessionStorage.getItem("userName")
-    socket.emit('chat', {
+  $("#send").click(function () {
+    var message = $("#message").val();
+    var playerName = $("#handle").val();
+    socket.emit("chat", {
       message: message,
       playerName: playerName,
     });
     $("#message").val("");
   });
 
-
-  $('#message').keypress(function (){
-    var playerName = sessionStorage.getItem("userName")
-    socket.emit('typing',playerName);
-  })
+  $("#message").keypress(function () {
+    var playerName = $("#handle").val();
+    socket.emit("typing", playerName);
+  });
 
   // Listen for chat events
   socket.on("chat", function (data) {
