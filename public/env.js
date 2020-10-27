@@ -9,24 +9,18 @@ var $hidePointer;
 var updatedCCards = []; //updated charcter cards left
 var userName; //url login user name
 var c = 0; // pointer turn checker
-$(document).ready(function () {
-  //login functionality
-  $(".joinRoom").click(function () {
-    var userName = $("#userName").val();
-    var dateOfBirth = $("#dob").val();
-
 
 $(document).ready(function() {
     //login functionality
-    $('.joinRoom').click(function() 
-        var userName = $('#userName').val();
+    $('.joinRoom').click(function() {
+        var user = $('#userName').val();
         var dateOfBirth = $('#dob').val();
-        sessionStorage.setItem("userName",userName)
+        sessionStorage.setItem("user",user)
   
     $.ajax({
       type: "GET",
       url: "/insertUser",
-      data: { userName, dateOfBirth },
+      data: { user, dateOfBirth },
       success: function (data) {
         if (
           data == "User already exists, Please try entering different username."
@@ -35,12 +29,12 @@ $(document).ready(function() {
         } else if (data == "Game room is full. Please try again later.") {
           alert(JSON.stringify(data));
         } else {
-          window.location.href = `gameRoom?userName=${userName}`; //sending login username in the url
+          window.location.href = `gameRoom?userName==${user}`; //sending login username in the url
         }
       },
       error: function () {},
     });
-    console.log(userName);
+    console.log(user);
     console.log(dateOfBirth);
   });
 
@@ -60,7 +54,7 @@ $(document).ready(function() {
           socket.emit("startGame", {
             players: players,
           });
-          socket.emit("updatepointer", 
+          socket.emit("updatepointer", {
             players: players,
           });
         }
@@ -100,7 +94,7 @@ $(document).ready(function() {
 
   $('#send').click(function () {
     var message = $('#message').val()
-    var playerName = sessionStorage.getItem("userName")
+    var playerName = sessionStorage.getItem("user")
     socket.emit('chat', {
       message: message,
       playerName: playerName,
@@ -110,7 +104,7 @@ $(document).ready(function() {
 
 
   $('#message').keypress(function (){
-    var playerName = sessionStorage.getItem("userName")
+    var playerName = sessionStorage.getItem("user")
     socket.emit('typing',playerName);
   })
 
