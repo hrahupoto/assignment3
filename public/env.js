@@ -757,7 +757,7 @@ socket.on("pointer2", (players) => {
   for (var i = 0; i < players.length; i++) {
     if (players[i].crowned == false) {
       if (players[i].turn == true) {
-        if ($pointer.is(":nth-last-child(1)")) {
+        if ($pointer.is(":nth-last-child(2)")) {
           $hidePointer = $pointer;
           $hidePointer.css("visibility", "hidden");
           $pointer = $(`.player0Pointer`);
