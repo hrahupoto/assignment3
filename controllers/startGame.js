@@ -42,9 +42,6 @@ exports.startGame = function (req, res) {
   var bal_coins;
   var bank = [];
   var bankcoins = 100;
-  var bankcomp;
-  //var remaining_bankcoins = 0;
-  //var total_Initial_Coins = 0;
   userModel.find({}, function (err, users) {
     if (users.length == maxPlayer) {
       //Selection of Crown Player
@@ -124,23 +121,15 @@ exports.startGame = function (req, res) {
       console.log(Age)
 
       //console.log(districtCards.length)
-      /*for (var i = 0; i < 47; i++) {
-                bank.push(new Bank(bankcoins, districtCards[i]));
-                //dcards.push(districtCards[i]);
-            }*/
       //console.log(playercards)
 
       bank = new Bank(bankcoins);
 
       //console.log(bank[0].dcsArray);
       //console.log(bank);
-      //bank.push(new Bank(bankcoins, districtCards, characterCards));
       //console.log(bank[0].coins);
-      //bank_coins = bank[0].coins;
-      //result = bank[0].withdrawFromBank(Initial_Coins);
       //console.log("Result:", result)
       //console.log(bank.withdrawFromBank(Initial_Coins));
-      //withdraw.push(Bank.withdrawFromBank);
       //console.log(withdraw);
 
       allPlayersInitialDcsArray = [];
@@ -183,12 +172,10 @@ exports.startGame = function (req, res) {
           )
         );
         bal_coins = bank.withdrawFromBank(Initial_Coins);
-        //bankcoins -= Initial_Coins;
-      }
+       }
       //console.log(bal_coins);
       bank = new Bank(bal_coins, remaining_dc, characterCards);
       //console.log(bank.dcsArray[0]);
-      //bank_coins = bank[bank.length - 1].coins;
       //console.log(bank_coins);
       return res.json({ players, bank });
     } else {

@@ -64,8 +64,13 @@ $(document).ready(function () {
       success: function () {},
       error: function () {},
     });
-    //emiting exit event for all users
-    socket.emit("exit", {});
+    //emiting exit event for all users 
+    socket.emit('exit', {});
+  });
+
+  //listening event for exit users
+  socket.on('exit', () => {
+    window.location.href = '/';
   });
 
   //listening event for exit users
@@ -125,13 +130,13 @@ $(".game-Room").ready(function () {
       data: { timeArray },
       success: function (data) {
         //console.log(data);
-        if (data == "hide") {
+        if (data == 'hide') {
           $.ajax({
             type: "GET",
             url: "/startGame", //start the game if 4 users are present in the room
             data: {},
             success: function (players) {
-              socket.emit("startGame", {
+              socket.emit('startGame', {
                 players: players,
               });
             },
@@ -148,7 +153,7 @@ $(".game-Room").ready(function () {
             error: function () {},
           });
           //socket exit event for all users
-          socket.emit("exit", {});
+          socket.emit('exit', {});
         } else {
           //scoket emiting event
           socket.emit("timer", {
