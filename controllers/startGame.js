@@ -11,20 +11,14 @@ while (random_num.length < 47) {
   var num = Math.floor(Math.random() * (48 - 1) + 1);
   if (random_num.indexOf(num) === -1) random_num.push(num);
 }
-
-//console.log(random_num)
 var remaining_dc = [];
 var playercards = [];
 for (var i = 0; i < 16; i++) {
   playercards.push(districtCards[random_num[i]]);
 }
-//console.log(playercards)
-
 for (var j = 16; j < 47; j++) {
   remaining_dc.push(districtCards[random_num[j]]);
 }
-//console.log(remaining_dc);
-
 var initial_dsc_cards = [];
 var i,
   j,
@@ -69,6 +63,7 @@ exports.startGame = function (req, res) {
 
       //Matching Players Age with MaxAge and if it matches assigning True else False
      if (Age[0] == maxAge) {
+       //if 1st player is oldest
         if (Age[0] == Age[1] || Age[0] == Age[2] || Age[0] == Age[3]) {
           Age[0] = true;
           Age[1] = false;
@@ -79,6 +74,7 @@ exports.startGame = function (req, res) {
         Age[2] = false;
         Age[3] = false;
       } else if (Age[1] == maxAge) {
+          //if 2nd player is oldest
         if (Age[1] == Age[0]) {
           Age[0] = true;
           Age[1] = false;
@@ -94,6 +90,7 @@ exports.startGame = function (req, res) {
         Age[2] = false;
         Age[3] = false;
       } else if (Age[2] == maxAge) {
+        //if 3rd player is oldest
         if (Age[2] == Age[0]) {
           Age[0] = true;
           Age[1] = false;
@@ -114,6 +111,7 @@ exports.startGame = function (req, res) {
         Age[1] = false;
         Age[3] = false;
       } else if (Age[3] == maxAge) {
+        //if 4th player is oldest
         if (Age[3] == Age[0]) {
           Age[0] = true;
           Age[1] = false;

@@ -6,8 +6,8 @@ var cCards;
 var className;
 var $pointer;
 var $hidePointer;
-var updatedCCards=[];
-
+var updatedCCards = []; //updated charcter cards left
+var userName; //url login user name
 $(document).ready(function () {
   //login functionality
   $(".joinRoom").click(function () {
@@ -26,7 +26,7 @@ $(document).ready(function () {
         } else if (data == "Game room is full. Please try again later.") {
           alert(JSON.stringify(data));
         } else {
-          window.location.href = `gameRoom?userName=${userName}`;
+          window.location.href = `gameRoom?userName=${userName}`; //sending login username in the url
         }
       },
       error: function () {},
@@ -113,11 +113,14 @@ $(document).ready(function () {
     feedback.innerHTML = "<p><em>" + data + " is typing a message...</em></p>";
   });
 });
-
+//Game room page ready
 $(".game-Room").ready(function () {
   //hiding Selection panel Initially
+  //hiding panels before game starts
   $("#selectionPanel").hide();
   $("#selectionPanel2").hide();
+
+  //setting initial timer
   document.getElementById("timer").innerHTML = 02 + ":" + 00;
   counter = setInterval(() => {
     var presentTime = document.getElementById("timer").innerHTML;
@@ -140,7 +143,6 @@ $(".game-Room").ready(function () {
             },
             error: function () {},
           });
-          //document.getElementsById('Counter').style.visibility = 'hidden';
         } else if (data == "redirect") {
           clearInterval(counter);
           $.ajax({
@@ -179,7 +181,7 @@ socket.on("startGame", (players) => {
   console.log(players);
   $(".startGame").hide(); //hide start game button after game is started
   clearInterval(counter);
-  $("#Counter").hide();
+  $("#Counter").hide(); //hiding counter after game starts
   var bank_coins = players.bank.coins;
   $(".bank_coins").append(`<a>
     <img class="coins" src="/images/bank/coins.png">
@@ -201,13 +203,15 @@ socket.on("startGame", (players) => {
       $pointer.css("visibility", "visible");
     }
   }
+  //hiding bank crown
   $("#crown_disapear").hide();
-  var userName = window.location.href.split("=");
+
+  //getting login username from the url
+  userName = window.location.href.split("=");
   userName = userName[1].split("#");
   userName = userName[0];
-  console.log(userName);
   var c = 0;
-
+  // checking whhich player turn
   for (var i = 0; i < players.players.length; i++) {
     if (players.players[i].turn == true) {
       if (players.players[i].name == userName) {
@@ -218,6 +222,7 @@ socket.on("startGame", (players) => {
             //Displaying the first selection panel
             $("#selectionPanel").show();
           }, 1500);
+          //1st charcter card on click
           $("#cc1").click(function () {
             $("#cc1").hide();
             $.ajax({
@@ -225,8 +230,7 @@ socket.on("startGame", (players) => {
               url: "/selectionPanel",
               data: { clickCount },
               success: function (data) {
-                console.log(data.cardLoc);
-                console.log(data);
+                // based on clickCount appending face up and face down cards
                 if (clickCount == 0) {
                   $("#ccFaceUp1").append(
                     `<img id="ccFaceUp1" src='${data.cardLoc}'>`
@@ -257,14 +261,14 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          //second character card click
           $("#cc2").click(function () {
             $.ajax({
               type: "GET",
               url: "/selectionPanel",
               data: { clickCount },
               success: function (data) {
-                console.log(data.cardLoc);
-                console.log(data);
+                // based on clickCount appending face up and face down cards
                 if (clickCount == 0) {
                   $("#cc2").hide();
                   $("#ccFaceUp1").append(
@@ -296,6 +300,7 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          //third characer card click
           $("#cc3").click(function () {
             $.ajax({
               type: "GET",
@@ -304,6 +309,7 @@ socket.on("startGame", (players) => {
               success: function (data) {
                 console.log(data.cardLoc);
                 console.log(data);
+                // based on clickCount appending face up and face down cards
                 if (clickCount == 0) {
                   $("#cc3").hide();
                   $("#ccFaceUp1").append(
@@ -335,14 +341,14 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          // fourth character card click
           $("#cc4").click(function () {
             $.ajax({
               type: "GET",
               url: "/selectionPanel",
               data: { clickCount },
               success: function (data) {
-                console.log(data.cardLoc);
-                console.log(data);
+                // based on clickCount appending face up and face down cards
                 if (clickCount == 0) {
                   $("#cc4").hide();
                   $("#ccFaceUp1").append(
@@ -374,14 +380,14 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          //fifth character card click
           $("#cc5").click(function () {
             $.ajax({
               type: "GET",
               url: "/selectionPanel",
               data: { clickCount },
               success: function (data) {
-                console.log(data.cardLoc);
-                console.log(data);
+                // based on clickCount appending face up and face down cards
                 if (clickCount == 0) {
                   $("#cc5").hide();
                   $("#ccFaceUp1").append(
@@ -413,14 +419,14 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          //sixth character card click
           $("#cc6").click(function () {
             $.ajax({
               type: "GET",
               url: "/selectionPanel",
               data: { clickCount },
               success: function (data) {
-                console.log(data.cardLoc);
-                console.log(data);
+                // based on clickCount appending face up and face down cards
                 if (clickCount == 0) {
                   $("#cc6").hide();
                   $("#ccFaceUp1").append(
@@ -452,14 +458,14 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          //seventh character card click
           $("#cc7").click(function () {
             $.ajax({
               type: "GET",
               url: "/selectionPanel",
               data: { clickCount },
               success: function (data) {
-                console.log(data.cardLoc);
-                console.log(data);
+                // based on clickCount appending face up and face down cards
                 if (clickCount == 0) {
                   $("#cc7").hide();
                   $("#ccFaceUp1").append(
@@ -491,14 +497,14 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          //eighth character card click
           $("#cc8").click(function () {
             $.ajax({
               type: "GET",
               url: "/selectionPanel",
               data: { clickCount },
               success: function (data) {
-                console.log(data.cardLoc);
-                console.log(data);
+                // based on clickCount appending face up and face down cards
                 if (clickCount == 0) {
                   $("#cc8").hide();
                   $("#ccFaceUp1").append(
@@ -530,14 +536,14 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          //ninth character card click
           $("#cc9").click(function () {
             $.ajax({
               type: "GET",
               url: "/selectionPanel",
               data: { clickCount },
               success: function (data) {
-                console.log(data.cardLoc);
-                console.log(data);
+                // based on clickCount appending face up and face down cards
                 cCards = data.cCards;
                 if (clickCount == 0) {
                   $("#cc9").hide();
@@ -570,9 +576,12 @@ socket.on("startGame", (players) => {
               error: function () {},
             });
           });
+          //ok button click after crown players choses face up and face down cards
           $("#ccPanelBtn").click(function () {
             if (clickCount == 4) {
+              //showing the second panel
               $("#selectionPanel2").show();
+              //hiding first panel
               $("#selectionPanel").hide();
               $.ajax({
                 type: "GET",
@@ -592,6 +601,7 @@ socket.on("startGame", (players) => {
               });
             } else alert("Error: Please select all cards.");
           });
+          //character card selection for 1st turn player
           $("#cc0Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc0Selection1").hide();
@@ -607,8 +617,6 @@ socket.on("startGame", (players) => {
                 },
                 error: function () {},
               });
-
-              //console.log(className)
             } else alert("Cards already Selected");
           });
           $("#cc1Selection1").click(function () {
@@ -682,14 +690,14 @@ socket.on("startGame", (players) => {
           });
 
           $("#ccPanelBtn2").click(function () {
+            $("#selectionPanel2").hide();
             if (clickCount == 6) {
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
-                data: { clickCount , updatedCCards},
+                data: { clickCount, updatedCCards },
                 success: function (data) {
                   console.log(data);
-                  $("#selectionPanel2").hide();
                   for (var i = 0; i < 5; i++) {
                     $(`#cc${i}Selection1`).empty();
                   }
@@ -700,56 +708,19 @@ socket.on("startGame", (players) => {
                       `<img id="cc${i}Selection1" class="${data[i].name}" src='${data[i].location}'>`
                     );
                   }*/
-                  
                   clickCount = clickCount + 1;
                   c = c + 1;
                 },
                 error: function () {},
               });
             } else alert("Error: Please select your character card.");
-
-            // if ($pointer.is(":nth-last-child(1)")) {
-            //   $hidePointer = $pointer;
-            //   $hidePointer.css("visibility", "hidden");
-            //   $pointer = $(`.player0Pointer`);
-            //   $pointer.css("visibility", "visible");
-            // } else {
-            //   $pointer = $pointer.next();
-            //   $pointer.css("visibility", "visible");
-            //   $hidePointer = $pointer.prev();
-            //   $hidePointer.css("visibility", "hidden");
-            // }
           });
+        }
+        if (c == 1) {
         }
       }
     }
   }
-  /*
-    if (userName=="user3")
-    {
-    
-      
-      if (c ==1)
-      {
-        $("#selectionPanel2").show();
-       
-      }
-
-      if(c==1)
-      {
-        console.log("hello")
-      }
-    }
-  
-  /* $.ajax({
-    type: "GET",
-    url: "/selectionPanel2",
-    data: {cCards},
-    success: function (data) {
-      console.log(data)
-    },
-    error: function () {},
-  });*/
 });
 
 $(".game-room").ready(function () {
@@ -773,6 +744,7 @@ $(".game-room").ready(function () {
   }, 1000);
 });
 
+//socket to move broadcast player turn pointer
 socket.on("pointer", () => {
   if ($pointer.is(":nth-last-child(1)")) {
     $hidePointer = $pointer;

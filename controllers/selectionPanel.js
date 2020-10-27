@@ -8,18 +8,12 @@ var updatePlayers = [];
 var selectedCCard;
 exports.selectionPanel = function (req, res) {
   var clickCount = req.query.clickCount;
-  //console.log(cCards[6].location);
-  //   var faceUpCards = [];
-  //     var faceDownCards = [];
-  //   var playerCharcCards = [];
   if (clickCount < 3) {
     var randNumber = Math.floor(Math.random() * cCards.length);
     randNumber = cCards[randNumber];
-    //console.log("randnumber: " + randNumber);
     while (randNumber == 4) {
       var randNumber = Math.floor(Math.random() * cCards.length);
       randNumber = cCards[randNumber];
-      //console.log("randnumber: " + randNumber);
     }
     if (randNumber != 4) {
       if (ccSelected.indexOf(randNumber) === -1) {
@@ -259,9 +253,7 @@ exports.selectionPanel = function (req, res) {
   }
   if (clickCount == 6) {
     var j;
-    //var updatedCCards = req.query.updatedCCards;
     console.log('line:242' + updatePlayers);
-    //return res.send(updatePlayers);
     for (var i = 0; i < updatePlayers.length; i++) {
       if (updatePlayers[i].turn == true) {
         updatePlayers[i].turn = false;
