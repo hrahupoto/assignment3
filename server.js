@@ -97,7 +97,13 @@ io.on("connection", function (socket) {
     //exit all players at once.
     io.sockets.emit("exit");
   });
-  socket.on('pointer',()=>{
-    io.sockets.emit('pointer')
+  socket.on('pointer',(players)=>{
+    io.sockets.emit('pointer',players.players)
+  })
+  socket.on('turn',()=>{
+    io.sockets.emit('turn')
+  })
+  socket.on('updatepointer',(players)=>{
+    io.sockets.emit('updatepointer',players.players)
   })
 });
