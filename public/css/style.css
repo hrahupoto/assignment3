@@ -145,29 +145,29 @@ body {
 
 #player0Crown {
     position: absolute;
-    top: 12%;
-    left: 29%;
+    top: 3.5%;
+    left: 24%;
     transform: translate(-50%, -50%);
 }
 
 #player1Crown {
     position: absolute;
-    top: 49%;
-    left: 50.5%;
+    top: 61%;
+    left: 56.5%;
     transform: translate(-50%, -50%);
 }
 
 #player2Crown {
     position: absolute;
-    top: 88%;
-    left: 29.5%;
+    top: 97%;
+    left: 24%;
     transform: translate(-50%, -50%);
 }
 
 #player3Crown {
     position: absolute;
-    top: 51%;
-    left: 8%;
+    top: 60%;
+    left: 3%;
     transform: translate(-50%, -50%);
 }
 
@@ -181,6 +181,165 @@ body {
     font-size: 25px;
     font-weight: bold;
 }
+
+#selectionPanel{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+#ccPanelBtn{
+    position: absolute;
+    top: 85%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+}
+#cc1, #cc0Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+#cc2, #cc1Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 22.5%;
+    transform: translate(-50%, -50%);
+}
+#cc3, #cc2Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 36%;
+    transform: translate(-50%, -50%);
+}
+#cc4, #cc3Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#cc4Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 64%;
+    transform: translate(-50%, -50%);
+}
+
+#cc5{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+#cc6{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+#cc7{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+#cc8{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+#cc9{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 61.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp2{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 71.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp3{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 81.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFacedown{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 91.5%;
+    transform: translate(-50%, -50%);
+}
+
+.player0Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 8%;
+    left: 32%;
+  }
+  
+  .player1Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 55%;
+    left: 48.2%;
+    transform: rotate(90deg);
+  }
+  
+  .player2Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 84%;
+    left: 21%;
+    transform: rotate(-180deg);
+  }
+  
+  .player3Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 36%;
+    left: 5%;
+    transform: rotate(-90deg);
+  }
 
 .player1_coins {
     position: absolute;
@@ -253,7 +412,18 @@ body {
     transform: rotate(-90deg);
 }
 
-
+#selectionPanel2{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+#ccPanelBtn2, #ccPanelBtn3{
+    position: absolute;
+    top: 85%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+}
 /**************** end game room styles *********/
 
 
