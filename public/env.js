@@ -9,18 +9,17 @@ var $hidePointer;
 var updatedCCards = []; //updated charcter cards left
 var userName; //url login user name
 var c = 0; // pointer turn checker
+$(document).ready(function () {
+  //login functionality
+  $(".joinRoom").click(function () {
+    var userName = $("#userName").val();
+    var dateOfBirth = $("#dob").val();
+    sessionStorage.setItem("userName", userName);
 
-$(document).ready(function() {
-    //login functionality
-    $('.joinRoom').click(function() {
-        var user = $('#userName').val();
-        var dateOfBirth = $('#dob').val();
-        sessionStorage.setItem("user",user)
-  
     $.ajax({
       type: "GET",
       url: "/insertUser",
-      data: { user, dateOfBirth },
+      data: { userName, dateOfBirth },
       success: function (data) {
         if (
           data == "User already exists, Please try entering different username."
@@ -29,12 +28,12 @@ $(document).ready(function() {
         } else if (data == "Game room is full. Please try again later.") {
           alert(JSON.stringify(data));
         } else {
-          window.location.href = `gameRoom?userName==${user}`; //sending login username in the url
+          window.location.href = `gameRoom?userName=${userName}`; //sending login username in the url
         }
       },
       error: function () {},
     });
-    console.log(user);
+    console.log(userName);
     console.log(dateOfBirth);
   });
 
@@ -91,22 +90,20 @@ $(document).ready(function() {
   });
 
   //Emit events
-
-  $('#send').click(function () {
-    var message = $('#message').val()
-    var playerName = sessionStorage.getItem("user")
-    socket.emit('chat', {
+  $("#send").click(function () {
+    var message = $("#message").val();
+    var playerName = sessionStorage.getItem("userName")
+    socket.emit("chat", {
       message: message,
       playerName: playerName,
     });
     $("#message").val("");
   });
 
-
-  $('#message').keypress(function (){
-    var playerName = sessionStorage.getItem("user")
-    socket.emit('typing',playerName);
-  })
+  $("#message").keypress(function () {
+    var playerName = sessionStorage.getItem("userName")
+    socket.emit("typing", playerName);
+  });
 
   // Listen for chat events
   socket.on("chat", function (data) {
@@ -715,7 +712,6 @@ socket.on("startGame", (players) => {
                 socket.emit("pointer2", { players: data.updatePlayers });
                 socket.emit("turn", {
                   data: data,
-
                 });
                 clickCount = clickCount + 1;
               },
@@ -723,13 +719,11 @@ socket.on("startGame", (players) => {
             });
           } else alert("Error: Please select your character card.");
         });
-        break
+        break;
       }
     }
   }
 });
-
-
 
 $(".game-room").ready(function () {
   var appendPlayers = setInterval(() => {
@@ -796,9 +790,8 @@ socket.on("turn", (data) => {
           $(`#cc${i}Selection1`).append(
             `<img id="cc${i}Selection1" class="${data.data.newCharacters[i].name}" src='${data.data.newCharacters[i].location}'>`
           );
-
         }
-        clickCount=7;
+        clickCount = 7;
         //character card selection for 2nd turn player
         $("#cc0Selection1").click(function () {
           if (clickCount == 7) {
@@ -883,7 +876,6 @@ socket.on("turn", (data) => {
                 socket.emit("pointer2", { players: data.updatePlayers1 });
                 socket.emit("turn2", {
                   data: data,
-
                 });
                 clickCount = clickCount + 1;
               },
@@ -909,9 +901,8 @@ socket.on("turn2", (data) => {
           $(`#cc${i}Selection1`).append(
             `<img id="cc${i}Selection1" class="${data.data.newCharacters[i].name}" src='${data.data.newCharacters[i].location}'>`
           );
-
         }
-        clickCount=9;
+        clickCount = 9;
         //character card selection for 3rd turn player
         $("#cc0Selection1").click(function () {
           if (clickCount == 9) {
@@ -996,7 +987,6 @@ socket.on("turn2", (data) => {
                 socket.emit("pointer2", { players: data.updatePlayers2 });
                 socket.emit("turn3", {
                   data: data,
-
                 });
                 clickCount = clickCount + 1;
               },
@@ -1012,24 +1002,23 @@ socket.on("turn2", (data) => {
 socket.on("turn3", (data) => {
   console.log(data.data.updatePlayers2.length);
   console.log(data.data.updatePlayers2);
-  console.log(data.data.newCharacters.length)
-  console.log(data.data.newCharacters)
+  console.log(data.data.newCharacters.length);
+  console.log(data.data.newCharacters);
   for (var i = 0; i < data.data.updatePlayers2.length; i++) {
     if (data.data.updatePlayers2[i].turn == true) {
       if (data.data.updatePlayers2[i].name == userName) {
         $("#selectionPanel2").show();
         $("#ccPanelBtn3").show();
         $("#ccPanelBtn2").hide();
-      
-           $(`#cc0Selection1`).append(
-             `<img id="cc0Selection1" class="${data.data.newCharacters[0].name}" src='${data.data.newCharacters[0].location}'>`
-           );
-           $(`#cc1Selection1`).append(
-            `<img id="cc1Selection1" class="${data.data.newCharacters[1].name}" src='${data.data.newCharacters[1].location}'>`
-          );
 
-  
-        clickCount=11;
+        $(`#cc0Selection1`).append(
+          `<img id="cc0Selection1" class="${data.data.newCharacters[0].name}" src='${data.data.newCharacters[0].location}'>`
+        );
+        $(`#cc1Selection1`).append(
+          `<img id="cc1Selection1" class="${data.data.newCharacters[1].name}" src='${data.data.newCharacters[1].location}'>`
+        );
+
+        clickCount = 11;
         //character card selection for 4th turn player
         $("#cc0Selection1").click(function () {
           if (clickCount == 11) {
@@ -1112,10 +1101,10 @@ socket.on("turn3", (data) => {
                   $(`#cc${i}Selection1`).empty();
                 }
                 socket.emit("pointer2", { players: data.updatePlayers3 });
-            //    socket.emit("turn", {
-              //    data: data,
+                //    socket.emit("turn", {
+                //    data: data,
 
-            //    });
+                //    });
                 clickCount = clickCount + 1;
               },
               error: function () {},
@@ -1126,4 +1115,3 @@ socket.on("turn3", (data) => {
     }
   }
 });
-
