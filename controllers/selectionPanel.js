@@ -1,6 +1,6 @@
-const { characterCards } = require("../modules/characterCards");
-const { Player } = require("../models/player");
-var { players } = require("./startGame");
+const {characterCards} = require('../modules/characterCards');
+const {Player} = require('../models/player');
+var {players} = require('./startGame');
 var cCards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var ccSelected = [];
 var selectCharacter = [];
@@ -29,7 +29,7 @@ exports.selectionPanel = function (req, res) {
         //     send rand number to env
         var cardLoc = characterCards[randNumber].location;
         // console.log(characterCards[randNumber].location);
-        return res.send({ cardLoc, cCards });
+        return res.send({cardLoc, cCards});
       }
     }
   }
@@ -47,7 +47,7 @@ exports.selectionPanel = function (req, res) {
       //     send rand number to env
       var cardLoc = characterCards[randNumber].location;
       //console.log(characterCards[randNumber].location);
-      return res.send({ cardLoc, cCards });
+      return res.send({cardLoc, cCards});
     }
   }
   if (clickCount == 4) {
@@ -63,7 +63,7 @@ exports.selectionPanel = function (req, res) {
     var uName = req.query.userName;
     for (var i = 0; i < players.length; i++) {
       if (players[i].name == uName) {
-        if (cName == "Assassin") {
+        if (cName == 'Assassin') {
           selectedCCard = characterCards[1];
           updatePlayers.push(
             new Player(
@@ -82,7 +82,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Theif") {
+        if (cName == 'Theif') {
           selectedCCard = characterCards[2];
           updatePlayers.push(
             new Player(
@@ -101,7 +101,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Magician") {
+        if (cName == 'Magician') {
           selectedCCard = characterCards[3];
           updatePlayers.push(
             new Player(
@@ -120,7 +120,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "King") {
+        if (cName == 'King') {
           selectedCCard = characterCards[4];
           updatePlayers.push(
             new Player(
@@ -139,7 +139,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Bishop") {
+        if (cName == 'Bishop') {
           selectedCCard = characterCards[5];
           updatePlayers.push(
             new Player(
@@ -158,7 +158,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Merchant") {
+        if (cName == 'Merchant') {
           selectedCCard = characterCards[6];
           updatePlayers.push(
             new Player(
@@ -177,7 +177,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Architect") {
+        if (cName == 'Architect') {
           selectedCCard = characterCards[7];
           updatePlayers.push(
             new Player(
@@ -196,7 +196,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Warload") {
+        if (cName == 'Warload') {
           selectedCCard = characterCards[8];
           updatePlayers.push(
             new Player(
@@ -215,7 +215,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Artist") {
+        if (cName == 'Artist') {
           selectedCCard = characterCards[9];
           updatePlayers.push(
             new Player(
@@ -249,7 +249,7 @@ exports.selectionPanel = function (req, res) {
         );
       }
     }
-    console.log("line 244:" + players);
+    console.log('line 244:' + players);
     console.log(updatePlayers);
     console.log(cCards);
     return res.send(cCards);
@@ -275,15 +275,15 @@ exports.selectionPanel = function (req, res) {
     for (var i = 0; i < cCards1.length; i++) {
       newCharacters[i] = characterCards[cCards1[i]];
     }
-    console.log("276:" + updatePlayers);
-    return res.send({ updatePlayers, newCharacters });
+    console.log('276:' + updatePlayers);
+    return res.send({updatePlayers, newCharacters});
   }
   if (clickCount == 7) {
     var cName = req.query.className;
-    var uName = req.query.userName;
+    //var uName = req.query.userName;
     for (var i = 0; i < players.length; i++) {
-      if (players[i].name == uName) {
-        if (cName == "Assassin") {
+      if (updatePlayers[i].turn == true) {
+        if (cName == 'Assassin') {
           selectedCCard = characterCards[1];
           updatePlayers1.push(
             new Player(
@@ -292,7 +292,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -302,7 +302,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Theif") {
+        if (cName == 'Theif') {
           selectedCCard = characterCards[2];
           updatePlayers1.push(
             new Player(
@@ -311,7 +311,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -321,7 +321,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Magician") {
+        if (cName == 'Magician') {
           selectedCCard = characterCards[3];
           updatePlayers1.push(
             new Player(
@@ -330,7 +330,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -340,7 +340,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "King") {
+        if (cName == 'King') {
           selectedCCard = characterCards[4];
           updatePlayers1.push(
             new Player(
@@ -349,7 +349,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -359,7 +359,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Bishop") {
+        if (cName == 'Bishop') {
           selectedCCard = characterCards[5];
           updatePlayers1.push(
             new Player(
@@ -368,7 +368,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -378,7 +378,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Merchant") {
+        if (cName == 'Merchant') {
           selectedCCard = characterCards[6];
           updatePlayers1.push(
             new Player(
@@ -387,7 +387,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -397,7 +397,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Architect") {
+        if (cName == 'Architect') {
           selectedCCard = characterCards[7];
           updatePlayers1.push(
             new Player(
@@ -406,7 +406,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -416,7 +416,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Warload") {
+        if (cName == 'Warload') {
           selectedCCard = characterCards[8];
           updatePlayers1.push(
             new Player(
@@ -425,7 +425,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -435,7 +435,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Artist") {
+        if (cName == 'Artist') {
           selectedCCard = characterCards[9];
           updatePlayers1.push(
             new Player(
@@ -444,7 +444,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers[i].dob,
               updatePlayers[i].coins,
               updatePlayers[i].dcsArray,
-              updatePlayers[i].ccsArray,
+              selectedCCard,
               updatePlayers[i].turn,
               updatePlayers[i].crowned
             )
@@ -454,7 +454,8 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-      } else {
+       } 
+       else {
         updatePlayers1.push(
           new Player(
             updatePlayers[i].num,
@@ -469,7 +470,7 @@ exports.selectionPanel = function (req, res) {
         );
       }
     }
- 
+
     console.log(updatePlayers1);
     console.log(cCards);
     return res.send(cCards);
@@ -496,15 +497,15 @@ exports.selectionPanel = function (req, res) {
     for (var i = 0; i < cCards1.length; i++) {
       newCharacters[i] = characterCards[cCards1[i]];
     }
-    console.log("276:" + updatePlayers1);
-    return res.send({ updatePlayers1, newCharacters });
+    console.log('276:' + updatePlayers1);
+    return res.send({updatePlayers1, newCharacters});
   }
   if (clickCount == 9) {
     var cName = req.query.className;
     var uName = req.query.userName;
     for (var i = 0; i < players.length; i++) {
       if (players[i].name == uName) {
-        if (cName == "Assassin") {
+        if (cName == 'Assassin') {
           selectedCCard = characterCards[1];
           updatePlayers2.push(
             new Player(
@@ -513,7 +514,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -523,7 +524,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Theif") {
+        if (cName == 'Theif') {
           selectedCCard = characterCards[2];
           updatePlayers2.push(
             new Player(
@@ -532,7 +533,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -542,7 +543,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Magician") {
+        if (cName == 'Magician') {
           selectedCCard = characterCards[3];
           updatePlayers2.push(
             new Player(
@@ -551,7 +552,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -561,7 +562,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "King") {
+        if (cName == 'King') {
           selectedCCard = characterCards[4];
           updatePlayers2.push(
             new Player(
@@ -570,7 +571,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -580,7 +581,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Bishop") {
+        if (cName == 'Bishop') {
           selectedCCard = characterCards[5];
           updatePlayers2.push(
             new Player(
@@ -589,7 +590,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -599,7 +600,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Merchant") {
+        if (cName == 'Merchant') {
           selectedCCard = characterCards[6];
           updatePlayers2.push(
             new Player(
@@ -608,7 +609,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -618,7 +619,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Architect") {
+        if (cName == 'Architect') {
           selectedCCard = characterCards[7];
           updatePlayers2.push(
             new Player(
@@ -627,7 +628,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -637,7 +638,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Warload") {
+        if (cName == 'Warload') {
           selectedCCard = characterCards[8];
           updatePlayers2.push(
             new Player(
@@ -646,7 +647,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -656,7 +657,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Artist") {
+        if (cName == 'Artist') {
           selectedCCard = characterCards[9];
           updatePlayers2.push(
             new Player(
@@ -665,7 +666,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers1[i].dob,
               updatePlayers1[i].coins,
               updatePlayers1[i].dcsArray,
-              updatePlayers1[i].ccsArray,
+              selectedCCard,
               updatePlayers1[i].turn,
               updatePlayers1[i].crowned
             )
@@ -690,7 +691,7 @@ exports.selectionPanel = function (req, res) {
         );
       }
     }
- 
+
     console.log(updatePlayers2);
     console.log(cCards);
     return res.send(cCards);
@@ -717,15 +718,15 @@ exports.selectionPanel = function (req, res) {
     for (var i = 0; i < cCards1.length; i++) {
       newCharacters[i] = characterCards[cCards1[i]];
     }
-    console.log("276:" + updatePlayers);
-    return res.send({ updatePlayers2, newCharacters });
+    console.log('276:' + updatePlayers);
+    return res.send({updatePlayers2, newCharacters});
   }
   if (clickCount == 11) {
     var cName = req.query.className;
     var uName = req.query.userName;
     for (var i = 0; i < players.length; i++) {
       if (players[i].name == uName) {
-        if (cName == "Assassin") {
+        if (cName == 'Assassin') {
           selectedCCard = characterCards[1];
           updatePlayers3.push(
             new Player(
@@ -734,7 +735,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -744,7 +745,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Theif") {
+        if (cName == 'Theif') {
           selectedCCard = characterCards[2];
           updatePlayers3.push(
             new Player(
@@ -753,7 +754,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -763,7 +764,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Magician") {
+        if (cName == 'Magician') {
           selectedCCard = characterCards[3];
           updatePlayers3.push(
             new Player(
@@ -772,7 +773,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -782,7 +783,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "King") {
+        if (cName == 'King') {
           selectedCCard = characterCards[4];
           updatePlayers3.push(
             new Player(
@@ -791,7 +792,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -801,7 +802,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Bishop") {
+        if (cName == 'Bishop') {
           selectedCCard = characterCards[5];
           updatePlayers3.push(
             new Player(
@@ -810,7 +811,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -820,7 +821,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Merchant") {
+        if (cName == 'Merchant') {
           selectedCCard = characterCards[6];
           updatePlayers3.push(
             new Player(
@@ -829,7 +830,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -839,7 +840,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Architect") {
+        if (cName == 'Architect') {
           selectedCCard = characterCards[7];
           updatePlayers3.push(
             new Player(
@@ -848,7 +849,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -858,7 +859,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Warload") {
+        if (cName == 'Warload') {
           selectedCCard = characterCards[8];
           updatePlayers3.push(
             new Player(
@@ -867,7 +868,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -877,7 +878,7 @@ exports.selectionPanel = function (req, res) {
             cCards.splice(index, 1);
           }
         }
-        if (cName == "Artist") {
+        if (cName == 'Artist') {
           selectedCCard = characterCards[9];
           updatePlayers3.push(
             new Player(
@@ -886,7 +887,7 @@ exports.selectionPanel = function (req, res) {
               updatePlayers2[i].dob,
               updatePlayers2[i].coins,
               updatePlayers2[i].dcsArray,
-              updatePlayers2[i].ccsArray,
+              selectedCCard,
               updatePlayers2[i].turn,
               updatePlayers2[i].crowned
             )
@@ -911,7 +912,7 @@ exports.selectionPanel = function (req, res) {
         );
       }
     }
- 
+
     console.log(updatePlayers3);
     console.log(cCards);
     return res.send(cCards);
@@ -938,7 +939,7 @@ exports.selectionPanel = function (req, res) {
     for (var i = 0; i < cCards1.length; i++) {
       newCharacters[i] = characterCards[cCards1[i]];
     }
-    console.log("276:" + updatePlayers3);
-    return res.send({ updatePlayers3, newCharacters });
+    console.log('276:' + updatePlayers3);
+    return res.send({updatePlayers3, newCharacters});
   }
 };
