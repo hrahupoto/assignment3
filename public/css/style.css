@@ -498,7 +498,7 @@ body {
     left: 30%;
     transform: translate(-50%, -50%);
 }
-#ccPanelBtn2{
+#ccPanelBtn2, #ccPanelBtn3{
     position: absolute;
     top: 85%;
     left: 75%;
@@ -639,8 +639,8 @@ body {
     position: absolute;
     top: 9%;
     width: 20%;
-    height: 88%;
-    left: 1%;
+    height: auto;
+    left:0%;
 }
 
 h2 {

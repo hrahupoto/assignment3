@@ -34,19 +34,16 @@ app.use('/', characterCardHandling);
 // set the view engine to ejs
 app.set("view engine", "ejs");
 
-app.get("/", function (req, res) {
-  res.render("lobby", { title: "Citadels - Lobby" });
+app.get('/', function (req, res) {
+  res.render('lobby', {title: 'Citadels - Lobby'});
 });
 
-app.get("/help", function (req, res) {
-  res.render("help", { title: "Citadels - Help" });
+app.get('/help', function (req, res) {
+  res.render('help', {title: 'Citadels - Help'});
 });
 
-app.get("/gameRoom", function (req, res) {
- var userName= req.query.userName;
- //console.log(userName);
- //console.log(players)
-  res.render("gameRoom", { title: "Citadels - Game Room" });
+app.get('/gameRoom', function (req, res) {
+  res.render('gameRoom', {title: 'Citadels - Game Room'});
 });
 
 //Start the server
@@ -68,8 +65,7 @@ mongoose.connect(
   },
   function (err) {
     if (err) throw err;
-
-    console.log('DB successfully connected');
+    console.log("DB successfully connected");
   }
 );
 
@@ -104,7 +100,20 @@ io.on("connection", function (socket) {
     //exit all players at once.
     io.sockets.emit("exit");
   });
-  socket.on('pointer',()=>{
-    io.sockets.emit('pointer')
+  socket.on('pointer',(players)=>{
+    io.sockets.emit('pointer',players.players)
+  })
+  socket.on('pointer2',(players)=>{
+    io.sockets.emit('pointer2',players.players)
+  })
+  //socket for selection panel changing
+  socket.on('turn',(data)=>{
+    io.sockets.emit('turn', data)
+  })
+  socket.on('turn2',(data)=>{
+    io.sockets.emit('turn2', data)
+  })
+  socket.on('turn3',(data)=>{
+    io.sockets.emit('turn3', data)
   })
 });
