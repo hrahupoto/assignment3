@@ -559,8 +559,8 @@ body {
     position: absolute;
     top: 9%;
     width: 20%;
-    height: 88%;
-    left: 1%;
+    height: auto;
+    left:0%;
 }
 
 h2 {
