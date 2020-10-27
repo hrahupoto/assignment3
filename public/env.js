@@ -52,10 +52,11 @@ $(document).ready(function () {
           socket.emit("startGame", {
             players: players,
           });
-          socket.emit("updatepointer", 
+          socket.emit("updatepointer", {
             players: players,
           });
         }
+      
       },
       error: function () {},
     });
