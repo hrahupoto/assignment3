@@ -3,20 +3,25 @@ const userModel = require('../../models/db/user');
 //declared to count number of users in database.
 var currentUsers = 0;
 
-
 //inserts user into the database
 exports.insertUser = function (req, res) {
   var maxPlayer = 4;
-  const user = new userModel(req.query);
-
   userModel.find({}, function (err, users) {
-    if (userExist(user, users)) { //if user already exists in the database.
+    const user = new userModel({
+      num: JSON.stringify(users.length),
+      userName: req.query.userName,
+      dateOfBirth: req.query.dateOfBirth,
+    });
+
+    if (userExist(user, users)) {
+      //if user already exists in the database.
       return res.json(
         'User already exists, Please try entering different username.'
       );
     } else {
-      if (users.length < maxPlayer) { //max 4 players are allowed into the database.
-        user.save((err, user) => { 
+      if (users.length < maxPlayer) {
+        //max 4 players are allowed into the database.
+        user.save((err, user) => {
           if (err) {
             return res.status(400).json({error: 'Some thing went wrong'});
           }
