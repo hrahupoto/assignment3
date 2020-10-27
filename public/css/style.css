@@ -25,13 +25,15 @@ body {
 
 /************** game room styles **************/
 
+
 /*Ruwan*/
+
 .game-room .container {
     padding: 0px;
     margin: 0px;
 }
 
-.game-room img {
+.game-room .screen {
     position: absolute;
     top: 0;
     left: 0;
@@ -47,47 +49,53 @@ body {
     height: 70%;
     overflow-x: hidden;
     overflow-y: scroll;
-    white-space: nowrap;   
+    white-space: nowrap;
 }
 
-.hand-panel img{   
+.hand-panel img {
     width: 300px;
     height: 1300px;
 }
+
+
 /*End Ruwan*/
 
 .game-room .cc_card {
     position: absolute;
     top: 45%;
-    left: 27%;
+    left: 26%;
     transform: translate(-50%, -50%);
 }
 
 .game-room .dc_card {
     position: absolute;
     top: 45%;
-    left: 30%;
+    left: 29%;
     transform: translate(-50%, -50%);
 }
 
 .game-room .coins {
     position: absolute;
+    color: white;
     top: 45%;
-    left: 33.5%;
+    left: 32.5%;
     transform: translate(-50%, -50%);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .game-room .crown {
     position: absolute;
     top: 55%;
-    left: 33.5%;
+    left: 31.5%;
     transform: translate(-50%, -50%);
 }
 
 .game-room .bank_name {
     position: absolute;
     top: 55%;
-    left: 28%;
+    left: 27%;
     transform: translate(-50%, -50%);
     font-weight: bold;
     color: white;
@@ -96,25 +104,26 @@ body {
 }
 
 .game-room .startGame {
-    position: absolute;
-    top: 40%;
-    left: 85%;
-    object-fit: none;
-    transform: translate(-50%, -50%);
-    font-size: 25px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 40%;
+  left: 88%;
+  object-fit: none;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.game-room .exitGame{
-    position: absolute;
-    top: 56%;
-    left: 85%;
-    object-fit: none;
-    transform: translate(-50%, -50%);
-    font-size: 25px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
+
+.game-room .exitGame {
+  position: absolute;
+  top: 56%;
+  left: 88%;
+  object-fit: none;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
 }
 
 #Counter {
@@ -134,35 +143,31 @@ body {
     font-weight: bold;
 }
 
-#player1Crown {
-    visibility: hidden;
+#player0Crown {
     position: absolute;
-    top: 55%;
-    left: 33.5%;
+    top: 3.5%;
+    left: 24%;
+    transform: translate(-50%, -50%);
+}
+
+#player1Crown {
+    position: absolute;
+    top: 61%;
+    left: 56.5%;
     transform: translate(-50%, -50%);
 }
 
 #player2Crown {
-    visibility: hidden;
     position: absolute;
-    top: 55%;
-    left: 33.5%;
+    top: 97%;
+    left: 24%;
     transform: translate(-50%, -50%);
 }
 
 #player3Crown {
-    visibility: hidden;
     position: absolute;
-    top: 55%;
-    left: 33.5%;
-    transform: translate(-50%, -50%);
-}
-
-#player4Crown {
-    visibility: hidden;
-    position: absolute;
-    top: 55%;
-    left: 33.5%;
+    top: 60%;
+    left: 3%;
     transform: translate(-50%, -50%);
 }
 
@@ -176,6 +181,165 @@ body {
     font-size: 25px;
     font-weight: bold;
 }
+
+#selectionPanel{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+#ccPanelBtn{
+    position: absolute;
+    top: 85%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+}
+#cc1, #cc0Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+#cc2, #cc1Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 22.5%;
+    transform: translate(-50%, -50%);
+}
+#cc3, #cc2Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 36%;
+    transform: translate(-50%, -50%);
+}
+#cc4, #cc3Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#cc4Selection1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 64%;
+    transform: translate(-50%, -50%);
+}
+
+#cc5{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+#cc6{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+#cc7{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+#cc8{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+#cc9{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp1{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 61.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp2{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 71.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFaceUp3{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 81.5%;
+    transform: translate(-50%, -50%);
+}
+#ccFacedown{
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    top: 49%;
+    left: 91.5%;
+    transform: translate(-50%, -50%);
+}
+
+.player0Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 8%;
+    left: 32%;
+  }
+  
+  .player1Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 55%;
+    left: 48.2%;
+    transform: rotate(90deg);
+  }
+  
+  .player2Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 84%;
+    left: 21%;
+    transform: rotate(-180deg);
+  }
+  
+  .player3Pointer {
+    visibility: hidden;
+    position: absolute;
+    top: 36%;
+    left: 5%;
+    transform: rotate(-90deg);
+  }
 
 .player1_coins {
     position: absolute;
@@ -248,6 +412,18 @@ body {
     transform: rotate(-90deg);
 }
 
+#selectionPanel2{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+#ccPanelBtn2, #ccPanelBtn3{
+    position: absolute;
+    top: 85%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+}
 /**************** end game room styles *********/
 
 
@@ -292,7 +468,7 @@ body {
     width: 275px;
     height: 38%;
     color: white;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #userName {
@@ -312,6 +488,7 @@ body {
     transform: translate(-50%, -50%);
     width: 13rem;
 }
+
 
 /************** End of lobby screen styles **************/
 
@@ -358,11 +535,12 @@ body {
 
 /************** End of help screen styles **************/
 
+
 /************** game room chat pannel styles **************/
 
 .game-room .collapsible {
     position: absolute;
-    top: 3%;
+    top: 2%;
     color: white;
     cursor: pointer;
     padding: 0px;
@@ -371,68 +549,69 @@ body {
     outline: none;
     font-size: 15px;
     background: black;
-  }
- #content {
+}
+
+#content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
     background-color: #777;
     position: absolute;
-    top: 10%;
+    top: 9%;
     width: 20%;
     height: auto;
     left:0%;
 }
 
-h2{
+h2 {
     font-size: 18px;
     padding: 10px 20px;
     color: white;
 }
 
-#TextIcon{
+#TextIcon {
     width: 45%;
-    height:auto;
+    height: auto;
 }
 
-#chatPanel{
+#chatPanel {
     max-width: 600px;
     margin: 30px auto;
     border: 1px solid #ddd;
-    box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.05);
     border-radius: 2px;
 }
 
-#chat-window{
+#chat-window {
     height: 400px;
     overflow: auto;
-    background:#fff;
+    background: #fff;
 }
 
-#output p{
+#output p {
     padding: 14px 0px;
     margin: 0 20px;
     border-bottom: 1px solid #e9e9e9;
     color: #555;
 }
 
-#feedback p{
+#feedback p {
     color: #aaa;
     padding: 14px 0px;
     margin: 0 20px;
 }
 
-#output strong{
+#output strong {
     color: #575ed8;
 }
 
-label{
+label {
     box-sizing: border-box;
     display: block;
     padding: 10px 20px;
 }
 
-input{
+input {
     padding: 10px 20px;
     box-sizing: border-box;
     border: 0;
@@ -444,8 +623,8 @@ input{
     font-size: 16px;
 }
 
-button{
-    background:#777;
+button {
+    background: #777;
     color: #fff;
     font-size: 18px;
     border: 0;
@@ -453,4 +632,6 @@ button{
     width: 100%;
     border-radius: 0 0 2px 2px;
 }
+
+
 /************** End of game room chat pannel styles **************/
