@@ -4,7 +4,6 @@ var { players } = require("./startGame");
 var cCards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var ccSelected = [];
 var selectCharacter = [];
-var updatePlayers;
 exports.selectionPanel = function (req, res) {
   var clickCount = req.query.clickCount;
   //console.log(cCards[6].location);
@@ -64,24 +63,23 @@ exports.selectionPanel = function (req, res) {
   if (clickCount == 5) {
     var cName = req.query.className;
     var uName = req.query.userName;
-    
+    var updatePlayers;
     var selectedCCard;
     for (var i = 0; i < players.length; i++) {
       if (players[i].name == uName) {
         if (cName == "Assassin") {
           selectedCCard = characterCards[1];
           console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-          players[i].push({ccsArray:selectedCCard})
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (1 > -1) {
             var index = cCards.indexOf(1);
             cCards.splice(index, 1);
@@ -90,17 +88,16 @@ exports.selectionPanel = function (req, res) {
         if (cName == "Theif") {
           selectedCCard = characterCards[2];
           console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-          players[i].push({ccsArray:selectedCCard})
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (2 > -1) {
             var index = cCards.indexOf(2);
             cCards.splice(index, 1);
@@ -109,17 +106,16 @@ exports.selectionPanel = function (req, res) {
         if (cName == "Magician") {
           selectedCCard = characterCards[3];
           console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-          players[i].ccsArray=selectedCCard
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (3 > -1) {
             var index = cCards.indexOf(3);
             cCards.splice(index, 1);
@@ -128,17 +124,16 @@ exports.selectionPanel = function (req, res) {
         if (cName == "King") {
           selectedCCard = characterCards[4];
           console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-          players[i].push({ccsArray:selectedCCard})
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (4 > -1) {
             var index = cCards.indexOf(4);
             cCards.splice(index, 1);
@@ -147,94 +142,88 @@ exports.selectionPanel = function (req, res) {
         if (cName == "Bishop") {
           selectedCCard = characterCards[5];
           console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-          players[i].push({ccsArray:selectedCCard})
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (5 > -1) {
             var index = cCards.indexOf(4);
             cCards.splice(index, 1);
           }
         }
         if (cName == "Merchant") {
-          // selectedCCard = characterCards[6];
-          // console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-          players[i].push({ccsArray:selectedCCard})
+          selectedCCard = characterCards[6];
+          console.log(selectCharacter);
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (6 > -1) {
             var index = cCards.indexOf(6);
             cCards.splice(index, 1);
           }
         }
         if (cName == "Architect") {
-          // selectedCCard = characterCards[7];
-          // console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-          players[i].push({ccsArray:selectedCCard})
+          selectedCCard = characterCards[7];
+          console.log(selectCharacter);
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (7 > -1) {
             var index = cCards.indexOf(7);
             cCards.splice(index, 1);
           }
         }
         if (cName == "Warload") {
-          // selectedCCard = characterCards[8];
-          // console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-          players[i].push({ccsArray:selectedCCard})
+          selectedCCard = characterCards[8];
+          console.log(selectCharacter);
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (8 > -1) {
             var index = cCards.indexOf(8);
             cCards.splice(index, 1);
           }
         }
         if (cName == "Artist") {
-         
-          // selectedCCard = characterCards[9];
-          // console.log(selectCharacter);
-          // updatePlayers = new Player(
-          //   players[i].num,
-          //   players[i].name,
-          //   players[i].dob,
-          //   players[i].coins,
-          //   players[i].dcsArray,
-          //   selectedCCard,
-          //   players[i].turn,
-          //   players[i].crowned
-          // );
-        players[i].push({ccsArray:selectedCCard})
+          selectedCCard = characterCards[9];
+          console.log(selectCharacter);
+          updatePlayers = new Player(
+            players[i].num,
+            players[i].name,
+            players[i].dob,
+            players[i].coins,
+            players[i].dcsArray,
+            selectedCCard,
+            players[i].turn,
+            players[i].crowned
+          );
           if (9 > -1) {
             var index = cCards.indexOf(9);
             cCards.splice(index, 1);
@@ -242,46 +231,44 @@ exports.selectionPanel = function (req, res) {
         }
       }
     }
-    console.log("line 244:"+players);
     console.log(updatePlayers);
     console.log(cCards);
-    return res.send({cCards,players});
+    return res.send(cCards);
   }
   if (clickCount == 6) {
-
-    var updatedCCards = req.query.updatedCCards;
-    console.log("line:242"+updatedCCards)
-    return res.send(updatedCCards)
-  //   for (var i = 0; i < 4; i++) {
-  //     if (updatePlayers[i].turn == true) {
-  //       updatePlayers[i].turn = false;
-  //       var j = i;
-  //       j = j + 1;
-  //       if (j == 4) {
-  //         j = 0;
-  //       }
-  //       updatePlayers.push(
-  //         new Player(
-  //           updatePlayers[i].num,
-  //           updatePlayers[i].name,
-  //           updatePlayers[i].dob,
-  //           updatePlayers[i].coins,
-  //           updatePlayers[i].dcsArray,
-  //           updatePlayers[i].ccsArray,
-  //           (updatePlayers[j].turn = true),
-  //           updatePlayers[i].crowned
-  //         )
-  //       );
-  //       console.log(updatePlayers);
-  //     }
-  //   }
-
-  //   console.log(cCards.length);
-  //   var newCharacters = [];
-  //   for (var i = 0; i < cCards.length; i++) {
-  //     newCharacters[i] = characterCards[cCards[i]];
-  //   }
-  //   console.log(newCharacters);
-  //   return res.send(newCharacters);
+    /*var updatedCCards = req.query.updatedCCards;
+    console.log(updatedCCards)
+    console.log("line: 239" + updatePlayers);
+    for (var i = 0; i < 4; i++) {
+      if (updatePlayers[i].turn == true) {
+        updatePlayers[i].turn = false;
+        var j = i;
+        j = j + 1;
+        if (j == 4) {
+          j = 0;
+        }
+        updatePlayers.push(
+          new Player(
+            updatePlayers[i].num,
+            updatePlayers[i].name,
+            updatePlayers[i].dob,
+            updatePlayers[i].coins,
+            updatePlayers[i].dcsArray,
+            updatePlayers[i].ccsArray,
+            (updatePlayers[j].turn = true),
+            updatePlayers[i].crowned
+          )
+        );
+        console.log(updatePlayers);
+      }
+    }
+*/
+    console.log(cCards.length);
+    var newCharacters = [];
+    for (var i = 0; i < cCards.length; i++) {
+      newCharacters[i] = characterCards[cCards[i]];
+    }
+    console.log(newCharacters);
+    return res.send(newCharacters);
   }
 };

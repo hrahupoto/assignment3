@@ -682,7 +682,6 @@ socket.on("startGame", (players) => {
           });
 
           $("#ccPanelBtn2").click(function () {
-            $("#selectionPanel2").hide();
             if (clickCount == 6) {
               $.ajax({
                 type: "GET",
@@ -690,6 +689,7 @@ socket.on("startGame", (players) => {
                 data: { clickCount , updatedCCards},
                 success: function (data) {
                   console.log(data);
+                  $("#selectionPanel2").hide();
                   for (var i = 0; i < 5; i++) {
                     $(`#cc${i}Selection1`).empty();
                   }
@@ -700,6 +700,7 @@ socket.on("startGame", (players) => {
                       `<img id="cc${i}Selection1" class="${data[i].name}" src='${data[i].location}'>`
                     );
                   }*/
+                  
                   clickCount = clickCount + 1;
                   c = c + 1;
                 },
@@ -720,11 +721,26 @@ socket.on("startGame", (players) => {
             // }
           });
         }
-        if (c == 1) {
-        }
       }
     }
   }
+  /*
+    if (userName=="user3")
+    {
+    
+      
+      if (c ==1)
+      {
+        $("#selectionPanel2").show();
+       
+      }
+
+      if(c==1)
+      {
+        console.log("hello")
+      }
+    }
+  
   /* $.ajax({
     type: "GET",
     url: "/selectionPanel2",
