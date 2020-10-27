@@ -48,10 +48,11 @@ $(document).ready(function () {
         } else {
           //using socket for start game if any one of the player
           //presses start game it should start the game for all the players.
+
           socket.emit("startGame", {
             players: players,
           });
-          socket.emit("updatepointer", {
+          socket.emit("updatepointer", 
             players: players,
           });
         }
@@ -68,6 +69,7 @@ $(document).ready(function () {
       success: function () {},
       error: function () {},
     });
+
     //emiting exit event for all users
     socket.emit("exit", {});
   });
@@ -132,6 +134,7 @@ $(".game-Room").ready(function () {
       data: { timeArray },
       success: function (data) {
         //console.log(data);
+
         if (data == "hide") {
           $.ajax({
             type: "GET",
@@ -721,6 +724,7 @@ socket.on("startGame", (players) => {
     }
   }
 });
+
 
 
 $(".game-room").ready(function () {
