@@ -6,6 +6,8 @@ $(document).ready(function () {
   $('.joinRoom').click(function () {
       var userName = $('#userName').val()
       var dateOfBirth = $('#dob').val()
+      sessionStorage.setItem("userName",userName)
+      
 
       $.ajax({
           type: "GET",
@@ -66,7 +68,7 @@ $(document).ready(function () {
 
   $('#send').click(function () {
     var message = $('#message').val()
-    var playerName = $('#handle').val()
+    var playerName = sessionStorage.getItem("userName")
     socket.emit('chat', {
       message: message,
       playerName: playerName
@@ -75,7 +77,7 @@ $(document).ready(function () {
   });
 
   $('#message').keypress(function (){
-    var playerName = $('#handle').val()
+    var playerName = sessionStorage.getItem("userName")
     socket.emit('typing',playerName);
   })
 
