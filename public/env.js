@@ -224,6 +224,7 @@ socket.on("startGame", (players) => {
         setTimeout(function () {
           //Displaying the first selection panel
           $("#selectionPanel").show();
+          $("#ccPanelBtn3").hide();
         }, 1500);
         //1st charcter card on click
         $("#cc1").click(function () {
@@ -715,10 +716,12 @@ socket.on("startGame", (players) => {
             });
           } else alert("Error: Please select your character card.");
         });
+        break
       }
     }
   }
 });
+
 
 $(".game-room").ready(function () {
   var appendPlayers = setInterval(() => {
@@ -772,18 +775,20 @@ socket.on("pointer2", (players) => {
     }
   }
 });
-//socket to show panel for next player turn
+//socket to show panel for 2nd player turn
 socket.on("turn", (data) => {
   console.log(data.data.updatePlayers.length);
   for (var i = 0; i < data.data.updatePlayers.length; i++) {
     if (data.data.updatePlayers[i].turn == true) {
       if (data.data.updatePlayers[i].name == userName) {
         $("#selectionPanel2").show();
+        $("#ccPanelBtn3").hide();
         for (var i = 0; i < data.data.newCharacters.length; i++) {
           console.log("location: " + data.data.newCharacters[i].location);
           $(`#cc${i}Selection1`).append(
             `<img id="cc${i}Selection1" class="${data.data.newCharacters[i].name}" src='${data.data.newCharacters[i].location}'>`
           );
+
         }
         clickCount=7;
         //character card selection for 2nd turn player
@@ -863,12 +868,12 @@ socket.on("turn", (data) => {
               url: "/selectionPanel",
               data: { clickCount, updatedCCards },
               success: function (data) {
-                console.log(data.updatePlayers);
+                console.log(data.updatePlayers1);
                 for (var i = 0; i < 5; i++) {
                   $(`#cc${i}Selection1`).empty();
                 }
-                socket.emit("pointer2", { players: data.updatePlayers });
-                socket.emit("turn", {
+                socket.emit("pointer2", { players: data.updatePlayers1 });
+                socket.emit("turn2", {
                   data: data,
 
                 });
@@ -882,3 +887,235 @@ socket.on("turn", (data) => {
     }
   }
 });
+
+//socket to show panel for 3rd player turn
+socket.on("turn2", (data) => {
+  console.log(data.data.updatePlayers1.length);
+  for (var i = 0; i < data.data.updatePlayers1.length; i++) {
+    if (data.data.updatePlayers1[i].turn == true) {
+      if (data.data.updatePlayers1[i].name == userName) {
+        $("#selectionPanel2").show();
+        $("#ccPanelBtn3").hide();
+        for (var i = 0; i < data.data.newCharacters.length; i++) {
+          console.log("location: " + data.data.newCharacters[i].location);
+          $(`#cc${i}Selection1`).append(
+            `<img id="cc${i}Selection1" class="${data.data.newCharacters[i].name}" src='${data.data.newCharacters[i].location}'>`
+          );
+
+        }
+        clickCount=9;
+        //character card selection for 3rd turn player
+        $("#cc0Selection1").click(function () {
+          if (clickCount == 9) {
+            $("#cc0Selection1").hide();
+
+            className = $("#cc0Selection1 > img").attr("class");
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, className, userName },
+              success: function (data) {
+                updatedCCards = data;
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Cards already Selected");
+        });
+        $("#cc1Selection1").click(function () {
+          if (clickCount == 9) {
+            $("#cc1Selection1").hide();
+            className = $("#cc1Selection1 > img").attr("class");
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, className, userName },
+              success: function (data) {
+                updatedCCards = data;
+
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Cards already Selected");
+        });
+        $("#cc2Selection1").click(function () {
+          if (clickCount == 9) {
+            $("#cc2Selection1").hide();
+
+            className = $("#cc2Selection1 > img").attr("class");
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, className, userName },
+              success: function (data) {
+                updatedCCards = data;
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Cards already Selected");
+        });
+        $("#cc3Selection1").click(function () {
+          if (clickCount == 9) {
+            $("#cc3Selection1").hide();
+
+            className = $("#cc3Selection1 > img").attr("class");
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, className, userName },
+              success: function (data) {
+                updatedCCards = data;
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Cards already Selected");
+        });
+        $("#ccPanelBtn2").click(function () {
+          $("#selectionPanel2").hide();
+          if (clickCount == 10) {
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, updatedCCards },
+              success: function (data) {
+                console.log(data.updatePlayers2);
+                for (var i = 0; i < 5; i++) {
+                  $(`#cc${i}Selection1`).empty();
+                }
+                socket.emit("pointer2", { players: data.updatePlayers2 });
+                socket.emit("turn3", {
+                  data: data,
+
+                });
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Error: Please select your character card.");
+        });
+      }
+    }
+  }
+});
+//socket to show panel for 3rd player turn
+socket.on("turn3", (data) => {
+  console.log(data.data.updatePlayers2.length);
+  console.log(data.data.updatePlayers2);
+  console.log(data.data.newCharacters.length)
+  console.log(data.data.newCharacters)
+  for (var i = 0; i < data.data.updatePlayers2.length; i++) {
+    if (data.data.updatePlayers2[i].turn == true) {
+      if (data.data.updatePlayers2[i].name == userName) {
+        $("#selectionPanel2").show();
+        $("#ccPanelBtn3").show();
+        $("#ccPanelBtn2").hide();
+      
+           $(`#cc0Selection1`).append(
+             `<img id="cc0Selection1" class="${data.data.newCharacters[0].name}" src='${data.data.newCharacters[0].location}'>`
+           );
+           $(`#cc1Selection1`).append(
+            `<img id="cc1Selection1" class="${data.data.newCharacters[1].name}" src='${data.data.newCharacters[1].location}'>`
+          );
+
+  
+        clickCount=11;
+        //character card selection for 4th turn player
+        $("#cc0Selection1").click(function () {
+          if (clickCount == 11) {
+            $("#cc0Selection1").hide();
+
+            className = $("#cc0Selection1 > img").attr("class");
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, className, userName },
+              success: function (data) {
+                updatedCCards = data;
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Cards already Selected");
+        });
+        $("#cc1Selection1").click(function () {
+          if (clickCount == 11) {
+            $("#cc1Selection1").hide();
+            className = $("#cc1Selection1 > img").attr("class");
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, className, userName },
+              success: function (data) {
+                updatedCCards = data;
+
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Cards already Selected");
+        });
+        $("#cc2Selection1").click(function () {
+          if (clickCount == 11) {
+            $("#cc2Selection1").hide();
+
+            className = $("#cc2Selection1 > img").attr("class");
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, className, userName },
+              success: function (data) {
+                updatedCCards = data;
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Cards already Selected");
+        });
+        $("#cc3Selection1").click(function () {
+          if (clickCount == 11) {
+            $("#cc3Selection1").hide();
+
+            className = $("#cc3Selection1 > img").attr("class");
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, className, userName },
+              success: function (data) {
+                updatedCCards = data;
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Cards already Selected");
+        });
+        $("#ccPanelBtn3").click(function () {
+          $("#selectionPanel2").hide();
+          if (clickCount == 12) {
+            $.ajax({
+              type: "GET",
+              url: "/selectionPanel",
+              data: { clickCount, updatedCCards },
+              success: function (data) {
+                console.log(data.updatePlayers3);
+                for (var i = 0; i < 5; i++) {
+                  $(`#cc${i}Selection1`).empty();
+                }
+                socket.emit("pointer2", { players: data.updatePlayers3 });
+            //    socket.emit("turn", {
+              //    data: data,
+
+            //    });
+                clickCount = clickCount + 1;
+              },
+              error: function () {},
+            });
+          } else alert("Error: Please select your character card.");
+        });
+      }
+    }
+  }
+});
+

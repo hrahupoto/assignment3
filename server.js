@@ -107,4 +107,10 @@ io.on("connection", function (socket) {
   socket.on('turn',(data)=>{
     io.sockets.emit('turn', data)
   })
+  socket.on('turn2',(data)=>{
+    io.sockets.emit('turn2', data)
+  })
+  socket.on('turn3',(data)=>{
+    io.sockets.emit('turn3', data)
+  })
 });
