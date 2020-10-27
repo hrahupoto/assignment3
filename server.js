@@ -100,10 +100,11 @@ io.on("connection", function (socket) {
   socket.on('pointer',(players)=>{
     io.sockets.emit('pointer',players.players)
   })
-  socket.on('turn',()=>{
-    io.sockets.emit('turn')
+  socket.on('pointer2',(players)=>{
+    io.sockets.emit('pointer2',players.players)
   })
-  socket.on('updatepointer',(players)=>{
-    io.sockets.emit('updatepointer',players.players)
+  //socket for selection panel changing
+  socket.on('turn',(data)=>{
+    io.sockets.emit('turn', data)
   })
 });

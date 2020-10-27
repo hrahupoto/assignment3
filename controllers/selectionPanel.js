@@ -55,7 +55,7 @@ exports.selectionPanel = function (req, res) {
     return res.send(selectCharacter);
   }
 
-  if (clickCount == 5) {
+  if (clickCount == 5 || clickCount == 7) {
     var cName = req.query.className;
     var uName = req.query.userName;
     for (var i = 0; i < players.length; i++) {
@@ -251,9 +251,10 @@ exports.selectionPanel = function (req, res) {
     console.log(cCards);
     return res.send(cCards);
   }
-  if (clickCount == 6) {
+  if (clickCount == 6 || clickCount == 8) {
+    var cCards1=req.query.updatedCCards;
+    console.log(cCards1)
     var j;
-    console.log('line:242' + updatePlayers);
     for (var i = 0; i < updatePlayers.length; i++) {
       if (updatePlayers[i].turn == true) {
         updatePlayers[i].turn = false;
@@ -263,17 +264,17 @@ exports.selectionPanel = function (req, res) {
           j = 0;
         }
         updatePlayers[j].turn = true;
-        console.log(updatePlayers);
-        return res.send(updatePlayers);
+        break;
       }
     }
-
-    //   console.log(cCards.length);
-    //   var newCharacters = [];
-    //   for (var i = 0; i < cCards.length; i++) {
-    //     newCharacters[i] = characterCards[cCards[i]];
-    //   }
-    //   console.log(newCharacters);
-    //   return res.send(newCharacters);
+    console.log(cCards1.length);
+    var newCharacters = [];
+    for (var i = 0; i < cCards1.length; i++) {
+      newCharacters[i] = characterCards[cCards1[i]];
+    }
+    console.log("276:"+updatePlayers);
+    return res.send({updatePlayers, newCharacters });
+     
   }
+  
 };
