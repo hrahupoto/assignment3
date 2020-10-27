@@ -16,6 +16,8 @@ const startGame = require("./routes/startGame");
 const userCounter = require("./routes/userCounter");
 const selectionPanel = require("./routes/selectionPanel");
 const handPanel = require('./routes/handPanel');
+const districtCardHandling = require('./routes/districtCardHandling');
+const characterCardHandling = require('./routes/characterCardHandling');
 
 app.use(express.static(__dirname + "/public"));
 
@@ -26,6 +28,8 @@ app.use("/", startGame);
 app.use("/", userCounter);
 app.use("/", selectionPanel);
 app.use('/', handPanel);
+app.use('/', districtCardHandling);
+app.use('/', characterCardHandling);
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
@@ -100,4 +104,7 @@ io.on("connection", function (socket) {
     //exit all players at once.
     io.sockets.emit("exit");
   });
+  socket.on('pointer',()=>{
+    io.sockets.emit('pointer')
+  })
 });

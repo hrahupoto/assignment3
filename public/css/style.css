@@ -54,7 +54,7 @@ body {
   font-family: Garamond;
   color: white;
   font-weight: bold;
-  visibility: hidden;
+  visibility: hidden; 
 
 }
 
@@ -115,6 +115,27 @@ body {
   float: left;
   margin-left: 5px;
   margin-bottom: 14px;
+}
+
+#selection-dc-build-panel{
+    position: absolute;
+    top: 37%;
+    left: 16%;
+    visibility: hidden;
+}
+
+#dcOk{
+    position: absolute;
+    top: 74%;
+    left: 18.5%;
+    width: 30%;
+}
+
+#dcSkip{
+    position: absolute;
+    top: 73%;
+    left: 51%;
+    width: 30%;
 }
 
 /*End Ruwan*/
@@ -241,7 +262,7 @@ body {
     font-weight: bold;
 }
 
-#selectionPanel{
+#selectionPanel {
     position: absolute;
     top: 50%;
     left: 30%;

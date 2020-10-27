@@ -6,6 +6,7 @@ var cCards;
 var className;
 var $pointer;
 var $hidePointer;
+var updatedCCards=[];
 
 $(document).ready(function () {
   
@@ -45,6 +46,9 @@ $(document).ready(function () {
         if (players == "Please wait for more players to show up.") {
           alert(players);
         } else {
+          $("#ccPanelBtn2").click(function () {
+            socket.emit("pointer", {});
+          });
           //using socket for start game if any one of the player
           //presses start game it should start the game for all the players.
           socket.emit("startGame", {
@@ -183,10 +187,13 @@ socket.on("startGame", (players) => {
   var userName = window.location.href.split("=");
   userName = userName[1].split("#");
   userName = userName[0];
+  allPlayers = players;
+  activePlayerName = userName;
 
   $(".startGame").hide(); //hide start game button after game is started
   clearInterval(counter);
   $("#Counter").hide();
+
   handpanelGameInitiationPhase(userName, players); // handpanel initiation with four cards
 
   var bank_coins = players.bank.coins;
@@ -211,7 +218,9 @@ socket.on("startGame", (players) => {
     }
   }
   $("#crown_disapear").hide();
-
+  var userName = window.location.href.split("=");
+  userName = userName[1].split("#");
+  userName = userName[0];
   var c = 0;
 
   for (var i = 0; i < players.players.length; i++) {
@@ -601,13 +610,14 @@ socket.on("startGame", (players) => {
           $("#cc0Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc0Selection1").hide();
-              
+
               className = $("#cc0Selection1 > img").attr("class");
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
                 success: function (data) {
+                  updatedCCards = data;
                   clickCount = clickCount + 1;
                 },
                 error: function () {},
@@ -625,6 +635,8 @@ socket.on("startGame", (players) => {
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
                 success: function (data) {
+                  updatedCCards = data;
+
                   clickCount = clickCount + 1;
                 },
                 error: function () {},
@@ -634,13 +646,14 @@ socket.on("startGame", (players) => {
           $("#cc2Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc2Selection1").hide();
-             
+
               className = $("#cc2Selection1 > img").attr("class");
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
                 success: function (data) {
+                  updatedCCards = data;
                   clickCount = clickCount + 1;
                 },
                 error: function () {},
@@ -650,13 +663,16 @@ socket.on("startGame", (players) => {
           $("#cc3Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc3Selection1").hide();
-              
+
               className = $("#cc3Selection1 > img").attr("class");
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
-                success: function (data) {clickCount = clickCount + 1;},
+                success: function (data) {
+                  updatedCCards = data;
+                  clickCount = clickCount + 1;
+                },
                 error: function () {},
               });
             } else alert("Cards already Selected");
@@ -664,7 +680,7 @@ socket.on("startGame", (players) => {
           $("#cc4Selection1").click(function () {
             if (clickCount == 5) {
               $("#cc4Selection1").hide();
-           
+
               className = $("#cc4Selection1 > img").attr("class");
 
               $.ajax({
@@ -672,6 +688,7 @@ socket.on("startGame", (players) => {
                 url: "/selectionPanel",
                 data: { clickCount, className, userName },
                 success: function (data) {
+                  updatedCCards = data;
                   clickCount = clickCount + 1;
                 },
                 error: function () {},
@@ -680,44 +697,73 @@ socket.on("startGame", (players) => {
           });
 
           $("#ccPanelBtn2").click(function () {
+            $("#selectionPanel2").hide();
             if (clickCount == 6) {
               $.ajax({
                 type: "GET",
                 url: "/selectionPanel",
-                data: { clickCount},
+                data: { clickCount , updatedCCards},
                 success: function (data) {
                   console.log(data);
-                  
-                  /*for (var i = 0; i < data.length; i++) {
+                  for (var i = 0; i < 5; i++) {
+                    $(`#cc${i}Selection1`).empty();
+                  }
+                  /*
+                  for (var i = 0; i < data.length; i++) {
                     console.log("location: " + data[i].location);
                     $(`#cc${i}Selection1`).append(
                       `<img id="cc${i}Selection1" class="${data[i].name}" src='${data[i].location}'>`
                     );
-                  }
+                  }*/
                   clickCount = clickCount + 1;
                   c = c + 1;
-                */
                 },
                 error: function () {},
               });
             } else alert("Error: Please select your character card.");
-           
-            if ($pointer.is(":nth-last-child(1)")) {
-              $hidePointer = $pointer;
-              $hidePointer.css("visibility", "hidden");
-              $pointer = $(`.player0Pointer`);
-              $pointer.css("visibility", "visible");
-            } else {
-              $pointer = $pointer.next();
-              $pointer.css("visibility", "visible");
-              $hidePointer = $pointer.prev();
-              $hidePointer.css("visibility", "hidden");
-            }
-          }); 
+
+            // if ($pointer.is(":nth-last-child(1)")) {
+            //   $hidePointer = $pointer;
+            //   $hidePointer.css("visibility", "hidden");
+            //   $pointer = $(`.player0Pointer`);
+            //   $pointer.css("visibility", "visible");
+            // } else {
+            //   $pointer = $pointer.next();
+            //   $pointer.css("visibility", "visible");
+            //   $hidePointer = $pointer.prev();
+            //   $hidePointer.css("visibility", "hidden");
+            // }
+          });
+        }
+        if (c == 1) {
         }
       }
     }
   }
+
+
+
+
+
+
+  /************************functions to call in the flow *********************************************** */
+
+  dcBuildingPanelGameTurnPhase(userName, players);   // calling district card building
+  
+    
+  /******use this inside socets to enable and disable handpanel every time player turn finish ********** */
+  $('.hand-panel').on('click', 'a', function(e,players,userName) {
+    for(var i=0;i< players.players.length;i++){
+      if(players.players[i].name === userName){
+          if(players.players[i].trun ==false){
+            e.preventDefault();
+          }
+      }        
+    }  
+  });
+
+/****************************************functions to call in the flow ends********************************** */
+
   /* $.ajax({
     type: "GET",
     url: "/selectionPanel2",
@@ -750,8 +796,11 @@ $(".game-room").ready(function () {
   }, 1000);
 });
 
-/*******************functions for hand panel - starts **********************/
 
+
+/***************************functions for hand panel - starts *********************************/
+
+/* handles game initiation phase -displaying handpanel and distributing 4 cards to each player */
 function handpanelGameInitiationPhase(userName, players){
   $('.hand-panel').css("visibility", "visible");
   var playersData =   JSON.stringify(players.players);
@@ -764,12 +813,12 @@ function handpanelGameInitiationPhase(userName, players){
     contentType: 'application/json', // 
     success: function(data) {
       $('#hand-panel-dcs').append(data);
-      setHandPanelActiveAndInactive();
     },
     error: function () {},      
   }); 
 }
 
+/* handles DC cards  - update the hand panel after players data update */
 function updateHandPanelDcsAfterPlayerTurn(userName, players){
   var playersData =   JSON.stringify(players.players);
   $.ajax({
@@ -786,8 +835,8 @@ function updateHandPanelDcsAfterPlayerTurn(userName, players){
   }); 
 }
 
+/* handles CC cards  - update the hand panel after players data update */
 function updateHandPanelCcsAfterPlayerGetsCC(userName, players){
-  $('.hand-panel').css("visibility", "visible");
   var playersData =   JSON.stringify(players.players);
   $.ajax({
     type: 'GET',
@@ -802,24 +851,79 @@ function updateHandPanelCcsAfterPlayerGetsCC(userName, players){
     error: function () {},      
   }); 
 }
-/*
-$('.hand-panel').on('click', 'a', function(e) {
-  var userName = window.location.href.split("=");
-  userName = userName[1].split("#");
-  userName = userName[0];
-  
-  if($(this).attr('href'))
-      e.preventDefault();
-    //console.log($(this).attr('href'));
-});
 
-
-function setHandPanelCardsNonClickable() {
-
-  $('.hand-panel').on('click', 'a', function(e,players, username) {
-    if($(this).attr('href'))
-    e.preventDefault();
+/* Upon on click ok updates player dcArray*/
+$('#dcOk').on('click', function(players, username) {
+  $('.hand-panel').find('a').each(function(players, username) {
     console.log($(this).attr('href'));
   });
-};  */
-/*********************** functions for hand panel - ends ***************/
+});
+
+/* Upon on click skip call cc-ability applying panel */
+$('#dcSkip').on('click', function(players, username) {
+  ccHandlingPanelGameTurnPhase(username,players);
+});
+
+/* handles handpanel selected card functionality */
+$('.hand-panel').on('click', 'a', function(e,players, username) {
+  $(this).attr('href')  //still working on this
+  console.log($(this).attr('href'));
+});
+/*********************** functions for hand panel - ends ***********************************/
+
+
+
+/*********************** functions for district card building panel - starts ***************/
+function dcBuildingPanelGameTurnPhase(userName, players){
+  $('#selection-dc-build-panel').css("visibility", "visible");
+  var playersData =   JSON.stringify(players.players);
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    traditional: true,
+    url: '/districtCardHandling.initialiseDcPanel', //display dc building panel
+    data: {playersData,userName},
+    contentType: 'application/json', // 
+    success: function(data) {
+    /*   $('#hand-panel-dcs').append(data);
+      setHandPanelActiveAndInactive(); */
+    },
+    error: function () {},      
+  }); 
+}
+/*********************** functions for district card building panel - ends *********888******/
+
+
+
+/*************** functions for character card ability applying panel - starts ***************/
+function ccHandlingPanelGameTurnPhase(userName, players){
+  $('#selection-cc-build-panel').css("visibility", "visible");//display cc ability panel
+  var playersData =   JSON.stringify(players.players);
+  $.ajax({
+    type: 'GET',
+    dataType: "json",
+    traditional: true,
+    url: '/characterCardHandling.initialiseCcPanel', 
+    data: {playersData,userName},
+    contentType: 'application/json', // 
+    success: function(data) {
+
+    },
+    error: function () {},      
+  }); 
+}
+/*********************** functions for character card ability applying panel - ends ***********/
+
+socket.on("pointer", () => {
+  if ($pointer.is(":nth-last-child(1)")) {
+    $hidePointer = $pointer;
+    $hidePointer.css("visibility", "hidden");
+    $pointer = $(`.player0Pointer`);
+    $pointer.css("visibility", "visible");
+  } else {
+    $pointer = $pointer.next();
+    $pointer.css("visibility", "visible");
+    $hidePointer = $pointer.prev();
+    $hidePointer.css("visibility", "hidden");
+  }
+});

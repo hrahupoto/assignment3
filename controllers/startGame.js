@@ -67,46 +67,73 @@ exports.startGame = function (req, res) {
       maxAge = Math.max(Age[0], Age[1], Age[2], Age[3]);
 
       //Matching Players Age with MaxAge and if it matches assigning True else False
-      if (Age[0] == maxAge) {
+     if (Age[0] == maxAge) {
         if (Age[0] == Age[1] || Age[0] == Age[2] || Age[0] == Age[3]) {
           Age[0] = true;
-          Age[1], Age[2], (Age[3] = false);
+          Age[1] = false;
+          Age[2] = false;
+          Age[3] = false;
         } else Age[0] = true;
-        Age[1], Age[2], (Age[3] = false);
+        Age[1] = false;
+        Age[2] = false;
+        Age[3] = false;
       } else if (Age[1] == maxAge) {
         if (Age[1] == Age[0]) {
           Age[0] = true;
-          Age[1], Age[2], (Age[3] = false);
+          Age[1] = false;
+          Age[2] = false;
+          Age[3] = false;
         } else if (Age[1] == Age[2] || Age[1] == Age[3]) {
           Age[1] = true;
-          Age[0], Age[2], (Age[3] = false);
+          Age[0] = false;
+          Age[2] = false;
+          Age[3] = false;
         } else Age[1] = true;
-        Age[0], Age[2], (Age[3] = false);
+        Age[0] = false;
+        Age[2] = false;
+        Age[3] = false;
       } else if (Age[2] == maxAge) {
         if (Age[2] == Age[0]) {
           Age[0] = true;
-          Age[1], Age[2], (Age[3] = false);
+          Age[1] = false;
+          Age[2] = false;
+          Age[3] = false;
         } else if (Age[2] == Age[1]) {
           Age[1] = true;
-          Age[0], Age[2], (Age[3] = false);
+          Age[0] = false;
+          Age[2] = false;
+          Age[3] = false;
         } else if (Age[2] == Age[3]) {
           Age[2] = true;
-          Age[0], Age[1], (Age[3] = false);
+          Age[0] = false;
+          Age[1] = false;
+          Age[3] = false;
         } else Age[2] = true;
-        Age[0], Age[1], (Age[3] = false);
+        Age[0] = false;
+        Age[1] = false;
+        Age[3] = false;
       } else if (Age[3] == maxAge) {
         if (Age[3] == Age[0]) {
           Age[0] = true;
-          Age[1], Age[2], (Age[3] = false);
+          Age[1] = false;
+          Age[2] = false;
+          Age[3] = false;
         } else if (Age[3] == Age[1]) {
           Age[1] = true;
-          Age[0], Age[2], (Age[3] = false);
+          Age[0] = false;
+          Age[2] = false;
+          Age[3] = false;
         } else if (Age[3] == Age[2]) {
           Age[2] = true;
-          Age[0], Age[1], (Age[3] = false);
+          Age[0] = false;
+          Age[1] = false;
+          Age[3] = false;
         } else Age[3] = true;
-        Age[0], Age[1], (Age[2] = false);
+        Age[0] = false;
+        Age[1] = false;
+        Age[2] = false;
       } else console.log("Incorrect Age");
+
 
       var turn = [];
 
