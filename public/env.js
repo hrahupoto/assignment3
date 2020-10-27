@@ -123,7 +123,7 @@ $(".game-Room").ready(function () {
   //hiding panels before game starts
   $("#selectionPanel").hide();
   $("#selectionPanel2").hide();
-
+  $("#selectionPanel3").hide();
   //setting initial timer
   document.getElementById("timer").innerHTML = 02 + ":" + 00;
   counter = setInterval(() => {
@@ -785,6 +785,7 @@ socket.on("turn", (data) => {
       if (data.data.updatePlayers[i].name == userName) {
         $("#selectionPanel2").show();
         $("#ccPanelBtn3").hide();
+       
         for (var i = 0; i < data.data.newCharacters.length; i++) {
           console.log("location: " + data.data.newCharacters[i].location);
           $(`#cc${i}Selection1`).append(
@@ -1100,11 +1101,11 @@ socket.on("turn3", (data) => {
                 for (var i = 0; i < 5; i++) {
                   $(`#cc${i}Selection1`).empty();
                 }
-                socket.emit("pointer2", { players: data.updatePlayers3 });
-                //    socket.emit("turn", {
-                //    data: data,
-
-                //    });
+                socket.emit("pointerOff", { players: data.updatePlayers3 });
+                socket.emit("pointer", { players: data.updatePlayers3 });
+                    socket.emit("turn4", {
+                    data: data,
+                    });
                 clickCount = clickCount + 1;
               },
               error: function () {},
@@ -1115,3 +1116,17 @@ socket.on("turn3", (data) => {
     }
   }
 });
+//socket turnpointer off
+socket.on("pointerOff", (players) => {
+  $(".player0Pointer").css("visibility", "hidden");
+  $(".player1Pointer").css("visibility", "hidden");
+  $(".player2Pointer").css("visibility", "hidden");
+  $(".player3Pointer").css("visibility", "hidden");
+});
+
+socket.on("turn4", (data) => {
+  console.log(data.data.updatePlayers3.length);
+  for (var i = 0; i < data.data.updatePlayers3.length; i++) {
+    if (data.data.updatePlayers3[i].turn == true) {
+      if (data.data.updatePlayers3[i].name == userName) {
+        $("#selectionPanel3").show();}}}});

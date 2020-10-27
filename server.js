@@ -100,6 +100,9 @@ io.on("connection", function (socket) {
   socket.on('pointer2',(players)=>{
     io.sockets.emit('pointer2',players.players)
   })
+  socket.on('pointerOff',(players)=>{
+    io.sockets.emit('pointerOff',players.players)
+  })
   //socket for selection panel changing
   socket.on('turn',(data)=>{
     io.sockets.emit('turn', data)
@@ -109,5 +112,8 @@ io.on("connection", function (socket) {
   })
   socket.on('turn3',(data)=>{
     io.sockets.emit('turn3', data)
+  })
+  socket.on('turn4',(data)=>{
+    io.sockets.emit('turn4', data)
   })
 });
