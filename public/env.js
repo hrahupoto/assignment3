@@ -33,8 +33,6 @@ $(document).ready(function () {
       },
       error: function () {},
     });
-    console.log(userName);
-    console.log(dateOfBirth);
   });
 
   // start game functionality
@@ -134,7 +132,6 @@ $('.game-Room').ready(function () {
       url: '/userCounter',
       data: {timeArray},
       success: function (data) {
-        //console.log(data);
 
         if (data == 'hide') {
           $.ajax({
@@ -175,7 +172,6 @@ $('.game-Room').ready(function () {
 
 //socket listening event
 socket.on('timer', (timer) => {
-  //console.log(timer);
   document.getElementById('timer').innerHTML =
     timer.minutes + ':' + timer.seconds;
 });
@@ -184,7 +180,6 @@ socket.on('startGame', (players) => {
   socket.emit('pointer', {players: players.players});
   //using socket for start game if any one of the player
   //presses start game it should start the game for all the players.
-  console.log(players);
   $('.startGame').hide(); //hide start game button after game is started
   clearInterval(counter);
   $('#Counter').hide(); //hiding counter after game starts
@@ -315,8 +310,6 @@ socket.on('startGame', (players) => {
             url: '/selectionPanel',
             data: {clickCount},
             success: function (data) {
-              console.log(data.cardLoc);
-              console.log(data);
               // based on clickCount appending face up and face down cards
               if (clickCount == 0) {
                 $('#cc3').hide();
@@ -596,9 +589,7 @@ socket.on('startGame', (players) => {
               url: '/selectionPanel',
               data: {clickCount},
               success: function (data) {
-                console.log(data);
                 for (var i = 0; i < data.length; i++) {
-                  console.log('location: ' + data[i].location);
                   $(`#cc${i}Selection1`).append(
                     `<img id="cc${i}Selection1" class="${data[i].name}" src='${data[i].location}'>`
                   );
@@ -705,7 +696,6 @@ socket.on('startGame', (players) => {
               url: '/selectionPanel',
               data: {clickCount, updatedCCards},
               success: function (data) {
-                console.log(data.updatePlayers);
                 for (var i = 0; i < 5; i++) {
                   $(`#cc${i}Selection1`).empty();
                 }
@@ -779,7 +769,6 @@ socket.on('pointer2', (players) => {
 });
 //socket to show panel for 2nd player turn
 socket.on('turn', (data) => {
-  console.log(data.data.updatePlayers.length);
   for (var i = 0; i < data.data.updatePlayers.length; i++) {
     if (data.data.updatePlayers[i].turn == true) {
       if (data.data.updatePlayers[i].name == userName) {
@@ -875,7 +864,6 @@ socket.on('turn', (data) => {
               url: '/selectionPanel',
               data: {clickCount, updatedCCards},
               success: function (data) {
-                console.log(data.updatePlayers1);
                 for (var i = 0; i < 5; i++) {
                   $(`#cc${i}Selection1`).empty();
                 }
@@ -896,7 +884,6 @@ socket.on('turn', (data) => {
 
 //socket to show panel for 3rd player turn
 socket.on('turn2', (data) => {
-  console.log(data.data.updatePlayers1.length);
   for (var i = 0; i < data.data.updatePlayers1.length; i++) {
     if (data.data.updatePlayers1[i].turn == true) {
       if (data.data.updatePlayers1[i].name == userName) {
@@ -989,7 +976,6 @@ socket.on('turn2', (data) => {
               url: '/selectionPanel',
               data: {clickCount, updatedCCards},
               success: function (data) {
-                console.log(data.updatePlayers2);
                 for (var i = 0; i < 5; i++) {
                   $(`#cc${i}Selection1`).empty();
                 }
@@ -1009,10 +995,6 @@ socket.on('turn2', (data) => {
 });
 //socket to show panel for 3rd player turn
 socket.on('turn3', (data) => {
-  console.log(data.data.updatePlayers2.length);
-  console.log(data.data.updatePlayers2);
-  console.log(data.data.newCharacters.length);
-  console.log(data.data.newCharacters);
   for (var i = 0; i < data.data.updatePlayers2.length; i++) {
     if (data.data.updatePlayers2[i].turn == true) {
       if (data.data.updatePlayers2[i].name == userName) {
@@ -1105,7 +1087,6 @@ socket.on('turn3', (data) => {
               url: '/selectionPanel',
               data: {clickCount, updatedCCards},
               success: function (data) {
-                console.log(data.updatePlayers3);
                 for (var i = 0; i < 5; i++) {
                   $(`#cc${i}Selection1`).empty();
                 }
@@ -1133,7 +1114,6 @@ socket.on("pointerOff", (players) => {
 });
 
 socket.on("turn4", (data) => {
-  console.log(data.data.updatePlayers3.length);
   for (var i = 0; i < data.data.updatePlayers3.length; i++) {
     if (data.data.updatePlayers3[i].turn == true) {
       if (data.data.updatePlayers3[i].name == userName) {

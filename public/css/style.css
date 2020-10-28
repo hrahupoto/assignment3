@@ -412,7 +412,7 @@ body {
     transform: rotate(-90deg);
 }
 
-#selectionPanel2, #selectionPanel3{
+#selectionPanel2{
     position: absolute;
     top: 50%;
     left: 30%;
@@ -424,23 +424,25 @@ body {
     left: 75%;
     transform: translate(-50%, -50%);
 }
-.coinsSelection {
+#selectionPanel3{
     position: absolute;
-    color: white;
-    top: 40.5%;
-    left: 50.5%;
+    top: 50%;
+    left: 30%;
     transform: translate(-50%, -50%);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
-    font-weight: bold;
 }
+
 #coinSP{
-    top: 40.5%;
-    left: 50.5%;
+    position: absolute;
+    top: 53px;
+    left: 20.5%;
+    transform: translate(-50%, -50%);
+    
 }
 #districtSP{
-    top: 40.5%;
-    left: 60.5%;
+    position: absolute;
+    top: 53px;
+    left: 53.5%;
+    transform: translate(-50%, -50%);
 
 }
 /**************** end game room styles *********/

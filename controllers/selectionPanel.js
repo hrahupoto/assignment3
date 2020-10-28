@@ -24,11 +24,9 @@ exports.selectionPanel = function (req, res) {
         if (randNumber > -1) {
           var index = cCards.indexOf(randNumber);
           cCards.splice(index, 1);
-          //console.log("cCards: " + cCards);
         }
         //     send rand number to env
         var cardLoc = characterCards[randNumber].location;
-        // console.log(characterCards[randNumber].location);
         return res.send({cardLoc, cCards});
       }
     }
@@ -36,17 +34,14 @@ exports.selectionPanel = function (req, res) {
   if (clickCount == 3) {
     var randNumber = Math.floor(Math.random() * cCards.length);
     randNumber = cCards[randNumber];
-    //console.log("randnumber: " + randNumber);
     if (ccSelected.indexOf(randNumber) === -1) {
       ccSelected.push(randNumber);
       if (randNumber > -1) {
         var index = cCards.indexOf(randNumber);
         cCards.splice(index, 1);
-        //console.log("cCards: " + cCards);
       }
       //     send rand number to env
       var cardLoc = characterCards[randNumber].location;
-      //console.log(characterCards[randNumber].location);
       return res.send({cardLoc, cCards});
     }
   }
@@ -54,7 +49,6 @@ exports.selectionPanel = function (req, res) {
     for (var i = 0; i < cCards.length; i++) {
       selectCharacter[i] = characterCards[cCards[i]];
     }
-    console.log(selectCharacter);
     return res.send(selectCharacter);
   }
 
@@ -249,14 +243,10 @@ exports.selectionPanel = function (req, res) {
         );
       }
     }
-    console.log('line 244:' + players);
-    console.log(updatePlayers);
-    console.log(cCards);
     return res.send(cCards);
   }
   if (clickCount == 6) {
     var cCards1 = req.query.updatedCCards;
-    console.log(cCards1);
     var j;
     for (var i = 0; i < updatePlayers.length; i++) {
       if (updatePlayers[i].turn == true) {
@@ -270,12 +260,10 @@ exports.selectionPanel = function (req, res) {
         break;
       }
     }
-    console.log(cCards1.length);
     var newCharacters = [];
     for (var i = 0; i < cCards1.length; i++) {
       newCharacters[i] = characterCards[cCards1[i]];
     }
-    console.log('276:' + updatePlayers);
     return res.send({updatePlayers, newCharacters});
   }
   if (clickCount == 7) {
@@ -470,15 +458,11 @@ exports.selectionPanel = function (req, res) {
         );
       }
     }
-
-    console.log(updatePlayers1);
-    console.log(cCards);
     return res.send(cCards);
   }
 
   if (clickCount == 8) {
     var cCards1 = req.query.updatedCCards;
-    console.log(cCards1);
     var j;
     for (var i = 0; i < updatePlayers1.length; i++) {
       if (updatePlayers1[i].turn == true) {
@@ -492,12 +476,10 @@ exports.selectionPanel = function (req, res) {
         break;
       }
     }
-    console.log(cCards1.length);
     var newCharacters = [];
     for (var i = 0; i < cCards1.length; i++) {
       newCharacters[i] = characterCards[cCards1[i]];
     }
-    console.log('276:' + updatePlayers1);
     return res.send({updatePlayers1, newCharacters});
   }
   if (clickCount == 9) {
@@ -691,15 +673,11 @@ exports.selectionPanel = function (req, res) {
         );
       }
     }
-
-    console.log(updatePlayers2);
-    console.log(cCards);
     return res.send(cCards);
   }
 
   if (clickCount == 10) {
     var cCards1 = req.query.updatedCCards;
-    console.log(cCards1);
     var j;
     for (var i = 0; i < updatePlayers2.length; i++) {
       if (updatePlayers2[i].turn == true) {
@@ -713,12 +691,10 @@ exports.selectionPanel = function (req, res) {
         break;
       }
     }
-    console.log(cCards1.length);
     var newCharacters = [];
     for (var i = 0; i < cCards1.length; i++) {
       newCharacters[i] = characterCards[cCards1[i]];
     }
-    console.log('276:' + updatePlayers);
     return res.send({updatePlayers2, newCharacters});
   }
   if (clickCount == 11) {
@@ -912,15 +888,11 @@ exports.selectionPanel = function (req, res) {
         );
       }
     }
-
-    console.log(updatePlayers3);
-    console.log(cCards);
     return res.send(cCards);
   }
 
   if (clickCount == 12) {
     var cCards1 = req.query.updatedCCards;
-    console.log(cCards1);
     var j;
     for (var i = 0; i < updatePlayers3.length; i++) {
       if (updatePlayers3[i].turn == true) {
@@ -934,12 +906,10 @@ exports.selectionPanel = function (req, res) {
         break;
       }
     }
-    console.log(cCards1.length);
     var newCharacters = [];
     for (var i = 0; i < cCards1.length; i++) {
       newCharacters[i] = characterCards[cCards1[i]];
     }
-    console.log('276:' + updatePlayers3);
     return res.send({updatePlayers3, newCharacters});
   }
 };
