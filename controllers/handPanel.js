@@ -1,3 +1,5 @@
+//const { players } = require("./startGame");
+
 // This function calls at after every turn in the game flow when player updates their hand - this will update the hand panel Dcs
 exports.initialiseHandPanel = function(req, res) {
     players = JSON.parse(req.query.playersData);
@@ -35,6 +37,7 @@ exports.updateHandPanelDcs = function(req, res) {
 // This function calls at after every turn in the game flow when player updates their hand - this will update the hand panel Ccs
 exports.updateHandPanelCcs = function(req, res) {
     players = JSON.parse(req.query.playersData);
+    console.log(players)
     index =[];
     data=''; 
     

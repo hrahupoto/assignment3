@@ -91,7 +91,7 @@ body {
   height: 16%;
 }
 
-#hand-panel-cc {
+.hand-panel-cc {
   position: absolute;
   top: 16%;
   left: 10%;
@@ -217,6 +217,33 @@ body {
     visibility: visible;
 }
 
+#ccPanelBtn3{
+  position: absolute;
+  top: 85%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+}
+#selectionPanel3{
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+#coinSP{
+  position: absolute;
+  top: 53px;
+  left: 20.5%;
+  transform: translate(-50%, -50%);
+  
+}
+#districtSP{
+  position: absolute;
+  top: 53px;
+  left: 53.5%;
+  transform: translate(-50%, -50%);
+
+}
 #timer {
     color: black;
     background-color: white;

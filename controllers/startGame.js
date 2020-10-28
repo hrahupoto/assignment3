@@ -192,7 +192,7 @@ exports.startGame = function (req, res) {
             Initial_Coins,
             playerInitialDcsArray[i],
             playerCcsArray={},
-            playerTurn=false,
+            playerTurn=turn[i],
             Age[i]
           )
         );
