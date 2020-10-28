@@ -1,0 +1,37 @@
+<html lang="en">
+  <head>
+    <%- include('partials/head',title) %>
+  </head>
+
+  <body>
+    <!-- content inside the main class used only for lobby. When styling lobby page, lobby class can be used just for lobby page in css file. -->
+    <main class="lobby">
+      <div class="container">
+        <div class="row">
+          <img class="screen" src="/images/Citadels_home.jpg" />
+          <a>
+            <img class="top" src="/images/joinRoom_button.png" />
+            <div class="form-group">
+              <input
+                type="text"
+                placeholder="User Name"
+                class="form-control"
+                id="userName"
+              />
+            </div>
+            <div class="form-group">
+              <input type="date" class="form-control" id="dob" />
+            </div>
+            <div class="joinRoom">Join Room</div>
+          </a>
+          <a href="help">
+            <img class="centered" src="/images/Help_button.png" />
+            <div class="centered font-weight-bold">Help</div>
+          </a>
+        </div>
+
+        <!-- <button id="joinRoom" type="button" class="btn btn-primary">Join Room</button> -->
+      </div>
+    </main>
+  </body>
+</html>

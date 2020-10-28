@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+
+    <head>
+        <%- include('partials/head', title) %>
+    </head>
+
+    <body>
+        <!-- content inside the main class used only for lobby. When styling lobby page, lobby class can be used just for lobby page in css file. -->
+        <main class="game-room">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <img class="screen" src="/images/gameRoom.jpg">
+                    </div>
+                    <%- include('partials/bank_components.ejs') %> 
+                    <%- include('partials/players.ejs') %>
+                    <%- include('partials/player_coins.ejs') %>
+                    <%- include('partials/counter') %>
+                    <%- include('partials/playerHandPanel') %>
+                    <%- include('partials/playerCrown.ejs') %> 
+                    <%- include('partials/selectionPanel') %>
+                    <%- include('partials/selectionPanel2') %>
+                    <%- include('partials/selectionPanel3') %>
+                    <%- include('partials/pointer.ejs') %> 
+                    <%- include('partials/districtCardBuildingPanel.ejs') %> 
+                    <%- include('partials/characterCardHandlingPanel.ejs') %> 
+                    <%- include('partials/chatPanel.ejs') %> 
+                    <a href='#startGame'>
+                        <img class="startGame" src="/images/startGame_button.png">
+                        <div class="startGame font-weight-bold">Start Game</div>
+                    </a>
+                    <a>
+                        <img class="exitGame" src="/images/Exit_button.png">
+                        <div class="exitGame font-weight-bold">Exit</div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
